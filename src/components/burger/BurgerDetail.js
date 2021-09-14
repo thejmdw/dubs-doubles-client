@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react"
 import { BurgerContext } from "./BurgerProvider.js"
+import { LineItemContext } from "../lineitem/LineItemProvider.js"
 // import { EventContext } from "./EventProvider.js"
 import { useHistory, useParams } from "react-router-dom"
 import "./Burger.css"
@@ -7,6 +8,7 @@ import "./Burger.css"
 export const BurgerDetail = () => {
     const history = useHistory()
     const { burger, getBurgerById } = useContext(BurgerContext)
+    const { createLineItem } = useContext(LineItemContext)
     // const { events, getEvents } = useContext(EventContext)
     const { burgerId } = useParams()
 
@@ -19,6 +21,14 @@ export const BurgerDetail = () => {
         // getEvents()
     }, [])
 
+    const handleAddClick = (id) => {
+        const product = {
+            product_id: id
+        }
+        createLineItem(product)
+        // .then(() => history.push(`/burgers/detail/${id}`))
+      }
+
     return (
         <>
         <article className="burgers">
@@ -29,7 +39,7 @@ export const BurgerDetail = () => {
                         <div className="burger__description">{burger.description}</div>
                         <div className="burger__price">${burger.price}</div>
                         <div className="burger__edit">
-                        <button className="btn btn-3">Add to Cart</button>
+                        <button className="btn btn-3" onClick={() => {handleAddClick(burger.id)}}>Add to Cart</button>
                         </div>
                 
             

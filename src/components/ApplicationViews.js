@@ -4,6 +4,7 @@ import { ProfileProvider } from "./auth/ProfileProvider"
 import { BurgerProvider } from "./burger/BurgerProvider"
 import { FriesProvider } from "./fries/FriesProvider"
 import { ComboProvider } from "./combo/ComboProvider"
+import { LineItemProvider } from "./lineitem/LineItemProvider"
 import { Profile } from "./auth/Profile"
 import { Menu } from "./menu/Menu"
 import { BurgerList } from "./burger/BurgerList"
@@ -23,6 +24,7 @@ export const ApplicationViews = () => {
             <BurgerProvider>
             <FriesProvider>
             <ComboProvider>
+            <LineItemProvider>
 
                 <Route exact path="/profile">
                     <Profile />
@@ -53,7 +55,8 @@ export const ApplicationViews = () => {
                 <Route exact path="/combos/detail/:comboId(\d+)">
                     <ComboDetail />
                 </Route>
-            
+                
+            </LineItemProvider>
             </ComboProvider>
             </FriesProvider>
             </BurgerProvider>

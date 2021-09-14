@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react"
 import { ComboContext } from "./ComboProvider.js"
+import { LineItemContext } from "../lineitem/LineItemProvider.js"
 // import { EventContext } from "./EventProvider.js"
 import { useHistory, useParams } from "react-router-dom"
 import "./Combo.css"
@@ -7,6 +8,7 @@ import "./Combo.css"
 export const ComboDetail = () => {
     const history = useHistory()
     const { combo, getComboById } = useContext(ComboContext)
+    const { createLineItem } = useContext(LineItemContext)
     // const { events, getEvents } = useContext(EventContext)
     const { comboId } = useParams()
 
@@ -19,6 +21,14 @@ export const ComboDetail = () => {
         // getEvents()
     }, [])
 
+    const handleAddClick = (id) => {
+        const product = {
+            product_id: id
+        }
+        createLineItem(product)
+        // .then(() => history.push(`/burgers/detail/${id}`))
+      }
+
     return (
         <>
         <article className="combos">
@@ -29,7 +39,7 @@ export const ComboDetail = () => {
                         <div className="combo__description">{combo.description}</div>
                         <div className="combo__price">${combo.price}</div>
                         <div className="combo__edit">
-                        <button className="btn btn-3">Add to Cart</button>
+                        <button className="btn btn-3" onClick={() => {handleAddClick(combo.id)}}>Add to Cart</button>
                         </div>
                 
             
