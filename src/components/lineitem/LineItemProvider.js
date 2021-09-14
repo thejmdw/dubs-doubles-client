@@ -20,6 +20,19 @@ export const LineItemProvider = (props) => {
             // .then()
     }
     
+    const deleteLineItem = (id) => {
+        return fetch(`http://localhost:8000/lineitems/${id}`, {
+            method: "DELETE",
+            headers:{
+                "Content-Type": "application/json",
+                "Authorization": `Token ${localStorage.getItem("dd_token")}`
+            },
+            body: JSON.stringify(id)
+         })
+            // .then(setLineItem(productId))
+            // .then()
+    }
+    
     const updateLineItem = (LineItem) => {
         return fetch(`http://localhost:8000/products/${LineItem.id}`, {
             method: "PUT",
@@ -66,7 +79,7 @@ export const LineItemProvider = (props) => {
     
 
     return (
-        <LineItemContext.Provider value={{ lineItems, lineItem, getLineItems, createLineItem, updateLineItem, getLineItemById }} >
+        <LineItemContext.Provider value={{ lineItems, lineItem, deleteLineItem, getLineItems, createLineItem, updateLineItem, getLineItemById }} >
             { props.children }
         </LineItemContext.Provider>
 
