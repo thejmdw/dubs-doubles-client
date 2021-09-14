@@ -15,7 +15,10 @@ export const BurgerDetail = () => {
     const { burgerId } = useParams()
 
     // const { burger, setBurger } = useState({})
-    
+    const [ lineItem, setLineItem ] = useState({
+        product_id: 0,
+        toppings: []
+    })
 
     useEffect(() => {
         getBurgerById(parseInt(burgerId))
@@ -26,29 +29,30 @@ export const BurgerDetail = () => {
     }, [])
 
     const handleAddClick = (id) => {
-        const product = {
-            product_id: id
+        let addLineItem = {
+            product_id: id,
+            toppings: lineItem.toppings
         }
-        createLineItem(product)
-        // .then(() => history.push(`/burgers/detail/${id}`))
+        createLineItem(addLineItem)
+        .then(() => history.push(`/burgers`))
       }
       const handleControlledCheckChange = e => {
-        // const newPost = { ...post }
+        const newLineItem = { ...lineItem }
     
-        // // if (newPost.tags.indexOf(parseInt(e.target.value)) > -1) {
-        // //     newPost.tags.splice(newPost.tags.indexOf(parseInt(e.target.value)) - 1, newPost.tags.indexOf(parseInt(e.target.value)))
-        // // } else {
-        // //     newPost.tags.push(parseInt(e.target.value))
-        // // }
-        
-        // // setPost(newPost)
-        // const tagIndex = newPost.tags.indexOf(parseInt(e.target.value))
-        // if (tagIndex > -1) {
-        //   newPost.tags.splice(tagIndex, 1)
+        // if (newPost.lineItems.indexOf(parseInt(e.target.value)) > -1) {
+        //     newPost.lineItems.splice(newPost.lineItems.indexOf(parseInt(e.target.value)) - 1, newPost.lineItems.indexOf(parseInt(e.target.value)))
         // } else {
-        // newPost.tags.push(parseInt(e.target.value))
+        //     newPost.lineItems.push(parseInt(e.target.value))
         // }
+        
         // setPost(newPost)
+        const lineItemIndex = newLineItem.toppings.indexOf(parseInt(e.target.value))
+        if (lineItemIndex > -1) {
+          newLineItem.toppings.splice(lineItemIndex, 1)
+        } else {
+        newLineItem.toppings.push(parseInt(e.target.value))
+        }
+        setLineItem(newLineItem)
       }
 
     return (
