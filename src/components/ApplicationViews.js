@@ -4,11 +4,15 @@ import { ProfileProvider } from "./auth/ProfileProvider"
 import { BurgerProvider } from "./burger/BurgerProvider"
 import { FriesProvider } from "./fries/FriesProvider"
 import { ComboProvider } from "./combo/ComboProvider"
+import { LineItemProvider } from "./lineitem/LineItemProvider"
 import { Profile } from "./auth/Profile"
 import { Menu } from "./menu/Menu"
 import { BurgerList } from "./burger/BurgerList"
+import { BurgerDetail } from "./burger/BurgerDetail"
 import { FriesList } from "./fries/FriesList"
+import { FriesDetail } from "./fries/FriesDetail"
 import { ComboList } from "./combo/ComboList"
+import { ComboDetail } from "./combo/ComboDetail"
 
 export const ApplicationViews = () => {
     return <>
@@ -20,6 +24,7 @@ export const ApplicationViews = () => {
             <BurgerProvider>
             <FriesProvider>
             <ComboProvider>
+            <LineItemProvider>
 
                 <Route exact path="/profile">
                     <Profile />
@@ -31,13 +36,27 @@ export const ApplicationViews = () => {
                 <Route exact path="/burgers">
                     <BurgerList />
                 </Route>
+                <Route exact path="/burgers/detail/:burgerId(\d+)">
+                    <BurgerDetail />
+                </Route>
+
+
                 <Route exact path="/fries">
                     <FriesList />
                 </Route>
+                <Route exact path="/fries/detail/:friesId(\d+)">
+                    <FriesDetail />
+                </Route>
+
+
                 <Route exact path="/combos">
                     <ComboList />
                 </Route>
-            
+                <Route exact path="/combos/detail/:comboId(\d+)">
+                    <ComboDetail />
+                </Route>
+                
+            </LineItemProvider>
             </ComboProvider>
             </FriesProvider>
             </BurgerProvider>

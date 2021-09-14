@@ -1,74 +1,74 @@
 import React, { useState } from "react"
 
 
-export const BurgerContext = React.createContext()
+export const LineItemContext = React.createContext()
 
-export const BurgerProvider = (props) => {
-    const [ burgers, setBurgers ] = useState([])
-    const [ burger, setBurger ] = useState({})
+export const LineItemProvider = (props) => {
+    const [ lineItems, setLineItems ] = useState([])
+    const [ lineItem, setLineItem ] = useState({})
 
-    const createBurger = (burger) => {
-        return fetch("http://localhost:8000/products", {
+    const createLineItem = (product) => {
+        return fetch("http://localhost:8000/profile/cart", {
             method: "POST",
             headers:{
                 "Content-Type": "application/json",
                 "Authorization": `Token ${localStorage.getItem("dd_token")}`
             },
-            body: JSON.stringify(burger)
+            body: JSON.stringify(product)
          })
-            .then(setBurger(burger))
+            // .then(setLineItem(productId))
             // .then()
     }
     
-    const updateBurger = (Burger) => {
-        return fetch(`http://localhost:8000/products/${Burger.id}`, {
+    const updateLineItem = (LineItem) => {
+        return fetch(`http://localhost:8000/products/${LineItem.id}`, {
             method: "PUT",
             headers:{
                 "Content-Type": "application/json",
                 "Authorization": `Token ${localStorage.getItem("dd_token")}`
             },
-            body: JSON.stringify(Burger)
+            body: JSON.stringify(LineItem)
          })
-            .then(setBurger(Burger))
+            .then(setLineItem(LineItem))
             // .then()
     }
     
-    const getBurgerById = (id) => {
+    const getLineItemById = (id) => {
         return fetch(`http://localhost:8000/products/${id}`, { 
             headers:{
                 "Authorization": `Token ${localStorage.getItem("dd_token")}`
             }
         })
             .then(response => response.json())
-            .then(setBurger)
+            .then(setLineItem)
     }
 
-    const getBurgers = () => {
+    const getLineItems = () => {
         return fetch("http://localhost:8000/products?product_type=1", { 
             headers:{
                 "Authorization": `Token ${localStorage.getItem("dd_token")}`
             }
         })
             .then(response => response.json())
-            .then(setBurgers)
+            .then(setLineItems)
     }
     
-    // const getBurgerTypes = () => {
-    //     return fetch("http://localhost:8000/Burgertypes", { 
+    // const getLineItemTypes = () => {
+    //     return fetch("http://localhost:8000/LineItemtypes", { 
     //         headers:{
     //             "Authorization": `Token ${localStorage.getItem("dd_token")}`
     //         }
     //     })
     //         .then(response => response.json())
-    //         .then(setBurgerTypes)
+    //         .then(setLineItemTypes)
     // }
  
     
 
     return (
-        <BurgerContext.Provider value={{ burgers, burger, getBurgers, createBurger, updateBurger, getBurgerById }} >
+        <LineItemContext.Provider value={{ lineItems, lineItem, getLineItems, createLineItem, updateLineItem, getLineItemById }} >
             { props.children }
-        </BurgerContext.Provider>
+        </LineItemContext.Provider>
 
     )
 }

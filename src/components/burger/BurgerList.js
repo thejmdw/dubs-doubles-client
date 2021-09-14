@@ -2,10 +2,11 @@ import React, { useContext, useEffect } from "react"
 import { BurgerContext } from "./BurgerProvider.js"
 // import { EventContext } from "./EventProvider.js"
 import { useHistory } from "react-router-dom"
+import "./Burger.css"
 
 export const BurgerList = () => {
     const history = useHistory()
-    const { burgers, getBurgers } = useContext(BurgerContext)
+    const { burgers, getBurgers, getBurgerById } = useContext(BurgerContext)
     // const { events, getEvents } = useContext(EventContext)
 
     
@@ -15,6 +16,11 @@ export const BurgerList = () => {
         // getEvents()
     }, [])
 
+    const handleBurgerClick = (id) => {
+        getBurgerById(id)
+        .then(() => history.push(`/burgers/detail/${id}`))
+      }
+
     return (
         <>
         <article className="burgers">
@@ -23,7 +29,7 @@ export const BurgerList = () => {
             </header>
             {
                 burgers.map(burger => {
-                    return <section key={`burger--${burger.id}`} className="burger">
+                    return <section key={`burger--${burger.id}`} className="burgerCard" onClick={() => {handleBurgerClick(burger.id)}}>
                         <div className="burger__name">{burger.name}</div>
                         <div className="burger__pic">Pic placeholder</div>
                         <div className="burger__description">{burger.description}</div>
