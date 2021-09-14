@@ -9,7 +9,9 @@ import { Menu } from "./menu/Menu"
 import { BurgerList } from "./burger/BurgerList"
 import { BurgerDetail } from "./burger/BurgerDetail"
 import { FriesList } from "./fries/FriesList"
+import { FriesDetail } from "./fries/FriesDetail"
 import { ComboList } from "./combo/ComboList"
+import { ComboDetail } from "./combo/ComboDetail"
 
 export const ApplicationViews = () => {
     return <>
@@ -40,8 +42,16 @@ export const ApplicationViews = () => {
                 <Route exact path="/fries">
                     <FriesList />
                 </Route>
+                <Route exact path="/fries/detail/:friesId(\d+)">
+                    <FriesDetail />
+                </Route>
+
+
                 <Route exact path="/combos">
                     <ComboList />
+                </Route>
+                <Route exact path="/combos/detail/:comboId(\d+)">
+                    <ComboDetail />
                 </Route>
             
             </ComboProvider>

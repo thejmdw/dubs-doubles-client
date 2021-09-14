@@ -40,7 +40,7 @@ export const ComboProvider = (props) => {
             }
         })
             .then(response => response.json())
-            // .then(setfrie)
+            .then(setCombo)
     }
 
     const getCombos = () => {

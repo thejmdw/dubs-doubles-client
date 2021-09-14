@@ -6,7 +6,7 @@ import "./Fries.css"
 
 export const FriesList = () => {
     const history = useHistory()
-    const { fries, getFries } = useContext(FriesContext)
+    const { fries, getFries, getFryById } = useContext(FriesContext)
     // const { events, getEvents } = useContext(EventContext)
 
     
@@ -16,6 +16,11 @@ export const FriesList = () => {
         // getEvents()
     }, [])
 
+    const handleFriesClick = (id) => {
+        getFryById(id)
+        .then(() => history.push(`/fries/detail/${id}`))
+      }
+
     return (
         <>
         <article className="fries">
@@ -24,7 +29,7 @@ export const FriesList = () => {
             </header>
             {
                 fries.map(fry => {
-                    return <section key={`fries--${fry.id}`} className="friesCard" onClick={() => history.push(`fries/${fry.id}/details`)}>
+                    return <section key={`fries--${fry.id}`} className="friesCard" onClick={() => {handleFriesClick(fry.id)}}>
                         <div className="fries__name">{fry.name}</div>
                         <div className="fries__pic">Pic placeholder</div>
                         <div className="fries__description">{fry.description}</div>
