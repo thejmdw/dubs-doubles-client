@@ -8,24 +8,31 @@ import "./Cart.css"
 export const Cart = () => {
     const history = useHistory()
     const { cart, getCart } = useContext(CartContext)
-    const { createLineItem } = useContext(LineItemContext)
+    const { createLineItem, deleteLineItem } = useContext(LineItemContext)
     // const { events, getEvents } = useContext(EventContext)
     // const { CartId } = useParams()
 
     // const { Cart, setCart } = useState({})
-    
+    const [lineItems, setLineItems] = useState()
 
     useEffect(() => {
         getCart()
         // .then(data => setCart(data))
         // getEvents()
     }, [])
+    
+    useEffect(() => {
+        getCart()
+        // .then(data => setCart(data))
+        // getEvents()
+    }, [lineItems])
 
     const handleRemove = (id) => {
-        const product = {
-            line_item_id: id
-        }
-        createLineItem(product)
+        // const product = {
+        //     line_item_id: id
+        // }
+        deleteLineItem(id)
+        .then(setLineItems)
         // .then(() => history.push(`/burgers/detail/${id}`))
       }
 
@@ -43,7 +50,7 @@ export const Cart = () => {
                         {
                 cart.lineitems?.map(item => {
                     return <section key={`combo--${item.id}`} >
-                        <div className="combo__name">{item.product.name} ${item.product.price} <button className="btn btn-3" onClick="">Remove Item</button></div>
+                        <div className="combo__name">{item.product.name} ${item.product.price} <button className="btn btn-3" onClick={() => {handleRemove(item.id)}}>Remove Item</button></div>
                         {/* <div className="combo__price">${item.product.price}</div> */}
                         {/* <div className="Frie__edit">
                         <button className="btn btn-3"
