@@ -4,9 +4,11 @@ import { ProfileProvider } from "./auth/ProfileProvider"
 import { BurgerProvider } from "./burger/BurgerProvider"
 import { FriesProvider } from "./fries/FriesProvider"
 import { ComboProvider } from "./combo/ComboProvider"
+import { CartProvider } from "./cart/CartProvider"
 import { LineItemProvider } from "./lineitem/LineItemProvider"
 import { Profile } from "./auth/Profile"
 import { Menu } from "./menu/Menu"
+import { Cart } from "./cart/Cart"
 import { BurgerList } from "./burger/BurgerList"
 import { BurgerDetail } from "./burger/BurgerDetail"
 import { FriesList } from "./fries/FriesList"
@@ -25,9 +27,13 @@ export const ApplicationViews = () => {
             <FriesProvider>
             <ComboProvider>
             <LineItemProvider>
+            <CartProvider>
 
                 <Route exact path="/profile">
                     <Profile />
+                </Route>
+                <Route exact path="/cart">
+                    <Cart />
                 </Route>
 
                 <Route exact path="/">
@@ -55,7 +61,8 @@ export const ApplicationViews = () => {
                 <Route exact path="/combos/detail/:comboId(\d+)">
                     <ComboDetail />
                 </Route>
-                
+
+            </CartProvider>
             </LineItemProvider>
             </ComboProvider>
             </FriesProvider>
