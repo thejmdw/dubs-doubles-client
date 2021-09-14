@@ -7,7 +7,7 @@ import "./Burger.css"
 
 export const BurgerDetail = () => {
     const history = useHistory()
-    const { burger, getBurgerById } = useContext(BurgerContext)
+    const { burger, getBurgerById, toppings, toppingTypes, getToppings, getToppingTypes } = useContext(BurgerContext)
     const { createLineItem } = useContext(LineItemContext)
     // const { events, getEvents } = useContext(EventContext)
     const { burgerId } = useParams()
@@ -17,6 +17,8 @@ export const BurgerDetail = () => {
 
     useEffect(() => {
         getBurgerById(parseInt(burgerId))
+        getToppingTypes()
+        getToppings()
         // .then(data => setBurger(data))
         // getEvents()
     }, [])
@@ -38,6 +40,15 @@ export const BurgerDetail = () => {
                         <div className="burger__pic">Pic placeholder</div>
                         <div className="burger__description">{burger.description}</div>
                         <div className="burger__price">${burger.price}</div>
+                        {burger.name === "The BYOBurger" ? <div className="burger__toppings">
+                            {toppingTypes.map(type => {
+                                return <ul>{type.name}
+                                {toppings.filter(topping => topping.topping_type_id === type.id).map(
+                                    top => {
+                                        return <li>{top.name}</li>
+                                    }
+                                )}</ul>
+                            })}</div> : ""}
                         <div className="burger__edit">
                         <button className="btn btn-3" onClick={() => {handleAddClick(burger.id)}}>Add to Cart</button>
                         </div>
