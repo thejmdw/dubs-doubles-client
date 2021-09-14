@@ -6,13 +6,17 @@ import { FriesProvider } from "./fries/FriesProvider"
 import { ComboProvider } from "./combo/ComboProvider"
 import { CartProvider } from "./cart/CartProvider"
 import { LineItemProvider } from "./lineitem/LineItemProvider"
+import { PaymentProvider } from "./cart/PaymentProvider"
 import { Profile } from "./auth/Profile"
 import { Menu } from "./menu/Menu"
 import { Cart } from "./cart/Cart"
+import { Checkout } from "./cart/Checkout"
 import { BurgerList } from "./burger/BurgerList"
 import { BurgerDetail } from "./burger/BurgerDetail"
 import { FriesList } from "./fries/FriesList"
 import { FriesDetail } from "./fries/FriesDetail"
+import { PaymentList } from "./cart/PaymentList"
+import { PaymentForm } from "./cart/PaymentForm"
 import { ComboList } from "./combo/ComboList"
 import { ComboDetail } from "./combo/ComboDetail"
 
@@ -28,6 +32,7 @@ export const ApplicationViews = () => {
             <ComboProvider>
             <LineItemProvider>
             <CartProvider>
+            <PaymentProvider>
 
                 <Route exact path="/profile">
                     <Profile />
@@ -61,7 +66,18 @@ export const ApplicationViews = () => {
                 <Route exact path="/combos/detail/:comboId(\d+)">
                     <ComboDetail />
                 </Route>
-
+                
+                <Route exact path="/payment">
+                    <PaymentList />
+                </Route>
+                <Route exact path="/payment/new">
+                    <PaymentForm />
+                </Route>
+                <Route exact path="/checkout">
+                    <Checkout />
+                </Route>
+            
+            </PaymentProvider>
             </CartProvider>
             </LineItemProvider>
             </ComboProvider>
