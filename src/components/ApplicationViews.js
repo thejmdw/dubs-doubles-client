@@ -7,6 +7,7 @@ import { ComboProvider } from "./combo/ComboProvider"
 import { Profile } from "./auth/Profile"
 import { Menu } from "./menu/Menu"
 import { BurgerList } from "./burger/BurgerList"
+import { BurgerDetail } from "./burger/BurgerDetail"
 import { FriesList } from "./fries/FriesList"
 import { ComboList } from "./combo/ComboList"
 
@@ -31,6 +32,11 @@ export const ApplicationViews = () => {
                 <Route exact path="/burgers">
                     <BurgerList />
                 </Route>
+                <Route exact path="/burgers/detail/:burgerId(\d+)">
+                    <BurgerDetail />
+                </Route>
+
+
                 <Route exact path="/fries">
                     <FriesList />
                 </Route>

@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from "react"
 import { FriesContext } from "./FriesProvider.js"
 // import { EventContext } from "./EventProvider.js"
 import { useHistory } from "react-router-dom"
+import "./Fries.css"
 
 export const FriesList = () => {
     const history = useHistory()
@@ -23,7 +24,7 @@ export const FriesList = () => {
             </header>
             {
                 fries.map(fry => {
-                    return <section key={`fries--${fry.id}`} className="fries">
+                    return <section key={`fries--${fry.id}`} className="friesCard" onClick={() => history.push(`fries/${fry.id}/details`)}>
                         <div className="fries__name">{fry.name}</div>
                         <div className="fries__pic">Pic placeholder</div>
                         <div className="fries__description">{fry.description}</div>

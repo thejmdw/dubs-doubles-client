@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from "react"
 import { ComboContext } from "./ComboProvider.js"
 // import { EventContext } from "./EventProvider.js"
 import { useHistory } from "react-router-dom"
+import "./Combo.css"
 
 export const ComboList = () => {
     const history = useHistory()
@@ -23,7 +24,7 @@ export const ComboList = () => {
             </header>
             {
                 combos.map(combo => {
-                    return <section key={`combo--${combo.id}`} className="combo">
+                    return <section key={`combo--${combo.id}`} className="comboCard" onClick={() => history.push(`combos/${combo.id}/details`)}>
                         <div className="combo__name">{combo.name}</div>
                         <div className="combo__pic">Pic placeholder</div>
                         <div className="combo__description">{combo.description}</div>

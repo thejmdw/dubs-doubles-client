@@ -40,7 +40,7 @@ export const BurgerProvider = (props) => {
             }
         })
             .then(response => response.json())
-            // .then(setBurger)
+            .then(setBurger)
     }
 
     const getBurgers = () => {
