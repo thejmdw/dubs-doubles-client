@@ -28,12 +28,8 @@ export const Cart = () => {
     }, [lineItems])
 
     const handleRemove = (id) => {
-        // const product = {
-        //     line_item_id: id
-        // }
         deleteLineItem(id)
         .then(setLineItems)
-        // .then(() => history.push(`/burgers/detail/${id}`))
       }
 
 
@@ -65,7 +61,7 @@ export const Cart = () => {
                         {/* <button className="btn btn-3" onClick={() => {handleAddClick(Cart.id)}}>Add to Cart</button> */}
                         </div>
                         <div className="Cart__edit">
-                        <button className="btn btn-3" onClick="">Checkout</button>
+                        <button className="btn btn-3" onClick={() => history.push(`/payment`)}>Payment</button>
                         </div>
                 
             

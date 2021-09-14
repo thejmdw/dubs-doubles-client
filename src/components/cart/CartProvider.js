@@ -20,16 +20,16 @@ export const CartProvider = (props) => {
             // .then()
     }
     
-    const updateCart = (Cart) => {
-        return fetch(`http://localhost:8000/products/${Cart.id}`, {
+    const updateCart = (cart) => {
+        return fetch(`http://localhost:8000/orders/${cart.id}`, {
             method: "PUT",
             headers:{
                 "Content-Type": "application/json",
                 "Authorization": `Token ${localStorage.getItem("dd_token")}`
             },
-            body: JSON.stringify(Cart)
+            body: JSON.stringify(cart)
          })
-            .then(setCart(Cart))
+            .then(setCart(cart))
             // .then()
     }
     
