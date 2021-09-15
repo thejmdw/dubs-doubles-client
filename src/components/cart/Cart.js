@@ -31,14 +31,15 @@ export const Cart = () => {
         deleteLineItem(id)
         .then(setLineItems)
       }
-
+    
+    let cartTotal = 0
 
     return (
         <>
         <article className="Carts">
         <header className="events__header">
                 <h1>Dub's Doubles</h1>
-                <h3>420 someway</h3>
+                <h3>A Block Near You</h3>
             </header>
                         <div className="Cart__description">Order #: {cart.id}</div>
                         <div className="Cart__price">Date: {cart.created_date}</div>
@@ -54,11 +55,14 @@ export const Cart = () => {
                                     onClick={() => history.push(`Combo/edit/${Frie.id}`)}
                                     >Edit Frie</button>
                         </div> */}
+                        {item.toppings.length > 0 ? item.toppings.map(topping => {
+                            return <div> - {topping.name} ${topping.price}</div>
+                        }) : ""}
                     </section>
                 })
             }
                         <div className="Cart__edit">
-                            Total: ${cart.total}
+                            Total: ${cart.lineitems?.forEach(item => cartTotal += item.product.price)}
                         {/* <button className="btn btn-3" onClick={() => {handleAddClick(Cart.id)}}>Add to Cart</button> */}
                         </div>
                         <div className="Cart__edit">
