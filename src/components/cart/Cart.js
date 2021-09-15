@@ -8,7 +8,7 @@ import "./Cart.css"
 export const Cart = () => {
     const history = useHistory()
     const { cart, getCart } = useContext(CartContext)
-    const { createLineItem, deleteLineItem, deleteLineItemTopping } = useContext(LineItemContext)
+    const { createLineItem, deleteLineItem, deleteLineItemTopping, lineItemToppingObjs, getLineItemToppings } = useContext(LineItemContext)
     // const { events, getEvents } = useContext(EventContext)
     // const { CartId } = useParams()
 
@@ -20,14 +20,17 @@ export const Cart = () => {
 
     useEffect(() => {
         getCart()
+        getLineItemToppings()
     }, [])
     
     useEffect(() => {
         getCart()
+        getLineItemToppings()
     }, [lineItems])
 
     useEffect(() => {
         getCart()
+        getLineItemToppings()
     }, [lineItemToppings])
 
     const handleRemove = (id) => {
@@ -35,8 +38,9 @@ export const Cart = () => {
         .then(setLineItems)
         setCartTotal()
       }
-    const handleRemoveAddOn = (id) => {
-        deleteLineItemTopping(id)
+    const handleRemoveAddOn = (topID, itemID) => {
+        const found = lineItemToppingObjs.find(lit => lit.line_item_id === itemID && lit.topping_id === topID)
+        deleteLineItemTopping(found.id)
         .then(setLineItemToppings)
       }
     
@@ -58,13 +62,14 @@ export const Cart = () => {
                         <div className="Cart__description">Order #: {cart.id}</div>
                         <div className="Cart__price">Date: {cart.created_date}</div>
                         <div className="Cart__price">Customer: {cart.customer?.user.first_name}</div>
+                        <div className="Cart__price">{cart.customer?.user.first_name}</div>
                         {
                 cart.lineitems?.map(item => {
                     return <section key={`combo--${item.id}`} >
                         <div className="combo__name">{item.product.name} ${item.product.price === 0 ? item.toppings.forEach(topping => {
                             item.product.price += topping.price}) : item.product.price} <button className="btn btn-3" onClick={() => {handleRemove(item.id)}}>Remove Item</button></div>
                         {item.toppings.length > 0 ? item.toppings.map(topping => {
-                            return <div> - {topping.name} ${topping.price}<button className="btn btn-3" onClick={() => {handleRemoveAddOn(item.id)}}>X</button> </div>
+                            return <div> - {topping.name} ${topping.price}<button className="btn btn-3" onClick={() => {handleRemoveAddOn(topping.id, item.id)}}>X</button> </div>
                         }) : ""}
                     </section>
                 })

@@ -6,6 +6,7 @@ export const LineItemContext = React.createContext()
 export const LineItemProvider = (props) => {
     const [ lineItems, setLineItems ] = useState([])
     const [ lineItem, setLineItem ] = useState({})
+    const [ lineItemToppingObjs, setLineItemToppingObjs ] = useState([])
 
     const createLineItem = (product) => {
         return fetch("http://localhost:8000/profile/cart", {
@@ -77,6 +78,16 @@ export const LineItemProvider = (props) => {
             .then(response => response.json())
             .then(setLineItems)
     }
+
+    const getLineItemToppings = () => {
+        return fetch("http://localhost:8000/lineitemtoppings", { 
+            headers:{
+                "Authorization": `Token ${localStorage.getItem("dd_token")}`
+            }
+        })
+            .then(response => response.json())
+            .then(setLineItemToppingObjs)
+    }
     
     // const getLineItemTypes = () => {
     //     return fetch("http://localhost:8000/LineItemtypes", { 
@@ -91,7 +102,7 @@ export const LineItemProvider = (props) => {
     
 
     return (
-        <LineItemContext.Provider value={{ lineItems, lineItem, deleteLineItem, deleteLineItemTopping, getLineItems, createLineItem, updateLineItem, getLineItemById }} >
+        <LineItemContext.Provider value={{ lineItems, lineItem, lineItemToppingObjs, getLineItemToppings, deleteLineItem, deleteLineItemTopping, getLineItems, createLineItem, updateLineItem, getLineItemById }} >
             { props.children }
         </LineItemContext.Provider>
 
