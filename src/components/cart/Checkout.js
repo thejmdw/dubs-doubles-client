@@ -5,6 +5,7 @@ import { LineItemContext } from "../lineitem/LineItemProvider.js"
 // import { EventContext } from "./EventProvider.js"
 import { useHistory, useParams } from "react-router-dom"
 import "./Cart.css"
+import Swal from 'sweetalert2'
 
 export const Checkout = () => {
     const history = useHistory()
@@ -53,7 +54,16 @@ export const Checkout = () => {
         setCartTotal(0)
         setCartPayment(0)
         updateCart(finalCart)
-        .then(() => history.push(`/`))
+        .then(() => Swal.fire({
+            title: `Order #${finalCart.id} Confirmed`,
+            confirmButtonText: "great"
+
+        }).then(result => {
+            if (result.isConfirmed) {
+                history.push('/')
+            }
+        } ) )
+        // .then(() => history.push(`/`))
       }
     
     console.log(cartPayment)
