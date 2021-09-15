@@ -46,7 +46,8 @@ export const Cart = () => {
                         {
                 cart.lineitems?.map(item => {
                     return <section key={`combo--${item.id}`} >
-                        <div className="combo__name">{item.product.name} ${item.product.price} <button className="btn btn-3" onClick={() => {handleRemove(item.id)}}>Remove Item</button></div>
+                        <div className="combo__name">{item.product.name} ${item.product.price === 0 ? item.toppings.forEach(topping => {
+                            item.product.price += topping.price}) : item.product.price} <button className="btn btn-3" onClick={() => {handleRemove(item.id)}}>Remove Item</button></div>
                         {/* <div className="combo__price">${item.product.price}</div> */}
                         {/* <div className="Frie__edit">
                         <button className="btn btn-3"
