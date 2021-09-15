@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react"
 import { CartContext } from "./CartProvider.js"
+import { PaymentContext } from "./PaymentProvider.js"
 import { LineItemContext } from "../lineitem/LineItemProvider.js"
 // import { EventContext } from "./EventProvider.js"
 import { useHistory, useParams } from "react-router-dom"
@@ -7,7 +8,8 @@ import "./Cart.css"
 
 export const Checkout = () => {
     const history = useHistory()
-    const { cart, getCart, updateCart } = useContext(CartContext)
+    const { cart, getCart, updateCart} = useContext(CartContext)
+    const { cartPayment, setCartPayment } = useContext(PaymentContext)
     // const { createLineItem, deleteLineItem } = useContext(LineItemContext)
     // const { events, getEvents } = useContext(EventContext)
     // const { CheckoutId } = useParams()
@@ -15,25 +17,46 @@ export const Checkout = () => {
     // const { Checkout, setCheckout } = useState({})
     // const [lineItems, setLineItems] = useState()
 
+    const [lineItems, setLineItems] = useState()
+    const [lineItemToppings, setLineItemToppings] = useState()
+
+    const [ cartTotal, setCartTotal] = useState(0)
+
     useEffect(() => {
         getCart()
-        // .then(data => setCheckout(data))
+        // .then(data => setCart(data))
         // getEvents()
     }, [])
     
-    // useEffect(() => {
-    //     getCheckout()
-    //     // .then(data => setCheckout(data))
-    //     // getEvents()
-    // }, [lineItems])
+    useEffect(() => {
+        getCart()
+        // .then(data => setCart(data))
+        // getEvents()
+    }, [lineItems])
+
+    useEffect(() => {
+        getCart()
+        // .then(data => setCart(data))
+        // getEvents()
+    }, [lineItemToppings])
+
+    
+    useEffect(() => {
+        let total = 0
+        cart.lineitems.forEach(item => total += item.product.price)
+        setCartTotal(total)
+    }, [lineItems])
 
     const handleUpdate = () => {
         const finalCart = {...cart}
-        finalCart.payment_type = localStorage.getItem('token')
+        finalCart.payment_type = cartPayment
+        setCartTotal(0)
+        setCartPayment(0)
         updateCart(finalCart)
         .then(() => history.push(`/`))
       }
-
+    
+    console.log(cartPayment)
 
     return (
         <>
@@ -48,13 +71,11 @@ export const Checkout = () => {
                         {
                 cart.lineitems?.map(item => {
                     return <section key={`combo--${item.id}`} >
-                        <div className="combo__name">{item.product.name} ${item.product.price}</div>
-                        {/* <div className="combo__price">${item.product.price}</div> */}
-                        {/* <div className="Frie__edit">
-                        <button className="btn btn-3"
-                                    onClick={() => history.push(`Combo/edit/${Frie.id}`)}
-                                    >Edit Frie</button>
-                        </div> */}
+                        <div className="combo__name">{item.product.name} ${item.product.price === 0 ? item.toppings.forEach(topping => {
+                            item.product.price += topping.price}) : item.product.price}</div>
+                        {item.toppings.length > 0 ? item.toppings.map(topping => {
+                            return <div> - {topping.name} ${topping.price} </div>
+                        }) : ""}
                     </section>
                 })
             }

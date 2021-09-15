@@ -6,6 +6,7 @@ export const PaymentContext = React.createContext()
 export const PaymentProvider = (props) => {
     const [ payments, setPayments ] = useState([])
     const [ payment, setPayment ] = useState({})
+    const [ cartPayment, setCartPayment ] = useState(0)
 
     const createPayment = (payment) => {
         return fetch("http://localhost:8000/paymenttypes", {
@@ -35,7 +36,7 @@ export const PaymentProvider = (props) => {
     
 
     return (
-        <PaymentContext.Provider value={{ payments, payment, getPayments, createPayment }} >
+        <PaymentContext.Provider value={{ payments, payment, getPayments, createPayment, cartPayment, setCartPayment }} >
             { props.children }
         </PaymentContext.Provider>
 

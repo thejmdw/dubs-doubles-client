@@ -6,6 +6,8 @@ export const BurgerContext = React.createContext()
 export const BurgerProvider = (props) => {
     const [ burgers, setBurgers ] = useState([])
     const [ burger, setBurger ] = useState({})
+    const [ toppings, setToppings ] = useState([])
+    const [ toppingTypes, setToppingTypes ] = useState([])
 
     const createBurger = (burger) => {
         return fetch("http://localhost:8000/products", {
@@ -53,6 +55,35 @@ export const BurgerProvider = (props) => {
             .then(setBurgers)
     }
     
+    const getToppingTypes = () => {
+        return fetch("http://localhost:8000/toppingtypes", { 
+            headers:{
+                "Authorization": `Token ${localStorage.getItem("dd_token")}`
+            }
+        })
+            .then(response => response.json())
+            .then(setToppingTypes)
+    }
+
+    const getToppings = () => {
+        return fetch(`http://localhost:8000/toppings`, { 
+            headers:{
+                "Authorization": `Token ${localStorage.getItem("dd_token")}`
+            }
+        })
+            .then(response => response.json())
+            .then(setToppings)
+    }
+    const getToppingsByType = (id) => {
+        return fetch(`http://localhost:8000/toppings?topping_type=${id}`, { 
+            headers:{
+                "Authorization": `Token ${localStorage.getItem("dd_token")}`
+            }
+        })
+            .then(response => response.json())
+            .then(setToppings)
+    }
+    
     // const getBurgerTypes = () => {
     //     return fetch("http://localhost:8000/Burgertypes", { 
     //         headers:{
@@ -66,7 +97,7 @@ export const BurgerProvider = (props) => {
     
 
     return (
-        <BurgerContext.Provider value={{ burgers, burger, getBurgers, createBurger, updateBurger, getBurgerById }} >
+        <BurgerContext.Provider value={{ burgers, burger, toppings, toppingTypes, getBurgers, createBurger, updateBurger, getBurgerById, getToppings, getToppingTypes, getToppingsByType }} >
             { props.children }
         </BurgerContext.Provider>
 

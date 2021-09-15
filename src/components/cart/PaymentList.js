@@ -6,7 +6,7 @@ import "./Cart.css"
 
 export const PaymentList = () => {
     const history = useHistory()
-    const { payments, getPayments, getPaymentById } = useContext(PaymentContext)
+    const { payments, getPayments, getPaymentById, setCartPayment } = useContext(PaymentContext)
     // const { events, getEvents } = useContext(EventContext)
 
     
@@ -17,7 +17,8 @@ export const PaymentList = () => {
     }, [])
 
     const handlePaymentClick = (id) => {
-        localStorage.setItem('token', id)
+        // localStorage.setItem('token', id)
+        setCartPayment(id)
         history.push(`/checkout`)
       }
 
@@ -39,21 +40,11 @@ export const PaymentList = () => {
                         
                         <div className="Payment__description">{payment.account_number}</div>
                         <div className="Payment__price">{payment.expiration_date}</div>
-                        {/* <div className="Frie__edit">
-                        <button className="btn btn-3"
-                                    onClick={() => history.push(`Payment/edit/${Frie.id}`)}
-                                    >Edit Frie</button>
-                        </div> */}
+                    
                     </section>
                 })
             }
         </article>
-
-        {/* <button className="btn btn-2 btn-sep icon-create"
-        onClick={() => {
-            history.push("/Payment/new")
-        }}
-        >Register New Frie</button> */}
 </>
     )
 }
