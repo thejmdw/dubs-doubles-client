@@ -32,6 +32,18 @@ export const LineItemProvider = (props) => {
             // .then(setLineItem(productId))
             // .then()
     }
+    const deleteLineItemTopping = (id) => {
+        return fetch(`http://localhost:8000/lineitemtoppings/${id}`, {
+            method: "DELETE",
+            headers:{
+                "Content-Type": "application/json",
+                "Authorization": `Token ${localStorage.getItem("dd_token")}`
+            },
+            body: JSON.stringify(id)
+         })
+            // .then(setLineItem(productId))
+            // .then()
+    }
     
     const updateLineItem = (LineItem) => {
         return fetch(`http://localhost:8000/products/${LineItem.id}`, {
@@ -79,7 +91,7 @@ export const LineItemProvider = (props) => {
     
 
     return (
-        <LineItemContext.Provider value={{ lineItems, lineItem, deleteLineItem, getLineItems, createLineItem, updateLineItem, getLineItemById }} >
+        <LineItemContext.Provider value={{ lineItems, lineItem, deleteLineItem, deleteLineItemTopping, getLineItems, createLineItem, updateLineItem, getLineItemById }} >
             { props.children }
         </LineItemContext.Provider>
 

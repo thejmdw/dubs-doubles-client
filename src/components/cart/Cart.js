@@ -8,31 +8,45 @@ import "./Cart.css"
 export const Cart = () => {
     const history = useHistory()
     const { cart, getCart } = useContext(CartContext)
-    const { createLineItem, deleteLineItem } = useContext(LineItemContext)
+    const { createLineItem, deleteLineItem, deleteLineItemTopping } = useContext(LineItemContext)
     // const { events, getEvents } = useContext(EventContext)
     // const { CartId } = useParams()
 
     // const { Cart, setCart } = useState({})
     const [lineItems, setLineItems] = useState()
+    const [lineItemToppings, setLineItemToppings] = useState()
+
+    const [ cartTotal, setCartTotal] = useState(0)
 
     useEffect(() => {
         getCart()
-        // .then(data => setCart(data))
-        // getEvents()
     }, [])
     
     useEffect(() => {
         getCart()
-        // .then(data => setCart(data))
-        // getEvents()
     }, [lineItems])
+
+    useEffect(() => {
+        getCart()
+    }, [lineItemToppings])
 
     const handleRemove = (id) => {
         deleteLineItem(id)
         .then(setLineItems)
+        setCartTotal()
+      }
+    const handleRemoveAddOn = (id) => {
+        deleteLineItemTopping(id)
+        .then(setLineItemToppings)
       }
     
-    let cartTotal = 0
+    useEffect(() => {
+        let total = 0
+        cart.lineitems?.forEach(item => total += item.product.price)
+        setCartTotal(total)
+        getCart()
+    }, [lineItems])
+
 
     return (
         <>
@@ -49,20 +63,14 @@ export const Cart = () => {
                     return <section key={`combo--${item.id}`} >
                         <div className="combo__name">{item.product.name} ${item.product.price === 0 ? item.toppings.forEach(topping => {
                             item.product.price += topping.price}) : item.product.price} <button className="btn btn-3" onClick={() => {handleRemove(item.id)}}>Remove Item</button></div>
-                        {/* <div className="combo__price">${item.product.price}</div> */}
-                        {/* <div className="Frie__edit">
-                        <button className="btn btn-3"
-                                    onClick={() => history.push(`Combo/edit/${Frie.id}`)}
-                                    >Edit Frie</button>
-                        </div> */}
                         {item.toppings.length > 0 ? item.toppings.map(topping => {
-                            return <div> - {topping.name} ${topping.price}</div>
+                            return <div> - {topping.name} ${topping.price}<button className="btn btn-3" onClick={() => {handleRemoveAddOn(item.id)}}>X</button> </div>
                         }) : ""}
                     </section>
                 })
             }
                         <div className="Cart__edit">
-                            Total: ${cart.lineitems?.forEach(item => cartTotal += item.product.price)}
+                            Total: ${cart.total}
                         {/* <button className="btn btn-3" onClick={() => {handleAddClick(Cart.id)}}>Add to Cart</button> */}
                         </div>
                         <div className="Cart__edit">
@@ -71,6 +79,8 @@ export const Cart = () => {
                 
             
         </article>
+        
+        
 
         {/* <button className="btn btn-2 btn-sep icon-create"
         onClick={() => {
@@ -80,3 +90,9 @@ export const Cart = () => {
 </>
     )
 }
+{/* <div className="combo__price">${item.product.price}</div> */}
+{/* <div className="Frie__edit">
+<button className="btn btn-3"
+            onClick={() => history.push(`Combo/edit/${Frie.id}`)}
+            >Edit Frie</button>
+</div> */}
