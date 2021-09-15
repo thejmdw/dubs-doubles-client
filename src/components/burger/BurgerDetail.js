@@ -14,7 +14,7 @@ export const BurgerDetail = () => {
     // const { events, getEvents } = useContext(EventContext)
     const { burgerId } = useParams()
 
-    // const { burger, setBurger } = useState({})
+    const [ buildPrice, setBuildPrice ] = useState(0)
     const [ lineItem, setLineItem ] = useState({
         product_id: 0,
         toppings: []
@@ -24,8 +24,7 @@ export const BurgerDetail = () => {
         getBurgerById(parseInt(burgerId))
         getToppingTypes()
         getToppings()
-        // .then(data => setBurger(data))
-        // getEvents()
+        
     }, [])
 
     const handleAddClick = (id) => {
@@ -36,24 +35,26 @@ export const BurgerDetail = () => {
         createLineItem(addLineItem)
         .then(() => history.push(`/burgers`))
       }
-      const handleControlledCheckChange = e => {
+    const handleControlledCheckChange = e => {
         const newLineItem = { ...lineItem }
-    
-        // if (newPost.lineItems.indexOf(parseInt(e.target.value)) > -1) {
-        //     newPost.lineItems.splice(newPost.lineItems.indexOf(parseInt(e.target.value)) - 1, newPost.lineItems.indexOf(parseInt(e.target.value)))
-        // } else {
-        //     newPost.lineItems.push(parseInt(e.target.value))
-        // }
-        
-        // setPost(newPost)
+
         const lineItemIndex = newLineItem.toppings.indexOf(parseInt(e.target.value))
         if (lineItemIndex > -1) {
-          newLineItem.toppings.splice(lineItemIndex, 1)
+            newLineItem.toppings.splice(lineItemIndex, 1)
         } else {
         newLineItem.toppings.push(parseInt(e.target.value))
         }
         setLineItem(newLineItem)
-      }
+    }
+
+    useEffect(() => {
+        let amount = 0
+        lineItem.toppings.forEach(topping => {
+            const filtered = toppings.find(top => top.id === topping)
+            amount += filtered.price
+        })
+        setBuildPrice(amount)
+    }, [lineItem])
 
     return (
         <>
@@ -70,12 +71,12 @@ export const BurgerDetail = () => {
                                     .map(top => {
                                         return <FormControlLabel
                                         control={<Checkbox value={top.id} onChange={handleControlledCheckChange} name="topping" />}
-                                        label={top.name}
+                                        label={`${top.name} $${top.price}`}
                                       />
                                     }
                                     )}</ul>
                                 })}</div> : ""}
-                        <div className="burger__price">${burger.price}</div>
+                        <div className="burger__price">${burger.price + buildPrice}</div>
                         <div className="burger__edit">
                         <button className="btn btn-3" onClick={() => {handleAddClick(burger.id)}}>Add to Cart</button>
                         </div>
