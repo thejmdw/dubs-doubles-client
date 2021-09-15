@@ -8,7 +8,8 @@ export const ProfileProvider = (props) => {
         so that React doesn't throw an error when you try to
         iterate the events array in the view.
     */
-    const [profile, setProfile] = useState({events:[]})
+    const [profile, setProfile] = useState({})
+    const [admin, setAdmin] = useState(false)
 
     const getProfile = () => {
         return fetch("http://localhost:8000/profile", {
@@ -21,7 +22,7 @@ export const ProfileProvider = (props) => {
     }
 
     return (
-        <ProfileContext.Provider value={{ profile, getProfile }}>
+        <ProfileContext.Provider value={{ profile, getProfile, admin, setAdmin }}>
             {props.children}
         </ProfileContext.Provider>
     )

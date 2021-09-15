@@ -1,12 +1,13 @@
-import React from "react"
+import React, { useContext } from "react"
 import { Link } from "react-router-dom"
 import "./Auth.css"
-
+import { ProfileContext } from "./ProfileProvider.js"
 
 export const Login = props => {
     const email = React.createRef()
     const password = React.createRef()
     const invalidDialog = React.createRef()
+    // const { setAdmin } = useContext(ProfileContext)
 
     const handleLogin = (e) => {
         e.preventDefault()
@@ -26,6 +27,7 @@ export const Login = props => {
             .then(res => {
                 if ("valid" in res && res.valid && "token" in res) {
                     localStorage.setItem( "dd_token", res.token )
+                    localStorage.setItem('is_staff', res.is_staff)
                     props.history.push("/")
                 }
                 else {

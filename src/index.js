@@ -3,11 +3,14 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import { DubsDoubles } from './components/DubsDoubles';
 import { BrowserRouter as Router } from "react-router-dom"
+import { DubsProvider } from "./components/DubsProvider"
 
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-      <DubsDoubles />
+      <DubsProvider>
+        <DubsDoubles />
+      </DubsProvider>
     </Router>
   </React.StrictMode>,
   document.getElementById('root')

@@ -2,7 +2,7 @@ import React from "react"
 import { Link } from "react-router-dom"
 import "./NavBar.css"
 
-export const NavBar = (props) => {
+export const NavBar2 = (props) => {
     return (
         <ul className="navbar">
             <li className="navbar__item">
@@ -26,7 +26,6 @@ export const NavBar = (props) => {
                         <button className="nav-link fakeLink"
                             onClick={() => {
                                 localStorage.removeItem("dd_token")
-                                localStorage.removeItem("is_staff")
                                 props.history.push({ pathname: "/" })
                             }}
                         >Logout</button>
