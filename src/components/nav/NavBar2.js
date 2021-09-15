@@ -9,16 +9,10 @@ export const NavBar2 = (props) => {
                 <Link className="nav-link" to="/">Home</Link>
             </li>
             <li className="navbar__item">
-                <Link className="nav-link" to="/burgers">Burgers</Link>
+                <Link className="nav-link" to="/salesreports">Sales Reports</Link>
             </li>
             <li className="navbar__item">
-                <Link className="nav-link" to="/fries">Fries</Link>
-            </li>
-            <li className="navbar__item">
-                <Link className="nav-link" to="/combos">Combos</Link>
-            </li>
-            <li className="navbar__item">
-                <Link className="navbar__item" to="/cart">Cart</Link>
+                <Link className="nav-link" to="/products">Products</Link>
             </li>
             {
                 (localStorage.getItem("dd_token") !== null) ?
@@ -26,6 +20,7 @@ export const NavBar2 = (props) => {
                         <button className="nav-link fakeLink"
                             onClick={() => {
                                 localStorage.removeItem("dd_token")
+                                localStorage.removeItem("is_staff")
                                 props.history.push({ pathname: "/" })
                             }}
                         >Logout</button>
