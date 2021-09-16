@@ -11,6 +11,7 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { css, cx } from '@emotion/react'
 import { flexbox } from "@mui/system"
@@ -96,14 +97,15 @@ export const BurgerDetail = () => {
                             )}</div></div>
                         })}
                     </CardContent>
-                    <CardActions sx={{
-                        display: 'flex',
-                        justifyContent: 'space-between'
-                    }}>
-                        <div className="BYOB__action">
-                        <div className="burger__price"><h3>${burger.price + buildPrice}</h3></div>
+                    <CardActions >
+                    {/* <Box sx={{
+                        rowGap: 2
+                    }}> */}
+                        {/* <div className="BYOB__action"> */}
+                        <Box className="burger__price" sx={{ flexGrow: 1 }}><h3>${burger.price + buildPrice}</h3></Box>
                       <Button size="large" onClick={() => {handleAddClick(burger.id)}}>Add To Cart</Button>
-                      </div>
+                      {/* </div> */}
+                    {/* </Box> */}
                     </CardActions>
                   </Card>
             
