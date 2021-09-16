@@ -5,20 +5,23 @@ import { NavBar } from "./nav/NavBar"
 import { Footer } from "./footer/Footer"
 import { Login } from "./auth/Login"
 import { Register } from "./auth/Register"
+import { CartProvider } from "./cart/CartProvider"
 
 export const DubsDoubles = () => (
     <>
-        <Route render={() => {
-            if (localStorage.getItem("dd_token")) {
-                return <>
-                    <Route render={NavBar} />
-                    <Route render={props => <ApplicationViews {...props} />} />
-                    <Route render={Footer} />
+        <Route path="/" >
+          {  localStorage.getItem("dd_token") ? 
+                 <>
+                    <CartProvider>
+                        <NavBar />
+                        <ApplicationViews />
+                        <Footer />
+                    </CartProvider>
                 </>
-            } else {
-                return <Redirect to="/login" />
+             : 
+                <Redirect to="/login" />
             }
-        }} />
+        </Route>
 
         <Route path="/login" render={Login} />
         <Route path="/register" render={Register} />
