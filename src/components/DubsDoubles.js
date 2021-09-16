@@ -2,7 +2,9 @@ import React from "react"
 import { Route, Redirect } from "react-router-dom"
 import { ApplicationViews } from "./ApplicationViews"
 import { NavBar } from "./nav/NavBar"
+import { AppBar2 } from "./nav/AppBar"
 import { Footer } from "./footer/Footer"
+import { AppFooter } from "./footer/AppFooter"
 import { Login } from "./auth/Login"
 import { Register } from "./auth/Register"
 import { CartProvider } from "./cart/CartProvider"
@@ -35,10 +37,11 @@ export const DubsDoubles = () => (
           if (localStorage.getItem("dd_token")) {
             return (
               <>
-                <CartProvider>
+                     <CartProvider>
                          <NavBar />
+                         {/* <AppBar2 /> */}
                          <ApplicationViews />
-                         <Footer />
+                         <AppFooter />
                      </CartProvider>
               </>
             );
