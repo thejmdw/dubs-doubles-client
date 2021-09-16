@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useHistory } from 'react-router';
 import { styled } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -21,12 +22,14 @@ import MoreIcon from '@mui/icons-material/MoreVert';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
 export const AppFooter = () => {
+
+  const history = useHistory()  
   return (
     <React.Fragment>
       <CssBaseline />
       <AppBar position="fixed" color="primary" sx={{ top: 'auto', bottom: 0 }}>
         <Toolbar>
-          <IconButton color="inherit" aria-label="open drawer">
+          <IconButton color="inherit" aria-label="open drawer" onClick={() => {history.goBack()}}>
             <ArrowBackIosIcon />
           </IconButton>
         </Toolbar>
