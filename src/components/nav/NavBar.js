@@ -1,6 +1,6 @@
-import React, { useContext, useState, useEffect } from "react"
-import { Link } from "react-router-dom"
-import { CartContext } from "../cart/CartProvider.js"
+import React, { useContext, useEffect} from "react"
+import { Link, useHistory } from "react-router-dom"
+import { CartContext } from "../cart/CartProvider"
 import "./NavBar.css"
 import IconButton from '@mui/material/IconButton';
 import Badge from '@mui/material/Badge';
@@ -13,6 +13,7 @@ export const NavBar = (props) => {
         getCart()
     }, [])
 
+    const history = useHistory()
     return (
         <ul className="navbar">
             <li className="navbar__item">
@@ -43,7 +44,7 @@ export const NavBar = (props) => {
                         <button className="nav-link fakeLink"
                             onClick={() => {
                                 localStorage.removeItem("dd_token")
-                                props.history?.push({ pathname: "/" })
+                                history.push("/")
                             }}
                         >Logout</button>
                     :
