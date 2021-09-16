@@ -1,3 +1,7 @@
+.fryCard {
+    margin-bottom: 2rem;
+    padding: 10px;
+  }
 .friesCard {
     background-position: center;
     background-size: cover;
@@ -41,8 +45,10 @@
   .friesCard__container {
     display: flex;
     justify-content: center;
+    flex-direction: column;
+    align-items: center;
     margin-top: 5vh;
-    height: 65vh;
+    /* height: 65vh; */
   }
   
   .friesProfile_container {
