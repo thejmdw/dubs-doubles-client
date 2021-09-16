@@ -2,52 +2,60 @@ import React from "react"
 import { Route, Redirect } from "react-router-dom"
 import { ApplicationViews } from "./ApplicationViews"
 import { NavBar } from "./nav/NavBar"
+import { AppBar2 } from "./nav/AppBar"
 import { Footer } from "./footer/Footer"
+import { AppFooter } from "./footer/AppFooter"
 import { Login } from "./auth/Login"
 import { Register } from "./auth/Register"
-
-export const DubsDoubles = () => (
-    <>
-        <Route render={() => {
-            if (localStorage.getItem("dd_token")) {
-                return <>
-                    <Route render={NavBar} />
-                    <Route render={props => <ApplicationViews {...props} />} />
-                    <Route render={Footer} />
-                </>
-            } else {
-                return <Redirect to="/login" />
-            }
-        }} />
-
-        <Route path="/login" render={Login} />
-        <Route path="/register" render={Register} />
-    </>
-)
+import { CartProvider } from "./cart/CartProvider"
 
 // export const DubsDoubles = () => (
 //     <>
-//       <Route
-//         render={() => {
-//           if (localStorage.getItem("dd_token")) {
-//             return (
-//               <>
-                
-//                 <NavBar />
-//                 <ApplicationViews />
-//               </>
-//             );
-//           } else {
-//             return <Redirect to="/login" />;
-//           }
-//         }}
-//       />
-  
-//       <Route path="/login">
-//         <Login />
-//       </Route>
-//       <Route path="/register">
-//         <Register />
-//       </Route>
+//         <Route path="/" >
+//           {  localStorage.getItem("dd_token") ? 
+//                  <>
+//                     <CartProvider>
+//                         <NavBar />
+//                         <ApplicationViews />
+//                         <Footer />
+//                     </CartProvider>
+//                 </>
+//              : 
+//                 <Redirect to="/login" />
+//             }
+//         </Route>
+
+//         <Route path="/login" render={Login} />
+//         <Route path="/register" render={Register} />
 //     </>
-//   );
+// )
+
+export const DubsDoubles = () => (
+    <>
+      <Route
+        render={() => {
+          if (localStorage.getItem("dd_token")) {
+            return (
+              <>
+                     <CartProvider>
+                         <NavBar />
+                         {/* <AppBar2 /> */}
+                         <ApplicationViews />
+                         <AppFooter />
+                     </CartProvider>
+              </>
+            );
+          } else {
+            return <Redirect to="/login" />;
+          }
+        }}
+      />
+  
+      <Route path="/login">
+        <Login />
+      </Route>
+      <Route path="/register">
+        <Register />
+      </Route>
+    </>
+  );

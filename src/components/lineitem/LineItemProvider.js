@@ -1,5 +1,5 @@
-import React, { useState } from "react"
-
+import React, { useState, useContext } from "react"
+import { CartContext } from "../cart/CartProvider.js"
 
 export const LineItemContext = React.createContext()
 
@@ -7,6 +7,7 @@ export const LineItemProvider = (props) => {
     const [ lineItems, setLineItems ] = useState([])
     const [ lineItem, setLineItem ] = useState({})
     const [ lineItemToppingObjs, setLineItemToppingObjs ] = useState([])
+    const { cart, getCart } = useContext(CartContext)
 
     const createLineItem = (product) => {
         return fetch("http://localhost:8000/profile/cart", {
@@ -18,7 +19,7 @@ export const LineItemProvider = (props) => {
             body: JSON.stringify(product)
          })
             // .then(setLineItem(productId))
-            // .then()
+            .then(getCart)
     }
     
     const deleteLineItem = (id) => {
@@ -30,8 +31,7 @@ export const LineItemProvider = (props) => {
             },
             body: JSON.stringify(id)
          })
-            // .then(setLineItem(productId))
-            // .then()
+            .then(getCart)
     }
     const deleteLineItemTopping = (id) => {
         return fetch(`http://localhost:8000/lineitemtoppings/${id}`, {
