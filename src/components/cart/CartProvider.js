@@ -30,7 +30,7 @@ export const CartProvider = (props) => {
             body: JSON.stringify(cart)
          })
             .then(setCart(cart))
-            // .then()
+            .then(getCart)
     }
     
     const getCart = () => {
@@ -57,7 +57,7 @@ export const CartProvider = (props) => {
     
 
     return (
-        <CartContext.Provider value={{ carts, cart, getCart, createCart, updateCart, getCarts }} >
+        <CartContext.Provider value={{ carts, cart, setCart, getCart, createCart, updateCart, getCarts }} >
             { props.children }
         </CartContext.Provider>
 

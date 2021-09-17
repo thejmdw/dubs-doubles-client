@@ -1,4 +1,17 @@
-.burgerCard {
+.burgersCard {
+  margin-bottom: 2rem;
+  padding: 10px;
+}
+.BYOB {
+  display: flex;
+  flex-direction: column;
+}
+.BYOB__action {
+  display: flex;
+  justify-content: space-between;
+  /* flex-direction: column; */
+}
+/* .burgerCard {
     background-position: center;
     background-size: cover;
     background-color: rgb(255, 255, 255, .75);
@@ -13,7 +26,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-  }
+  } */
   .burgerIntroCard {
     background-position: center;
     background-size: cover;
@@ -42,7 +55,9 @@
     display: flex;
     justify-content: center;
     margin-top: 5vh;
-    height: 65vh;
+    flex-direction: column;
+    align-items: center;
+    /* height: 65vh; */
   }
   
   .burgerProfile_container {

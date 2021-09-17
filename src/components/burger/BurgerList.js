@@ -1,13 +1,19 @@
 import React, { useContext, useEffect } from "react"
 import { BurgerContext } from "./BurgerProvider.js"
-// import { EventContext } from "./EventProvider.js"
+import { LineItemContext } from "../lineitem/LineItemProvider.js"
 import { useHistory } from "react-router-dom"
 import "./Burger.css"
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
 
 export const BurgerList = () => {
     const history = useHistory()
     const { burgers, getBurgers, getBurgerById } = useContext(BurgerContext)
-    // const { events, getEvents } = useContext(EventContext)
+    const { createLineItem } = useContext(LineItemContext)
 
     
 
@@ -21,25 +27,42 @@ export const BurgerList = () => {
         .then(() => history.push(`/burgers/detail/${id}`))
       }
 
+      const handleAddClick = (id) => {
+        const product = {
+            product_id: id
+        }
+        createLineItem(product)
+        // .then(() => history.push(`/burgers/detail/${id}`))
+      }
+
     return (
         <>
-        <article className="burgers">
+        <article className="burgerCard__container">
         <header className="events__header">
                 <h1>Burgers</h1>
             </header>
             {
                 burgers.map(burger => {
-                    return <section key={`burger--${burger.id}`} className="burgerCard" onClick={() => {handleBurgerClick(burger.id)}}>
-                        <div className="burger__name">{burger.name}</div>
-                        <div className="burger__pic">Pic placeholder</div>
-                        <div className="burger__description">{burger.description}</div>
-                        <div className="burger__price">${burger.price}</div>
-                        {/* <div className="burger__edit">
-                        <button className="btn btn-3"
-                                    onClick={() => history.push(`Burgers/edit/${Burger.id}`)}
-                                    >Edit Burger</button>
-                        </div> */}
-                    </section>
+                    return <Card className="burgersCard" >
+                    <CardMedia
+                      component="img"
+                      height="140"
+                      image="https://mui.com/static/images/cards/contemplative-reptile.jpg"
+                      alt="burger photo"
+                    />
+                    <CardContent>
+                      <Typography gutterBottom variant="h5" component="div">
+                        {burger.name}
+                      </Typography>
+                      <Typography variant="h6" color="text.secondary">
+                        ${burger.price}
+                      </Typography>
+                    </CardContent>
+                    <CardActions>
+                      {/* <Button size="large">{burger.price}</Button> */}
+                      { burger.name === "The BYOBurger" ? <Button variant="contained" size="large" onClick={() => {handleBurgerClick(burger.id)}}>Build Burger</Button> : <Button variant="contained" size="large" onClick={() => {handleAddClick(burger.id)}}>Add to Cart</Button>}
+                    </CardActions>
+                  </Card>
                 })
             }
         </article>

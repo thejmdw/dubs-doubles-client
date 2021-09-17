@@ -31,7 +31,7 @@ export const ApplicationViews = () => {
             <FriesProvider>
             <ComboProvider>
             <LineItemProvider>
-            <CartProvider>
+            {/* <CartProvider> */}
             <PaymentProvider>
 
                 <Route exact path="/profile">
@@ -78,7 +78,7 @@ export const ApplicationViews = () => {
                 </Route>
             
             </PaymentProvider>
-            </CartProvider>
+            {/* </CartProvider> */}
             </LineItemProvider>
             </ComboProvider>
             </FriesProvider>
