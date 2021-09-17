@@ -48,6 +48,7 @@ export const Checkout = () => {
     const [lineItems, setLineItems] = useState()
     const [lineItemToppings, setLineItemToppings] = useState()
     const [ cartTotal, setCartTotal] = useState(0)
+    const [ cartId, setCartId] = useState(0)
 
     useEffect(() => {
         getCart()
@@ -73,6 +74,7 @@ export const Checkout = () => {
         finalCart.payment_type = cartPayment
         setCartTotal(0)
         setCartPayment(0)
+        setCartId(finalCart.id)
         updateCart(finalCart)
         .then(() => handleOpen())
       }
@@ -89,8 +91,7 @@ export const Checkout = () => {
       >
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-          Order Confirmed
-          {/* #{cart.id} */}
+          Order #{cartId} Confirmed
           </Typography>
         </Box>
       </Modal>
