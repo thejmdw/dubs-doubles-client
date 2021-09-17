@@ -30,7 +30,7 @@ export const CartProvider = (props) => {
             body: JSON.stringify(cart)
          })
             .then(setCart(cart))
-            // .then()
+            .then(getCart)
     }
     
     const getCart = () => {

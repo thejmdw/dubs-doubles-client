@@ -60,7 +60,7 @@ export const BurgerList = () => {
                     </CardContent>
                     <CardActions>
                       {/* <Button size="large">{burger.price}</Button> */}
-                      { burger.name === "The BYOBurger" ? <Button size="large" onClick={() => {handleBurgerClick(burger.id)}}>Build Burger</Button> : <Button size="large" onClick={() => {handleAddClick(burger.id)}}>Add to Cart</Button>}
+                      { burger.name === "The BYOBurger" ? <Button variant="contained" size="large" onClick={() => {handleBurgerClick(burger.id)}}>Build Burger</Button> : <Button variant="contained" size="large" onClick={() => {handleAddClick(burger.id)}}>Add to Cart</Button>}
                     </CardActions>
                   </Card>
                 })

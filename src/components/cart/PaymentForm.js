@@ -1,7 +1,8 @@
 import React, { useContext, useState, useEffect } from "react"
 import { PaymentContext } from "./PaymentProvider.js"
 import { useHistory } from "react-router-dom"
-
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 
 export const PaymentForm = () => {
     const { createPayment } = useContext(PaymentContext)
@@ -36,37 +37,29 @@ export const PaymentForm = () => {
     return (
         <form className="gameForm">
             <h2 className="gameForm__title">Schedule New Payment</h2>
-            <fieldset>
-                <div className="form-group">
-                    <label htmlFor="merchant_name">merchant_name: </label>
-                    <input type="text" name="merchant_name" required autoFocus className="form-control"
-                        // value={currentPayment.merchant_name}
-                        onChange={changePaymentState}
-                    />
-                </div>
-            </fieldset>
-            <fieldset>
-                <div className="form-group">
-                    <label htmlFor="account_number">Account Number: </label>
-                    <input type="number" name="account_number" required autoFocus className="form-control"
-                        // value={currentPayment.account_number}
-                        onChange={changePaymentState}
-                    />
-                </div>
-            </fieldset>
-            <fieldset>
-                <div className="form-group">
-                    <label htmlFor="expiration_date">expiration_date: </label>
-                    <input type="text" name="expiration_date" required autoFocus className="form-control"
-                        // value={currentPayment.expiration_date}
-                        onChange={changePaymentState}
-                    />
-                </div>
-            </fieldset>
+            <TextField fullWidth
+            name="merchant_name"
+          id="outlined-helperText"
+          label="Merchant Name"
+          onChange={changePaymentState}
+        />
+            <TextField fullWidth
+            required
+            name="account_number"
+          id="outlined-helperText"
+          label="Card Number"
+          onChange={changePaymentState}
+        />
+            <TextField fullWidth
+            name="expiration_date"
+          id="outlined-helperText"
+          label="Expiration Date 00/0000"
+          onChange={changePaymentState}
+        />
 
             {/* Create the rest of the input fields */}
 
-            <button type="submit"
+            <Button  variant="contained" type="submit"
                 onClick={evt => {
                     evt.preventDefault()
 
@@ -84,7 +77,7 @@ export const PaymentForm = () => {
 
                     // Once Payment is created, redirect user to Payment list
                 }}
-                className="btn btn-primary">Create Payment</button>
+                className="btn btn-primary">Create Payment</Button>
         </form>
     )
 }

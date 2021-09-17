@@ -57,7 +57,7 @@ export const FriesList = () => {
                         </CardContent>
                         <CardActions>
                           {/* <Button size="large">{fry.price}</Button> */}
-                          <Button size="small" onClick={() => {handleAddClick(fry.id)}}>Add to Cart</Button>
+                          <Button variant="contained" size="small" onClick={() => {handleAddClick(fry.id)}}>Add to Cart</Button>
                         </CardActions>
                       </Card>
                   

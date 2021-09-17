@@ -4,7 +4,7 @@ import { LineItemContext } from "../lineitem/LineItemProvider.js"
 // import { EventContext } from "./EventProvider.js"
 import { useHistory, useParams } from "react-router-dom"
 import { Input, Select, MenuItem, InputLabel } from "@material-ui/core"
-import { FormControlLabel, Checkbox } from "@material-ui/core"
+import { FormControlLabel, Checkbox } from "@mui/material"
 import "./Burger.css"
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -103,7 +103,7 @@ export const BurgerDetail = () => {
                     }}> */}
                         {/* <div className="BYOB__action"> */}
                         <Box className="burger__price" sx={{ flexGrow: 1 }}><h3>${burger.price + buildPrice}</h3></Box>
-                      <Button size="large" onClick={() => {handleAddClick(burger.id)}}>Add To Cart</Button>
+                      <Button variant="contained" size="large" onClick={() => {handleAddClick(burger.id)}}>Add To Cart</Button>
                       {/* </div> */}
                     {/* </Box> */}
                     </CardActions>
