@@ -34,7 +34,7 @@ export const PaymentList = () => {
         <header className="events__header">
                 <h1>Payments</h1>
             </header>
-            <Button className="btn btn-2 btn-sep icon-create"
+            <Button variant="contained" className="btn btn-2 btn-sep icon-create"
         onClick={() => {
             history.push("/payment/new")
         }}
@@ -61,7 +61,7 @@ export const PaymentList = () => {
                         </CardContent>
                         <CardActions>
                           {/* <Button size="large">{payment.price}</Button> */}
-                          <Button onClick={() => {handlePaymentClick(payment.id)}}>Select This Card</Button>
+                          <Button variant="contained" onClick={() => {handlePaymentClick(payment.id)}}>Select This Card</Button>
                         </CardActions>
                       </Card>
                   

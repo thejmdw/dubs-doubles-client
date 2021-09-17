@@ -1,6 +1,9 @@
 import React from "react"
-import { Link } from "react-router-dom"
+import { Link, useHistory } from "react-router-dom"
 import "./Auth.css"
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+
 
 export const Register = (props) => {
     const firstName = React.createRef()
@@ -10,9 +13,11 @@ export const Register = (props) => {
     const password = React.createRef()
     const verifyPassword = React.createRef()
     const passwordDialog = React.createRef()
+    const history = useHistory()
 
     const handleRegister = (e) => {
         e.preventDefault()
+
 
         if (password.current.value === verifyPassword.current.value) {
             const newUser = {
@@ -36,7 +41,7 @@ export const Register = (props) => {
                 .then(res => {
                     if ("token" in res) {
                         localStorage.setItem("dd_token", res.token)
-                        props.history.push("/")
+                        history.push("/")
                     }
                 })
         } else {
@@ -54,35 +59,75 @@ export const Register = (props) => {
 
             <form className="form--login" onSubmit={handleRegister}>
                 <h1 className="h3 mb-3 font-weight-normal">Register an account</h1>
-                <fieldset>
+                <TextField 
+                    inputRef={firstName}
+                    name="firstName"
+                    id="outlined-helperText"
+                    label="First Name"
+                />
+                {/* <fieldset>
                     <label htmlFor="firstName"> First Name </label>
                     <input ref={firstName} type="text" name="firstName" className="form-control" placeholder="First name" required autoFocus />
-                </fieldset>
-                <fieldset>
+                </fieldset> */}
+                <TextField 
+                    inputRef={lastName}
+                    name="lastName"
+                    id="outlined-helperText"
+                    label="Last Name"
+                />
+                {/* <fieldset>
                     <label htmlFor="lastName"> Last Name </label>
                     <input ref={lastName} type="text" name="lastName" className="form-control" placeholder="Last name" required />
-                </fieldset>
-                <fieldset>
+                </fieldset> */}
+                <TextField 
+                    inputRef={email}
+                    name="email"
+                    id="outlined-helperText"
+                    label="E-Mail"
+                    type="email"
+                />
+                {/* <fieldset>
                     <label htmlFor="inputEmail"> Email address </label>
                     <input ref={email} type="email" name="email" className="form-control" placeholder="Email address" required />
-                </fieldset>
-                <fieldset>
+                </fieldset> */}
+                <TextField 
+                    inputRef={password}
+                    name="password"
+                    id="outlined-helperText"
+                    label="Password"
+                    type="password"
+                />
+                {/* <fieldset>
                     <label htmlFor="inputPassword"> Password </label>
                     <input ref={password} type="password" name="password" className="form-control" placeholder="Password" required />
-                </fieldset>
-                <fieldset>
+                </fieldset> */}
+                <TextField 
+                    inputRef={verifyPassword}
+                    name="verifyPassword"
+                    id="outlined-helperText"
+                    label="Verify Password"
+                    type="password"
+                />
+                {/* <fieldset>
                     <label htmlFor="verifyPassword"> Verify Password </label>
                     <input ref={verifyPassword} type="password" name="verifyPassword" className="form-control" placeholder="Verify password" required />
-                </fieldset>
-                <fieldset>
+                </fieldset> */}
+                <TextField 
+                    inputRef={phoneNumber}
+                    name="phoneNumber"
+                    id="outlined-helperText"
+                    label="Phone Number"
+                    // type="number"
+                />
+                {/* <fieldset>
                     <label htmlFor="phoneNumber">Phone Number</label>
                     <textarea ref={phoneNumber} name="phoneNumber" className="form-control" placeholder="555-555-5555" />
-                </fieldset>
-                <fieldset style={{
+                </fieldset> */}
+                {/* <fieldset style={{
                     textAlign: "center"
-                }}>
-                    <button className="btn btn-1 btn-sep icon-send" type="submit">Register</button>
-                </fieldset>
+                }}> */}
+                    <Button variant="contained" className="btn btn-1 btn-sep icon-send" type="submit">Register</Button>
+                {/* </fieldset> */}
             </form>
             <section className="link--register">
                 Already registered? <Link to="/login">Login</Link>

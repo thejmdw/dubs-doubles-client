@@ -1,6 +1,8 @@
 import React from "react"
 import { Link, useHistory } from "react-router-dom"
 import "./Auth.css"
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 
 
 export const Login = props => {
@@ -45,19 +47,24 @@ export const Login = props => {
                 <form className="form--login" onSubmit={handleLogin}>
                     <h1>Dub's Doubles</h1>
                     <h2>Please sign in</h2>
-                    <fieldset>
-                        <label htmlFor="inputEmail"> Email address </label>
-                        <input ref={email} type="email" id="email" className="form-control"  placeholder="Email address" required autoFocus />
-                    </fieldset>
-                    <fieldset>
-                        <label htmlFor="inputPassword"> Password </label>
-                        <input ref={password} type="password" id="password" className="form-control"  placeholder="Password" required />
-                    </fieldset>
-                    <fieldset style={{
+                    <TextField 
+                        inputRef={email}
+                        name="email"
+                        id="outlined-helperText"
+                        label="E-Mail"
+                    />
+                    <TextField
+                        inputRef={password}
+                        name="password"
+                        type="password"
+                        id="outlined-helperText"
+                        label="password"
+                    />
+                    {/* <fieldset style={{
                         textAlign:"center"
-                    }}>
-                        <button className="btn btn-1 btn-sep icon-send" type="submit">Sign In</button>
-                    </fieldset>
+                    }}> */}
+                        <Button variant="contained" className="btn btn-1 btn-sep icon-send" type="submit">Sign In</Button>
+                    {/* </fieldset> */}
                 </form>
             </section>
             <section className="link--register">

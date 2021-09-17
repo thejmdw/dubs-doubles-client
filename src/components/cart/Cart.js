@@ -70,6 +70,9 @@ export const Cart = () => {
                 <h1>Dub's Doubles</h1>
                 <h3>A Block Near You</h3>
             </header>
+            <div className="Cart__description">Order #: {cart.id}</div>
+            <div className="Cart__price">Date: {cart.created_date}</div>
+            <div className="Cart__price">Customer: {cart.customer?.user.first_name}</div>
             <TableContainer component={Paper}>
                 <Table aria-label="spanning table">
                     <TableHead>
@@ -121,7 +124,7 @@ export const Cart = () => {
                     <TableRow>
                         {/* <TableCell rowSpan={3} /> */}
                         
-                        <TableCell align="right"><Button className="btn btn-3" onClick={() => history.push(`/payment`)}>Payment</Button></TableCell>
+                        <TableCell align="right"><Button variant="contained" className="btn btn-3" onClick={() => history.push(`/payment`)}>Payment</Button></TableCell>
                     </TableRow>
                     </TableBody>
                 </Table>
@@ -173,9 +176,9 @@ export const Cart = () => {
     //     </Table>
     // </TableContainer>
 
-    //             <div className="Cart__description"><h5>Order #:</h5> {cart.id}</div>
-    //             <div className="Cart__price">Date: {cart.created_date}</div>
-    //             <div className="Cart__price">Customer: {cart.customer?.user.first_name}</div>
+                // <div className="Cart__description"><h5>Order #:</h5> {cart.id}</div>
+                // <div className="Cart__price">Date: {cart.created_date}</div>
+                // <div className="Cart__price">Customer: {cart.customer?.user.first_name}</div>
     //             {/* <div className="Cart__price">{cart.customer?.user.first_name}</div> */}
     //             {
         // cart.lineitems?.map(item => {

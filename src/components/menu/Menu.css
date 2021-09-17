@@ -1,4 +1,4 @@
-.homeCard {
+.menuCard {
   background-position: center;
   background-size: cover;
   background-color: rgb(255, 255, 255, .75);
@@ -14,7 +14,7 @@
   flex-direction: column;
   justify-content: space-between;
 }
-.homeIntroCard {
+.menuIntroCard {
   background-position: center;
   background-size: cover;
   background-color: seashell;
@@ -32,26 +32,26 @@
   justify-content: space-between;
 }
 
-.homeCard > h3 {
+.menuCard > h3 {
   position: absolute;
   bottom: 10px;
   /* color: white; */
 }
 
-.homeCard__container {
+.menuCard__container {
   display: flex;
   justify-content: center;
   margin-top: 5vh;
   height: 65vh;
 }
 
-.homeProfile_container {
+.menuProfile_container {
   display: flex;
   position: absolute;
   align-content: space-between;
 }
 
-.homeCard__greeting {
+.menuCard__greeting {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -65,19 +65,19 @@
   padding-bottom:.5vh
 }
 
-.homeCard__userAvatar {
+.menuCard__userAvatar {
   width: 17vh;
   /* height: 17vh; */
   border-radius: 75px;
   padding-bottom: 1vh;
 }
 
-.homeCard__buttons {
+.menuCard__buttons {
   display: flex;
   justify-content: space-between;
 }
 
-.homeIntro_button {
+.menuIntro_button {
   display: flex;
   justify-content: center;
   align-items: center;
