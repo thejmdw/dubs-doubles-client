@@ -89,7 +89,8 @@ export const Checkout = () => {
       >
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-          Order #{cart.id} Confirmed
+          Order Confirmed
+          {/* #{cart.id} */}
           </Typography>
         </Box>
       </Modal>
