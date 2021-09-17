@@ -4,6 +4,9 @@ import { LineItemContext } from "../lineitem/LineItemProvider.js"
 // import { EventContext } from "./EventProvider.js"
 import { useHistory, useParams } from "react-router-dom"
 import "./Cart.css"
+import IconButton from '@mui/material/IconButton';
+import DeleteIcon from '@mui/icons-material/Delete';
+import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -87,7 +90,11 @@ export const Cart = () => {
                         return <><TableRow key={item.id}>
                             <TableCell className="combo__name">{item.product.name}</TableCell>
                             <TableCell align="right">{item.qty}</TableCell>
-                            <TableCell align="right">{item.unit}</TableCell>
+                            <TableCell align="right">
+                                <IconButton aria-label="delete" onClick={() => {handleRemove(item.id)}}>
+                                    <DeleteIcon fontSize="small"/>
+                                </IconButton>
+                            </TableCell>
                             <TableCell align='right'>${item.product.price === 0 ? item.toppings.forEach(topping => {
                                item.product.price += topping.price}) : item.product.price}</TableCell>
                             </TableRow>
@@ -95,7 +102,11 @@ export const Cart = () => {
                                 return <TableRow>
                                     <TableCell className="combo__name"></TableCell>
                                     <TableCell align="right">{topping.name}</TableCell>
-                                    <TableCell align="right">{topping.qty}</TableCell>
+                                    <TableCell align="right">
+                                        <IconButton aria-label="delete" onClick={() => {handleRemoveAddOn(topping.id, item.id)}}>
+                                            <RemoveCircleOutlineIcon fontSize="small"/>
+                                        </IconButton>
+                                    </TableCell>
                                     <TableCell align='right'>${topping.price}</TableCell>
                                     </TableRow>
                             }) : ""}</>
