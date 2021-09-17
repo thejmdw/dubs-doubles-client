@@ -5,6 +5,7 @@ import { LineItemContext } from "../lineitem/LineItemProvider.js"
 import { useHistory, useParams } from "react-router-dom"
 import "./Cart.css"
 import IconButton from '@mui/material/IconButton';
+import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import Table from '@mui/material/Table';
@@ -116,6 +117,11 @@ export const Cart = () => {
                         <TableCell rowSpan={3} />
                         <TableCell colSpan={2}>Total</TableCell>
                         <TableCell align="right">${cart.total}</TableCell>
+                    </TableRow>
+                    <TableRow>
+                        {/* <TableCell rowSpan={3} /> */}
+                        
+                        <TableCell align="right"><Button className="btn btn-3" onClick={() => history.push(`/payment`)}>Payment</Button></TableCell>
                     </TableRow>
                     </TableBody>
                 </Table>
