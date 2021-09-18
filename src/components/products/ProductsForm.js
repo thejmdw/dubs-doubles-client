@@ -6,11 +6,11 @@ import { useHistory, useParams } from 'react-router-dom'
 
 export const ProductForm = () => {
     const history = useHistory()
-    const { product, createProduct, getProductTypes, productTypes, getProductById, updateProduct } = useContext(ProductContext)
+    const { product, image, setImage, createImage, createProduct, getProductTypes, productTypes, getProductById, updateProduct } = useContext(ProductContext)
     // const { getProfile } = useContext(ProfileContext)
 
     const { productId } = useParams()
-
+    const [ productImage, setProductImage ] = useState({})
     const [currentProduct, setCurrentProduct] = useState({
         name: "",
         price: 0,
@@ -45,12 +45,15 @@ export const ProductForm = () => {
                  name: product.name,
                  price: product.price,
                  description: product.description,
-                 product_type: product.product_type.id
- 
+                 product_type: product.product_type.id,
+                 image_path: product.image_path
              }))
          }
     }, [])
     
+    useEffect(() => {
+        setProductImage(currentProduct.image_path)
+    }, [currentProduct])
     // useEffect(() => {
     //    if (productId) {   
     //        getProductById(parseInt(productId))
@@ -81,27 +84,23 @@ export const ProductForm = () => {
         setCurrentProduct(newProductState)
     }
 
-    // const changeProductMakerState = (event) => {
-    //     const newProductState = { ...currentProduct }
-    //     newProductState.maker = event.target.value
-    //     setCurrentProduct(newProductState)
-    // }
-
-    // const changeProductPlayersState = (event) => {
-    //     const newProductState = { ...currentProduct }
-    //     newProductState.numberOfPlayers = event.target.value
-    //     setCurrentProduct(newProductState)
-    // }
-
-    // const changeProductSkillLevelState = (event) => {
-    //     const newProductState = { ...currentProduct }
-    //     newProductState.skillLevel = event.target.value
-    //     setCurrentProduct(newProductState)
-    // }
+    const getBase64 = (file, callback) => {
+        const reader = new FileReader();
+        reader.addEventListener('load', () => callback(reader.result));
+        reader.readAsDataURL(file);
+    }
+    
+    const createProductImageString = (event) => {
+        getBase64(event.target.files[0], (base64ImageString) => {
+            console.log("Base64 of file is", base64ImageString);
+            setProductImage(base64ImageString)
+            // Update a component state variable to the value of base64ImageString
+        });
+    }
 
     const changeProductTypeState = (event) => {
         const newProductState = { ...currentProduct }
-        newProductState.ProductTypeId = event.target.value
+        newProductState.product_type = parseInt(event.target.value)
         setCurrentProduct(newProductState)
     }
     /* REFACTOR CHALLENGE END */
@@ -109,6 +108,7 @@ export const ProductForm = () => {
     return (
         <form className="ProductForm">
             { productId ? <h2 className="ProductForm__title">Edit Product</h2> : <h2 className="ProductForm__title">Register New Product</h2>}
+            { productId ? <div><img src={currentProduct.image_path} /> </div> : ""}
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="name">Name: </label>
@@ -159,23 +159,39 @@ export const ProductForm = () => {
                     </select>
                 </div>
             </fieldset>
-                              
+
+            <div> <h3>Upload an image:</h3>
+                            <input type="file" id="game_image" onChange={createProductImageString} />
+                            {/* <input type="hidden" name="prod_id" value={product.id} /> */}
+                            {/* <button onClick={(evt) => {
+                                // Upload the stringified image that is stored in state
+                                evt.preventDefault()
+
+                                const image = {
+                                    productId: productId,
+                                    image: productImage
+                                }
+
+                                createImage(image)
+                            }}>Upload</button> */}
+                        </div>
+
             {/* You create the rest of the input fields for each Product property */}
             { productId ? <button type="submit"
                 onClick={evt => {
                     // Prevent form from being submitted
                     evt.preventDefault()
-
                     const product = {
                         id: parseInt(productId),
                         name: currentProduct.name,
-                        price: currentProduct.price,
+                        price: parseInt(currentProduct.price),
                         description: currentProduct.description,
-                        skillLevel: parseInt(currentProduct.skillLevel),
                         quantity: 0,
-                        image_path: null,
                         product_type: parseInt(currentProduct.product_type)
                     }
+                    const productImageSplit = productImage.split('/')
+
+                    productImageSplit[0] === 'http:' ? product.image_path = currentProduct.image_path : product.image_path = productImage
 
                     // Send POST request to your API
                     updateProduct(product)
@@ -188,13 +204,12 @@ export const ProductForm = () => {
                     evt.preventDefault()
 
                     const product = {
-                        mame: currentProduct.name,
+                        name: currentProduct.name,
                         price: currentProduct.price,
                         description: currentProduct.description,
-                        skillLevel: parseInt(currentProduct.skillLevel),
                         quantity: 0,
-                        image_path: null,
-                        product_type: parseInt(currentProduct.product_type)
+                        image_path: productImage,
+                        product_type_id: parseInt(currentProduct.product_type)
                     }
 
                     // Send POST request to your API

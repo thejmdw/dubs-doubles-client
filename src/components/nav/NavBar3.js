@@ -126,7 +126,7 @@ export const NavBar3 = () => {
               </ListItemIcon>
               <ListItemText primary="Update Products" />
             </ListItem>
-        <ListItem button onClick={() => {history.push("/admin/products")}}>
+        <ListItem button onClick={() => {history.push("/admin/products/new")}}>
               <ListItemIcon>
               <FastfoodIcon fontSize="large"/>
               </ListItemIcon>
