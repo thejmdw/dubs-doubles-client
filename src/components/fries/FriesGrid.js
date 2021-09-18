@@ -1,10 +1,8 @@
 import React, { useContext, useEffect } from "react"
-import { FriesContext } from "../fries/FriesProvider.js"
-import { BurgerContext } from "../burger/BurgerProvider.js"
-import { BurgerList } from "../burger/BurgerList.js"
+import { FriesContext } from "./FriesProvider.js"
 import { LineItemContext } from "../lineitem/LineItemProvider.js"
 import { useHistory } from "react-router-dom"
-import "../products/Products.css"
+import "./Fries.css"
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -12,16 +10,13 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
-export const ProductsList = () => {
+export const FriesGrid = () => {
     const history = useHistory()
     const { fries, getFries, getFryById } = useContext(FriesContext)
-    const { burgers, getBurgers, getBurgerById } = useContext(BurgerContext)
-    // const { fries, getFries, getFryById } = useContext(FriesContext)
     const { createLineItem } = useContext(LineItemContext)
 
     useEffect(() => {
         getFries()
-        getBurgers()
     }, [])
 
     const handleFriesClick = (id) => {
@@ -39,66 +34,35 @@ export const ProductsList = () => {
 
     return (
         <>
-            <article className="">
-              <div className="products">
-                <header className="events__header">
-                    <h1>Burgers</h1>
-                </header>
-                <div className="productsCard__container">
-                {
-                    burgers.map(burger => {
-                        return <Card className="productCard" >
-                        <CardMedia
-                          component="img"
-                          height="140"
-                          image="https://mui.com/static/images/cards/contemplative-reptile.jpg"
-                          alt="burger photo"
-                        />
-                        <CardContent>
-                          <Typography gutterBottom variant="h5" component="div">
-                            {burger.name}
-                          </Typography>
-                        </CardContent>
-                        <CardActions>
-                          {/* <Button size="large">{fry.price}</Button> */}
-                          {/* <Button variant="contained" size="small" onClick={() => {handleAddClick(fry.id)}}>Add to Cart</Button> */}
-                        </CardActions>
-                      </Card>
-                  
-                    })
-                }
-                </div>
-              </div>
-              <div className="products">
-                <header className="events__header">
+            <article className="friesCard__container">
+            <header className="events__header">
                     <h1>Fries</h1>
                 </header>
-                <div className="productsCard__container">
                 {
                     fries.map(fry => {
-                        return <Card className="productCard" >
+                        return <Card className="fryCard" >
                         <CardMedia
                           component="img"
                           height="140"
                           image="https://mui.com/static/images/cards/contemplative-reptile.jpg"
-                          alt="burger photo"
+                          alt="fry photo"
                         />
                         <CardContent>
                           <Typography gutterBottom variant="h5" component="div">
                             {fry.name}
                           </Typography>
+                          <Typography variant="h6" color="text.secondary">
+                            ${fry.price}
+                          </Typography>
                         </CardContent>
                         <CardActions>
                           {/* <Button size="large">{fry.price}</Button> */}
-                          {/* <Button variant="contained" size="small" onClick={() => {handleAddClick(fry.id)}}>Add to Cart</Button> */}
+                          <Button variant="contained" size="small" onClick={() => {handleAddClick(fry.id)}}>Add to Cart</Button>
                         </CardActions>
                       </Card>
                   
                     })
                 }
-                </div>
-              </div>
-              
             </article>
         </>
     )

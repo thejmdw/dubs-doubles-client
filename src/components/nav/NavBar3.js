@@ -48,11 +48,23 @@ export const NavBar3 = () => {
                 <ListItemText primary={text} />
               </ListItem>
             ))} */}
-              <ListItem button onClick={() => {history.push("/products")}}>
+              <ListItem button onClick={() => {history.push("/admin/products")}}>
                 <ListItemIcon>
                   <InboxIcon />
                 </ListItemIcon>
                 <ListItemText primary="Products"/>
+              </ListItem>
+              <ListItem button onClick={() => {history.push("/admin/burgers")}}>
+                <ListItemIcon>
+                  <InboxIcon />
+                </ListItemIcon>
+                <ListItemText primary="Burgers"/>
+              </ListItem>
+              <ListItem button onClick={() => {history.push("/admin/fries")}}>
+                <ListItemIcon>
+                  <InboxIcon />
+                </ListItemIcon>
+                <ListItemText primary="Fries"/>
               </ListItem>
           </List>
           <Divider />

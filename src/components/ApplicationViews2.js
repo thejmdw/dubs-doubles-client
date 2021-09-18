@@ -12,8 +12,10 @@ import { Menu } from "./menu/Menu"
 import { Cart } from "./cart/Cart"
 import { Checkout } from "./cart/Checkout"
 import { BurgerList } from "./burger/BurgerList"
+import { BurgerGrid } from "./burger/BurgerGrid"
 import { BurgerDetail } from "./burger/BurgerDetail"
 import { FriesList } from "./fries/FriesList"
+import { FriesGrid } from "./fries/FriesGrid"
 import { FriesDetail } from "./fries/FriesDetail"
 import { PaymentList } from "./cart/PaymentList"
 import { PaymentForm } from "./cart/PaymentForm"
@@ -37,8 +39,14 @@ export const ApplicationViews2 = () => {
 
                 
 
-                <Route exact path="/products">
+                <Route exact path="/admin/products">
                     <ProductsList />
+                </Route>
+                <Route exact path="/admin/burgers">
+                    <BurgerGrid />
+                </Route>
+                <Route exact path="/admin/fries">
+                    <FriesGrid />
                 </Route>
                 
             
