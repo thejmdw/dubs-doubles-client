@@ -1,6 +1,7 @@
 import React from "react"
 import { Route } from "react-router-dom"
 import { ProfileProvider } from "./auth/ProfileProvider"
+import { ProductProvider } from "./products/ProductProvider"
 import { BurgerProvider } from "./burger/BurgerProvider"
 import { FriesProvider } from "./fries/FriesProvider"
 import { ComboProvider } from "./combo/ComboProvider"
@@ -21,6 +22,7 @@ import { PaymentList } from "./cart/PaymentList"
 import { PaymentForm } from "./cart/PaymentForm"
 import { ComboList } from "./combo/ComboList"
 import { ProductsList } from "./products/ProductsList"
+import { ProductForm } from "./products/ProductsForm"
 import { ComboDetail } from "./combo/ComboDetail"
 
 export const ApplicationViews2 = () => {
@@ -30,6 +32,7 @@ export const ApplicationViews2 = () => {
             lineHeight: "1.75rem"
         }}> 
             <ProfileProvider>
+            <ProductProvider>
             <BurgerProvider>
             <FriesProvider>
             <ComboProvider>
@@ -41,6 +44,12 @@ export const ApplicationViews2 = () => {
 
                 <Route exact path="/admin/products">
                     <ProductsList />
+                </Route>
+                <Route exact path="/admin/products/new">
+                    <ProductForm />
+                </Route>
+                <Route exact path="/admin/products/edit/:productId(\d+)">
+                    <ProductForm />
                 </Route>
                 <Route exact path="/admin/burgers">
                     <BurgerGrid />
@@ -56,6 +65,7 @@ export const ApplicationViews2 = () => {
             </ComboProvider>
             </FriesProvider>
             </BurgerProvider>
+            </ProductProvider>
             </ProfileProvider>
         </main>
     </>

@@ -42,12 +42,12 @@ export const ProductsList = () => {
             <article className="">
               <div className="products">
                 <header className="events__header">
-                    <h1>Burgers</h1>
+                    <h1>Update Burgers</h1>
                 </header>
                 <div className="productsCard__container">
                 {
                     burgers.map(burger => {
-                        return <Card className="productCard" >
+                        return <Card className="productCard" onClick={() => {history.push(`/admin/products/edit/${burger.id}`)}} >
                         <CardMedia
                           component="img"
                           height="140"
@@ -71,12 +71,12 @@ export const ProductsList = () => {
               </div>
               <div className="products">
                 <header className="events__header">
-                    <h1>Fries</h1>
+                    <h1>Update Fries</h1>
                 </header>
                 <div className="productsCard__container">
                 {
                     fries.map(fry => {
-                        return <Card className="productCard" >
+                        return <Card className="productCard" onClick={() => {history.push(`/admin/products/edit/${fry.id}`)}}>
                         <CardMedia
                           component="img"
                           height="140"
