@@ -108,7 +108,7 @@ export const ProductForm = () => {
     return (
         <form className="ProductForm">
             { productId ? <h2 className="ProductForm__title">Edit Product</h2> : <h2 className="ProductForm__title">Register New Product</h2>}
-            { productId ? <div><img src={currentProduct.image_path} /> </div> : ""}
+            { productId ? <div><img src={currentProduct.image_path} alt =""/> </div> : ""}
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="name">Name: </label>

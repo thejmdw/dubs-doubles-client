@@ -134,6 +134,20 @@ export const NavBar3 = () => {
             </ListItem>
         </List>
         <Divider />
+        <List>
+        <ListItem button onClick={() => {history.push("/admin/charts/test")}}>
+              <ListItemIcon>
+              <FastfoodIcon fontSize="large"/>
+              </ListItemIcon>
+              <ListItemText primary="Test Chart" />
+            </ListItem>
+        <ListItem button onClick={() => {history.push("/admin/products/new")}}>
+              <ListItemIcon>
+              <FastfoodIcon fontSize="large"/>
+              </ListItemIcon>
+              <ListItemText primary="New Product" />
+            </ListItem>
+        </List>
         
       </Drawer>
       {/* <Main open={open}>
