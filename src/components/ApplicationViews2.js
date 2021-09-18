@@ -18,6 +18,7 @@ import { FriesDetail } from "./fries/FriesDetail"
 import { PaymentList } from "./cart/PaymentList"
 import { PaymentForm } from "./cart/PaymentForm"
 import { ComboList } from "./combo/ComboList"
+import { ProductsList } from "./products/ProductsList"
 import { ComboDetail } from "./combo/ComboDetail"
 
 export const ApplicationViews2 = () => {
@@ -36,8 +37,8 @@ export const ApplicationViews2 = () => {
 
                 
 
-                <Route exact path="/">
-                    
+                <Route exact path="/products">
+                    <ProductsList />
                 </Route>
                 
             

@@ -10,6 +10,7 @@ import { AppFooter } from "./footer/AppFooter"
 import { Login } from "./auth/Login"
 import { Register } from "./auth/Register"
 import { CartProvider } from "./cart/CartProvider"
+import { NavBar3 } from "./nav/NavBar3"
 
 // export const DubsDoubles = () => (
 //     <>
@@ -41,6 +42,7 @@ export const DubsDoubles = () => (
               <>
                      <CartProvider>
                          <NavBar2 />
+                         <NavBar3 />
                          <ApplicationViews2 />
                          <AppFooter />
                      </CartProvider>
