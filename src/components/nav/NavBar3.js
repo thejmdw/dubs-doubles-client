@@ -1,5 +1,7 @@
 import * as React from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useHistory } from 'react-router-dom'
+import { LineItemContext } from '../lineitem/LineItemProvider';
 import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
@@ -20,6 +22,7 @@ import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import FastfoodIcon from '@mui/icons-material/Fastfood';
 import { Icon } from '@iconify/react'
+import { Total } from "../chart/Total"
 
 const drawerWidth = 240;
 
@@ -71,7 +74,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 export const NavBar3 = () => {
   const history = useHistory()
   const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -141,12 +144,22 @@ export const NavBar3 = () => {
               </ListItemIcon>
               <ListItemText primary="Test Chart" />
             </ListItem>
-        <ListItem button onClick={() => {history.push("/admin/products/new")}}>
+        <ListItem button onClick={() => {history.push("/admin/charts/productsales")}}>
               <ListItemIcon>
               <FastfoodIcon fontSize="large"/>
               </ListItemIcon>
-              <ListItemText primary="New Product" />
+              <ListItemText primary="Product Sales" />
             </ListItem>
+        </List>
+        <Divider />
+        <List >
+        <ListItem button >
+              <ListItemIcon>
+              <FastfoodIcon fontSize="large"/>
+              </ListItemIcon>
+              <ListItemText primary={`$${Total()} Total Sales`} />
+            </ListItem>
+
         </List>
         
       </Drawer>
