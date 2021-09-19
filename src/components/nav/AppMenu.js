@@ -87,6 +87,7 @@ export const AppMenu = () => {
         </MenuItem>
         <MenuItem onClick={() => {
                                 localStorage.removeItem("dd_token")
+                                localStorage.removeItem("is_staff")
                                 history.push("/")
                             }}>
           <ListItemIcon>

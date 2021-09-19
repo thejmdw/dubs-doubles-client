@@ -70,7 +70,7 @@ export const LineItemProvider = (props) => {
     }
 
     const getLineItems = () => {
-        return fetch("http://localhost:8000/products?product_type=1", { 
+        return fetch("http://localhost:8000/lineitems", { 
             headers:{
                 "Authorization": `Token ${localStorage.getItem("dd_token")}`
             }
