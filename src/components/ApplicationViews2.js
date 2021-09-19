@@ -16,6 +16,7 @@ import { Checkout } from "./cart/Checkout"
 import { BurgerList } from "./burger/BurgerList"
 import { BarChartBoiler } from "./chart/BarChartBoiler"
 import { ProductSalesChart } from "./chart/ProductSalesChart"
+import { DailySalesChart } from "./chart/DailySalesChart"
 import { BurgerDetail } from "./burger/BurgerDetail"
 import { FriesList } from "./fries/FriesList"
 
@@ -50,6 +51,10 @@ export const ApplicationViews2 = () => {
                 </Route>                
                 <Route exact path="/admin/charts/productsales">
                     <ProductSalesChart />
+                    {/* <Total /> */}
+                </Route>                
+                <Route exact path="/admin/charts/dailysales">
+                    <DailySalesChart />
                     {/* <Total /> */}
                 </Route>                
 

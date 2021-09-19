@@ -150,6 +150,12 @@ export const NavBar3 = () => {
               </ListItemIcon>
               <ListItemText primary="Product Sales" />
             </ListItem>
+        <ListItem button onClick={() => {history.push("/admin/charts/dailysales")}}>
+              <ListItemIcon>
+              <FastfoodIcon fontSize="large"/>
+              </ListItemIcon>
+              <ListItemText primary="Daily Sales" />
+            </ListItem>
         </List>
         <Divider />
         <List >
