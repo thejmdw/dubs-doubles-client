@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { ChartDataContext } from "./ChartDataProvider.js"
 import {Line} from 'react-chartjs-2'
+import "./Chart.css"
 
 export const DailySalesChart = () => {
         const { 
@@ -27,7 +28,7 @@ export const DailySalesChart = () => {
             setChartData({
             labels: dates,
             datasets: [{
-                                label: 'Total Product Sales',
+                                label: 'Total Product Sales $',
                                 data: dailyNumbers,
                                 backgroundColor: [
                                     'rgba(255, 99, 132, 0.2)',
@@ -79,8 +80,10 @@ export const DailySalesChart = () => {
 
 return(
           <div className="App">
-              <h1>Daily Sales Chart</h1>
-              <div>
+              <div className="chartTitle">
+                <h1>Daily Sales</h1>
+              </div>
+              <div className="chartCard__container">
                   <Line
                     data={chartData}
                     options={{

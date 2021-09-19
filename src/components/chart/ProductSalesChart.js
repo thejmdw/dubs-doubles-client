@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { ChartDataContext } from "./ChartDataProvider.js"
 import {Bar} from 'react-chartjs-2'
+import "./Chart.css"
 
 export const ProductSalesChart = () => {
         const { 
@@ -78,9 +79,11 @@ export const ProductSalesChart = () => {
       }, [productNumbers]);
 
 return(
-          <div className="App">
+          <div className="App ">
+              <div className="chartTitle">
               <h1>Bar Chart</h1>
-              <div>
+              </div>
+              <div className="chartCard__container">
                   <Bar
                     data={chartData}
                     options={{

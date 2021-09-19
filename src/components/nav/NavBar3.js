@@ -23,6 +23,10 @@ import MailIcon from '@mui/icons-material/Mail';
 import FastfoodIcon from '@mui/icons-material/Fastfood';
 import { Icon } from '@iconify/react'
 import { Total } from "../chart/Total"
+import BarChartIcon from '@mui/icons-material/BarChart';
+import TimelineIcon from '@mui/icons-material/Timeline';
+import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
+import Logout from '@mui/icons-material/Logout';
 
 const drawerWidth = 240;
 
@@ -140,19 +144,19 @@ export const NavBar3 = () => {
         <List>
         <ListItem button onClick={() => {history.push("/admin/charts/test")}}>
               <ListItemIcon>
-              <FastfoodIcon fontSize="large"/>
+              <BarChartIcon fontSize="large"/>
               </ListItemIcon>
               <ListItemText primary="Test Chart" />
             </ListItem>
         <ListItem button onClick={() => {history.push("/admin/charts/productsales")}}>
               <ListItemIcon>
-              <FastfoodIcon fontSize="large"/>
+              <BarChartIcon fontSize="large"/>
               </ListItemIcon>
               <ListItemText primary="Product Sales" />
             </ListItem>
         <ListItem button onClick={() => {history.push("/admin/charts/dailysales")}}>
               <ListItemIcon>
-              <FastfoodIcon fontSize="large"/>
+              <TimelineIcon fontSize="large"/>
               </ListItemIcon>
               <ListItemText primary="Daily Sales" />
             </ListItem>
@@ -161,9 +165,26 @@ export const NavBar3 = () => {
         <List >
         <ListItem button >
               <ListItemIcon>
-              <FastfoodIcon fontSize="large"/>
+              <AttachMoneyIcon fontSize="large"/>
               </ListItemIcon>
               <ListItemText primary={`$${Total()} Total Sales`} />
+            </ListItem>
+        <ListItem button >
+              <ListItemIcon>
+              {/* <AttachMoneyIcon fontSize="large"/> */}
+              </ListItemIcon>
+              
+            </ListItem>
+            <Divider />
+        <ListItem button onClick={() => {
+                                localStorage.removeItem("dd_token")
+                                localStorage.removeItem("is_staff")
+                                history.push("/")
+                            }} >
+              <ListItemIcon>
+              <Logout fontSize="large"/>
+              </ListItemIcon>
+              <ListItemText primary="Log Out" />
             </ListItem>
 
         </List>
