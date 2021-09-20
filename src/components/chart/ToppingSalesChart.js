@@ -3,33 +3,31 @@ import { ChartDataContext } from "./ChartDataProvider.js"
 import {Bar} from 'react-chartjs-2'
 import "./Chart.css"
 
-export const ProductSalesChart = () => {
+export const ToppingSalesChart = () => {
         const { 
-            productSalesData,
-            getProductSalesData } = useContext(ChartDataContext)
+            toppingSalesData,
+            getToppingSalesData } = useContext(ChartDataContext)
        const [chartData, setChartData]  = useState({});
-       const [ productNames, setProductNames ] = useState([])
-       const [ productNumbers, setProductNumbers ] = useState([])
+       const [ toppingNames, setToppingNames ] = useState([])
+       const [ toppingNumbers, setToppingNumbers ] = useState([])
 
-        
-       
        const namesToArray = () => {
            let namesArray = []
-           productSalesData?.product_sales?.forEach( product => namesArray.push(product.name))
-           setProductNames(namesArray)
+           toppingSalesData?.topping_sales?.forEach( topping => namesArray.push(topping.name))
+           setToppingNames(namesArray)
        }
        const numbersToArray = () => {
            let numbersArray = []
-           productSalesData?.product_sales?.forEach( product => numbersArray.push(product.total_number_sold))
-           setProductNumbers(numbersArray)
+           toppingSalesData?.topping_sales?.forEach( topping => numbersArray.push(topping.topping_count))
+           setToppingNumbers(numbersArray)
        }
 
         const Chart = () => {
             setChartData({
-            labels: productNames,
+            labels: toppingNames,
             datasets: [{
-                                label: 'Total Product Sales',
-                                data: productNumbers,
+                                label: 'Total topping Sales',
+                                data: toppingNumbers,
                                 backgroundColor: [
                                     'rgba(255, 99, 132, 0.2)',
                                     'rgba(54, 162, 235, 0.2)',
@@ -66,22 +64,22 @@ export const ProductSalesChart = () => {
     //     Chart();
     //   }, []);
      useEffect(() => {
-        getProductSalesData()
+        getToppingSalesData()
       }, []);
      useEffect(() => {
         namesToArray()
-      }, [productSalesData]);
+      }, [toppingSalesData]);
      useEffect(() => {
         numbersToArray()
-      }, [productNames]);
+      }, [toppingNames]);
      useEffect(() => {
         Chart()
-      }, [productNumbers]);
+      }, [toppingNumbers]);
 
 return(
           <div className="App ">
               <div className="chartTitle">
-              <h1>Products Sold</h1>
+              <h1>Toppings Sold</h1>
               </div>
               <div className="chartCard__container">
                   <Bar

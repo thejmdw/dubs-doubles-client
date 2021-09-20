@@ -154,6 +154,12 @@ export const NavBar3 = () => {
               </ListItemIcon>
               <ListItemText primary="Product Sales" />
             </ListItem>
+        <ListItem button onClick={() => {history.push("/admin/charts/toppingsales")}}>
+              <ListItemIcon>
+              <BarChartIcon fontSize="large"/>
+              </ListItemIcon>
+              <ListItemText primary="Topping Sales" />
+            </ListItem>
         <ListItem button onClick={() => {history.push("/admin/charts/dailysales")}}>
               <ListItemIcon>
               <TimelineIcon fontSize="large"/>

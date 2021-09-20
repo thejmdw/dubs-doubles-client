@@ -1,0 +1,17 @@
+.dashBoard {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 5vh;
+    /* flex-direction: column; */
+    align-items: center;
+    max-width: 150vh;
+    margin: auto;
+    height: 75vh;
+
+}
+
+.dashBoard__item {
+    width: 50vh;
+    margin: 0 1vh;
+}
