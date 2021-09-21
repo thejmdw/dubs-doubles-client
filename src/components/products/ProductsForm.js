@@ -2,7 +2,18 @@ import React, { useContext, useState, useEffect } from "react"
 import { ProductContext } from "../products/ProductProvider.js"
 // import { ProfileContext } from "../auth/ProfileProvider.js"
 import { useHistory, useParams } from 'react-router-dom'
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import InputLabel from '@mui/material/InputLabel';
+import { styled } from '@mui/material/styles';
 
+const Input = styled('input')({
+    display: 'none',
+  });
+  
 
 export const ProductForm = () => {
     const history = useHistory()
@@ -110,24 +121,42 @@ export const ProductForm = () => {
             { productId ? <h2 className="ProductForm__title">Edit Product</h2> : <h2 className="ProductForm__title">Register New Product</h2>}
             { productId ? <div><img src={currentProduct.image_path} alt =""/> </div> : ""}
             <fieldset>
-                <div className="form-group">
-                    <label htmlFor="name">Name: </label>
-                    <input type="text" name="name" required autoFocus className="form-control"
+                {/* // <div className="form-group">
+                //     <label htmlFor="name">Name: </label>
+                //     <input type="text" name="name" required autoFocus className="form-control"
+                //         value={currentProduct.name}
+                //         onChange={changeProductState}
+                //     />
+                // </div> */}
+                <TextField 
+                        // inputRef={password}
+                        name="name"
+                        id="outlined-helperText"
+                        label="Product Name"
+                        type="text"
                         value={currentProduct.name}
                         onChange={changeProductState}
                     />
-                </div>
             </fieldset>
             <fieldset>
-                <div className="form-group">
+                {/* <div className="form-group">
                     <label htmlFor="price">Price: </label>
                     <input type="text" name="price" required autoFocus className="form-control"
                         value={currentProduct.price}
                         onChange={changeProductState}
                     />
-                </div>
+                </div> */}
+            <TextField 
+                    // inputRef={password}
+                    name="price"
+                    id="outlined-helperText"
+                    label="Price"
+                    type="text"
+                    value={currentProduct.price}
+                    onChange={changeProductState}
+                />
             </fieldset>
-            <fieldset>
+            {/* <fieldset>
                 <div className="form-group">
                     <label htmlFor="description">Description: </label>
                     <input type="text" name="description" required autoFocus className="form-control"
@@ -135,51 +164,45 @@ export const ProductForm = () => {
                         onChange={changeProductState}
                     />
                 </div>
-            </fieldset>
-            {/* <fieldset>
-                <div className="form-group">
-                    <label htmlFor="skillLevel">Skill Level: </label>
-                    <input type="number" name="skillLevel" required autoFocus className="form-control"
-                        value={currentProduct.skillLevel}
-                        onChange={changeProductState}
-                    />
-                </div>
             </fieldset> */}
             <fieldset>
-                <div className="form-group">
-                    <label htmlFor="ProductTypeId">Product Type: </label>
-                    <select name="product_type" required className="form-control"
+            <TextField 
+                    // inputRef={password}
+                    name="description"
+                    id="outlined-helperText"
+                    label="Description"
+                    type="text"
+                    value={currentProduct.description}
+                    onChange={changeProductState}
+                />
+            </fieldset>
+            {/* <fieldset> */}
+                {/* <FormControl> */}
+                    <InputLabel >Product Type: </InputLabel>
+                    <Select name="product_type" required className="form-control"
                         value={currentProduct.product_type}
                         onChange={changeProductTypeState}
                     >
-                        <option key="0" value="0">Select Product Type</option>
+                        {/* <MenuItem key="0" value="0">Select Product Type</MenuItem> */}
                         {productTypes.map(gt => (
-                            <option key={gt} value={gt.id}>{gt.name}</option>
+                            <MenuItem key={gt} value={gt.id}>{gt.name}</MenuItem>
                         ))}
-                    </select>
-                </div>
-            </fieldset>
+                    </Select>
+                    {/* </FormControl> */}
+            {/* </fieldset> */}
 
-            <div> <h3>Upload an image:</h3>
-                            <input type="file" id="game_image" onChange={createProductImageString} />
-                            {/* <input type="hidden" name="prod_id" value={product.id} /> */}
-                            {/* <button onClick={(evt) => {
-                                // Upload the stringified image that is stored in state
-                                evt.preventDefault()
-
-                                const image = {
-                                    productId: productId,
-                                    image: productImage
-                                }
-
-                                createImage(image)
-                            }}>Upload</button> */}
-                        </div>
-
-            {/* You create the rest of the input fields for each Product property */}
-            { productId ? <button type="submit"
+            <div> 
+                <h3>Upload an image:</h3>
+                {/* <input type="file" id="game_image" onChange={createProductImageString} /> */}
+                <label htmlFor="contained-button-file">
+                <Input onChange={createProductImageString} id="contained-button-file" type="file" />
+                <Button variant="contained" component="span">
+                Upload Product Image
+                </Button>
+                </label>
+            </div>
+            { productId ? <><Button variant="contained" type="submit"
                 onClick={evt => {
-                    // Prevent form from being submitted
                     evt.preventDefault()
                     const product = {
                         id: parseInt(productId),
@@ -197,7 +220,8 @@ export const ProductForm = () => {
                     updateProduct(product)
                         .then(() => history.push("/admin/products"))
                 }}
-                className="btn btn-primary">Update</button> 
+                className="btn btn-primary">Update</Button>
+                <Button variant="contained">Delete Product</Button></>
              : <button type="submit"
                 onClick={evt => {
                     // Prevent form from being submitted

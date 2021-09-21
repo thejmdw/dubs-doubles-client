@@ -48,12 +48,15 @@ export const Login = props => {
                 <form className="form--login" onSubmit={handleLogin}>
                     <h1>Dub's Doubles</h1>
                     <h2>Please sign in</h2>
+                    <fieldset>
                     <TextField 
                         inputRef={email}
                         name="email"
                         id="outlined-helperText"
                         label="E-Mail"
                     />
+                    </fieldset>
+                    <fieldset>
                     <TextField
                         inputRef={password}
                         name="password"
@@ -61,6 +64,7 @@ export const Login = props => {
                         id="outlined-helperText"
                         label="password"
                     />
+                    </fieldset>
                     {/* <fieldset style={{
                         textAlign:"center"
                     }}> */}
