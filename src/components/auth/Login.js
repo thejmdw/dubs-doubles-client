@@ -41,12 +41,12 @@ export const Login = props => {
     }
 
     return (
-        <main className="container--login">
+        <main style={{ textAlign: "center" }}>
             {/* <dialog className="dialog dialog--auth" ref={invalidDialog}>
                 <div>Email or password was not valid.</div>
                 <Button variant="contained" className="button--close" onClick={e => invalidDialog.current.close()}>Close</Button>
             </dialog> */}
-            <section>
+            {/* <section> */}
                 <form className="form--login" onSubmit={handleLogin}>
                     <div className="loginTitle">
                     <h2>Dub's Doubles</h2>
@@ -63,6 +63,7 @@ export const Login = props => {
                         error={error}
                         helperText={error ? 'Invalid Email or Password' : ' '}
                         onChange={() => {setError(false)}}
+                        
                     />
                     </fieldset>
                     <fieldset>
@@ -77,13 +78,9 @@ export const Login = props => {
                         helperText={error ? 'Invalid Email or Password' : ' '}
                     />
                     </fieldset>
-                    {/* <fieldset style={{
-                        textAlign:"center"
-                    }}> */}
                         <Button variant="contained" className="btn btn-1 btn-sep icon-send" type="submit">Sign In</Button>
-                    {/* </fieldset> */}
+                    
                 </form>
-            </section>
             <section className="link--register">
                 <Link to="/register">Not a member yet?</Link>
             </section>

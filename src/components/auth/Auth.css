@@ -23,6 +23,7 @@ fieldset {
     margin: 10vh auto 0;
     text-align: left;
     max-width: 65vh;
+    /* height: 30vh; */
 }
 
 .form--login > fieldset > input[type="email"],
@@ -60,7 +61,7 @@ fieldset {
     background-size: cover;
     background-position-x: center;
     z-index: 1;
-    min-height: 25rem;
+    min-height: 20rem;
     padding: 0 5rem;
     background-color: hsla(0,0%,100%,0.75);
     background-blend-mode: overlay;

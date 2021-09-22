@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { Link, useHistory } from "react-router-dom"
 import "./Auth.css"
 import TextField from '@mui/material/TextField';
@@ -14,12 +14,39 @@ export const Register = (props) => {
     const verifyPassword = React.createRef()
     const passwordDialog = React.createRef()
     const history = useHistory()
+    const [ error, setError ] = useState(false)
+    const [ firstNameError, setFirstNameError ] = useState(false)
+    const [ lastNameError, setLastNameError ] = useState(false)
+    const [ passwordError, setPasswordError ] = useState(false)
+    const [ emailError, setEmailError ] = useState(false)
+    const [ phoneNumberError, setPhoneNumberError ] = useState(false)
+    const [ helperFirstNameText, setHelperFirstNameText ] = useState("")
+    const [ helperLastNameText, setHelperLastNameText ] = useState("")
+    const [ helperPasswordText, setHelperPasswordText ] = useState("")
+    const [ helperEmailText, setHelperEmailText ] = useState("")
+    const [ helperPhoneNumberText, setHelperPhoneNumberText ] = useState("")
+
 
     const handleRegister = (e) => {
         e.preventDefault()
 
-
-        if (password.current.value === verifyPassword.current.value) {
+        if (firstName.current.value.length === 0 ) {
+            setFirstNameError(true)
+            setHelperFirstNameText("Can't be blank")
+        } 
+        else if (lastName.current.value.length === 0 ) {
+            setLastNameError(true)
+            setHelperLastNameText("Can't be blank")
+        }
+        else if (email.current.value.length === 0 ) {
+            setEmailError(true)
+            setHelperEmailText("Can't be blank")
+        }
+        else if (phoneNumber.current.value.length === 0 ) {
+            setPhoneNumberError(true)
+            setHelperPhoneNumberText("Can't be blank")
+        }
+        else if (password.current.value === verifyPassword.current.value) {
             const newUser = {
                 "username": email.current.value,
                 "first_name": firstName.current.value,
@@ -45,89 +72,100 @@ export const Register = (props) => {
                     }
                 })
         } else {
-            passwordDialog.current.showModal()
+            // passwordDialog.current.showModal()
+            setPasswordError(true)
+            setHelperPasswordText("Passwords don't match")
         }
     }
 
     return (
         <main style={{ textAlign: "center" }}>
 
-            <dialog className="dialog dialog--password" ref={passwordDialog}>
+            {/* <dialog className="dialog dialog--password" ref={passwordDialog}>
                 <div>Passwords do not match</div>
                 <button className="button--close" onClick={e => passwordDialog.current.close()}>Close</button>
-            </dialog>
+            </dialog> */}
 
             <form className="form--login" onSubmit={handleRegister}>
-                <h1 className="h3 mb-3 font-weight-normal">Register an account</h1>
+                <h2 className="h3 mb-3 font-weight-normal">Register</h2>
+                    <fieldset>
                 <TextField 
                     inputRef={firstName}
                     name="firstName"
                     id="outlined-helperText"
                     label="First Name"
+                    fullWidth
+                    error={firstNameError}
+                    helperText={helperFirstNameText}
+                    onChange={() => {setFirstNameError(false)}}
                 />
-                {/* <fieldset>
-                    <label htmlFor="firstName"> First Name </label>
-                    <input ref={firstName} type="text" name="firstName" className="form-control" placeholder="First name" required autoFocus />
-                </fieldset> */}
+                </fieldset>
+                <fieldset>
                 <TextField 
                     inputRef={lastName}
                     name="lastName"
                     id="outlined-helperText"
                     label="Last Name"
+                    fullWidth
+                    error={lastNameError}
+                    helperText={helperLastNameText}
+                    onChange={() => {setLastNameError(false)}}
                 />
-                {/* <fieldset>
-                    <label htmlFor="lastName"> Last Name </label>
-                    <input ref={lastName} type="text" name="lastName" className="form-control" placeholder="Last name" required />
-                </fieldset> */}
+                </fieldset>
+                <fieldset>
+                <TextField 
+                    inputRef={phoneNumber}
+                    name="phoneNumber"
+                    id="outlined-helperText"
+                    label="Phone Number"
+                    type="tel"
+                    fullWidth
+                    error={error}
+                    helperText={helperPhoneNumberText}
+                    onChange={() => {setPhoneNumberError(false)}}
+                />
+                </fieldset>
+                <fieldset>
                 <TextField 
                     inputRef={email}
                     name="email"
                     id="outlined-helperText"
                     label="E-Mail"
                     type="email"
+                    fullWidth
+                    error={emailError}
+                    helperText={helperEmailText}
+                    onChange={() => {setEmailError(false)}}
                 />
-                {/* <fieldset>
-                    <label htmlFor="inputEmail"> Email address </label>
-                    <input ref={email} type="email" name="email" className="form-control" placeholder="Email address" required />
-                </fieldset> */}
+                </fieldset>
+                <fieldset>
                 <TextField 
                     inputRef={password}
                     name="password"
                     id="outlined-helperText"
                     label="Password"
                     type="password"
+                    fullWidth
+                    error={passwordError}
+                    helperText={helperPasswordText}
+                    onChange={() => {setPasswordError(false)}}
                 />
-                {/* <fieldset>
-                    <label htmlFor="inputPassword"> Password </label>
-                    <input ref={password} type="password" name="password" className="form-control" placeholder="Password" required />
-                </fieldset> */}
+                </fieldset>
+                <fieldset>
                 <TextField 
                     inputRef={verifyPassword}
                     name="verifyPassword"
                     id="outlined-helperText"
                     label="Verify Password"
                     type="password"
+                    fullWidth
+                    error={passwordError}
+                    helperText={helperPasswordText}
+                    onChange={() => {setPasswordError(false)}}
                 />
-                {/* <fieldset>
-                    <label htmlFor="verifyPassword"> Verify Password </label>
-                    <input ref={verifyPassword} type="password" name="verifyPassword" className="form-control" placeholder="Verify password" required />
-                </fieldset> */}
-                <TextField 
-                    inputRef={phoneNumber}
-                    name="phoneNumber"
-                    id="outlined-helperText"
-                    label="Phone Number"
-                    // type="number"
-                />
-                {/* <fieldset>
-                    <label htmlFor="phoneNumber">Phone Number</label>
-                    <textarea ref={phoneNumber} name="phoneNumber" className="form-control" placeholder="555-555-5555" />
-                </fieldset> */}
-                {/* <fieldset style={{
-                    textAlign: "center"
-                }}> */}
-                    <Button variant="contained" className="btn btn-1 btn-sep icon-send" type="submit">Register</Button>
-                {/* </fieldset> */}
+                </fieldset>
+
+                <Button variant="contained" className="btn btn-1 btn-sep icon-send" type="submit">Register</Button>
             </form>
             <section className="link--register">
                 Already registered? <Link to="/login">Login</Link>
