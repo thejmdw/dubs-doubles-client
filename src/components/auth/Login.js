@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { Link, useHistory } from "react-router-dom"
 import "./Auth.css"
 import TextField from '@mui/material/TextField';
@@ -10,6 +10,7 @@ export const Login = props => {
     const password = React.createRef()
     const invalidDialog = React.createRef()
     const history = useHistory()
+    const [ error, setError ] = useState(false)
 
     const handleLogin = (e) => {
         e.preventDefault()
@@ -33,27 +34,35 @@ export const Login = props => {
                     history.push("/")
                 }
                 else {
-                    invalidDialog.current.showModal()
+                    setError(true)
+                    // invalidDialog.current.showModal()
                 }
             })
     }
 
     return (
         <main className="container--login">
-            <dialog className="dialog dialog--auth" ref={invalidDialog}>
+            {/* <dialog className="dialog dialog--auth" ref={invalidDialog}>
                 <div>Email or password was not valid.</div>
-                <button className="button--close" onClick={e => invalidDialog.current.close()}>Close</button>
-            </dialog>
+                <Button variant="contained" className="button--close" onClick={e => invalidDialog.current.close()}>Close</Button>
+            </dialog> */}
             <section>
                 <form className="form--login" onSubmit={handleLogin}>
-                    <h1>Dub's Doubles</h1>
-                    <h2>Please sign in</h2>
+                    <div className="loginTitle">
+                    <h2>Dub's Doubles</h2>
+                    <h3>Please sign in</h3>
+                    </div>
                     <fieldset>
                     <TextField 
                         inputRef={email}
                         name="email"
                         id="outlined-helperText"
                         label="E-Mail"
+                        fullWidth
+                        type="email"
+                        error={error}
+                        helperText={error ? 'Invalid Email or Password' : ' '}
+                        onChange={() => {setError(false)}}
                     />
                     </fieldset>
                     <fieldset>
@@ -62,7 +71,10 @@ export const Login = props => {
                         name="password"
                         type="password"
                         id="outlined-helperText"
-                        label="password"
+                        label="Password"
+                        fullWidth
+                        error={error}
+                        helperText={error ? 'Invalid Email or Password' : ' '}
                     />
                     </fieldset>
                     {/* <fieldset style={{

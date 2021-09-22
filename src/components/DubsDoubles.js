@@ -68,10 +68,18 @@ export const DubsDoubles = () => (
       />
   
       <Route path="/login">
+      <CartProvider>
+      <NavBar />
         <Login />
+        <AppFooter />
+      </CartProvider>
       </Route>
       <Route path="/register">
+      <CartProvider>
+      <NavBar />
         <Register />
+        <AppFooter />
+      </CartProvider>
       </Route>
     </>
   );

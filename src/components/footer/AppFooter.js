@@ -29,9 +29,9 @@ export const AppFooter = () => {
       <CssBaseline />
       <AppBar position="fixed" color="primary" sx={{ top: 'auto', bottom: 0 }}>
         <Toolbar>
-          <IconButton color="inherit" aria-label="open drawer" onClick={() => {history.goBack()}}>
+          { localStorage.getItem("dd_token") ? <IconButton color="inherit" aria-label="open drawer" onClick={() => {history.goBack()}}>
             <ArrowBackIosIcon />
-          </IconButton>
+          </IconButton> : ""}
         </Toolbar>
       </AppBar>
     </React.Fragment>
