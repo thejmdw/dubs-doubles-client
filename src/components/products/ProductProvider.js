@@ -66,7 +66,18 @@ export const ProductProvider = (props) => {
             .then(response => response.json())
             .then(setProductTypes)
     }
-
+    const deleteProduct = (id) => {
+        return fetch(`http://localhost:8000/products/${id}`, {
+            method: "DELETE",
+            headers:{
+                "Content-Type": "application/json",
+                "Authorization": `Token ${localStorage.getItem("dd_token")}`
+            },
+            body: JSON.stringify(id)
+         })
+            // .then(setLineItem(productId))
+            // .then()
+    }
     // const getBurgers = () => {
     //     return fetch("http://localhost:8000/products?product_type=2", { 
     //         headers:{
@@ -78,7 +89,7 @@ export const ProductProvider = (props) => {
     // }
 
     return (
-        <ProductContext.Provider value={{ product, productTypes, image, setImage, createImage, createProduct, getProductById, updateProduct, getProductTypes }} >
+        <ProductContext.Provider value={{ product, productTypes, image, setImage, deleteProduct, createImage, createProduct, getProductById, updateProduct, getProductTypes }} >
             { props.children }
         </ProductContext.Provider>
 

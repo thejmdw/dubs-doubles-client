@@ -17,7 +17,7 @@ const Input = styled('input')({
 
 export const ProductForm = () => {
     const history = useHistory()
-    const { product, image, setImage, createImage, createProduct, getProductTypes, productTypes, getProductById, updateProduct } = useContext(ProductContext)
+    const { product, image, setImage, createImage, deleteProduct, createProduct, getProductTypes, productTypes, getProductById, updateProduct } = useContext(ProductContext)
     // const { getProfile } = useContext(ProfileContext)
 
     const { productId } = useParams()
@@ -27,7 +27,7 @@ export const ProductForm = () => {
         price: 0,
         description: "",
         quantity: "",
-        image_path: null,
+        image_path: "",
         product_type: 0
     })
 
@@ -114,6 +114,11 @@ export const ProductForm = () => {
         newProductState.product_type = parseInt(event.target.value)
         setCurrentProduct(newProductState)
     }
+
+    const handleRemove = (id) => {
+        deleteProduct(id)
+        .then(history.push("/admin/products"))
+      }
     /* REFACTOR CHALLENGE END */
 
     return (
@@ -221,7 +226,7 @@ export const ProductForm = () => {
                         .then(() => history.push("/admin/products"))
                 }}
                 className="btn btn-primary">Update</Button>
-                <Button variant="contained">Delete Product</Button></>
+                <Button variant="contained" onClick={() => {handleRemove(parseInt(productId))}}>Delete Product</Button></>
              : <button type="submit"
                 onClick={evt => {
                     // Prevent form from being submitted
