@@ -79,14 +79,14 @@ export const Register = (props) => {
     }
 
     return (
-        <main style={{ textAlign: "center" }}>
+        <main style={{ textAlign: "center" }} className="loginCard__container">
 
             {/* <dialog className="dialog dialog--password" ref={passwordDialog}>
                 <div>Passwords do not match</div>
                 <button className="button--close" onClick={e => passwordDialog.current.close()}>Close</button>
             </dialog> */}
 
-            <form className="form--login" onSubmit={handleRegister}>
+            <form className="form--login loginCard" onSubmit={handleRegister}>
                 <h2 className="h3 mb-3 font-weight-normal">Register</h2>
                     <fieldset>
                 <TextField 

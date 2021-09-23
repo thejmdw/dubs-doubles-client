@@ -41,13 +41,13 @@ export const Login = props => {
     }
 
     return (
-        <main style={{ textAlign: "center" }}>
+        <main style={{ textAlign: "center" }} className="loginCard__container">
             {/* <dialog className="dialog dialog--auth" ref={invalidDialog}>
                 <div>Email or password was not valid.</div>
                 <Button variant="contained" className="button--close" onClick={e => invalidDialog.current.close()}>Close</Button>
             </dialog> */}
             {/* <section> */}
-                <form className="form--login" onSubmit={handleLogin}>
+                <form className="form--login loginCard" onSubmit={handleLogin}>
                     <div className="loginTitle">
                     <h2>Dub's Doubles</h2>
                     <h3>Please sign in</h3>

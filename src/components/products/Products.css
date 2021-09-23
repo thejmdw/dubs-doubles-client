@@ -85,7 +85,7 @@
   .products {
     display: flex;
     flex-direction: column;
-    width: 100vh;
+    width: 80vh;
     align-items: center;
     margin-left: auto;
     margin-right: auto;
@@ -108,7 +108,7 @@
     max-width: 65vh;
   }
   .productForm__upload {
-    margin-top: 2vh;
+    margin-top: 4vh;
   }
   .productsCard__userAvatar {
     width: 17vh;

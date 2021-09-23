@@ -16,6 +16,18 @@ const Input = styled('input')({
   
 
 export const ProductForm = () => {
+    const name = React.createRef()
+    const price = React.createRef()
+    const description = React.createRef()
+    const productType = React.createRef()
+    const [ nameError, setNameError ] = useState(false)
+    const [ priceError, setPriceError ] = useState(false)
+    const [ descriptionError, setDescriptionError ] = useState(false)
+    const [ productTypeError, setProductTypeError ] = useState(false)
+    const [ helperNameText, setHelperNameText ] = useState(" ")
+    const [ helperPriceText, setHelperPriceText ] = useState(" ")
+    const [ helperDescriptionText, setHelperDescriptionText ] = useState(" ")
+    const [ helperProductTypeText, setHelperProductTypeText ] = useState(" ")
     const history = useHistory()
     const { product, image, setImage, createImage, deleteProduct, createProduct, getProductTypes, productTypes, getProductById, updateProduct } = useContext(ProductContext)
     // const { getProfile } = useContext(ProfileContext)
@@ -93,6 +105,10 @@ export const ProductForm = () => {
         const newProductState = { ...currentProduct }
         newProductState[event.target.name] = event.target.value
         setCurrentProduct(newProductState)
+        if (event.target.name === "name") { setNameError(false) }
+        if (event.target.name === "price") { setPriceError(false) }
+        if (event.target.name === "description") { setDescriptionError(false) }
+        if (event.target.name === "product_type") { setDescriptionError(false) }
     }
 
     const getBase64 = (file, callback) => {
@@ -113,6 +129,8 @@ export const ProductForm = () => {
         const newProductState = { ...currentProduct }
         newProductState.product_type = parseInt(event.target.value)
         setCurrentProduct(newProductState)
+        setProductTypeError(false)
+        setHelperProductTypeText(" ")
     }
 
     const handleRemove = (id) => {
@@ -126,15 +144,8 @@ export const ProductForm = () => {
             { productId ? <h2 className="ProductForm__title">Edit Product</h2> : <h2 className="ProductForm__title">New Product</h2>}
             { productId ? <div><img src={currentProduct.image_path} alt =""/> </div> : ""}
             <fieldset>
-                {/* // <div className="form-group">
-                //     <label htmlFor="name">Name: </label>
-                //     <input type="text" name="name" required autoFocus className="form-control"
-                //         value={currentProduct.name}
-                //         onChange={changeProductState}
-                //     />
-                // </div> */}
                 <TextField 
-                        // inputRef={password}
+                        inputRef={name}
                         fullWidth
                         name="name"
                         id="outlined-helperText"
@@ -142,19 +153,13 @@ export const ProductForm = () => {
                         type="text"
                         value={currentProduct.name}
                         onChange={changeProductState}
-                        helperText=" "
+                        error={nameError}
+                        helperText={helperNameText}
                     />
             </fieldset>
             <fieldset>
-                {/* <div className="form-group">
-                    <label htmlFor="price">Price: </label>
-                    <input type="text" name="price" required autoFocus className="form-control"
-                        value={currentProduct.price}
-                        onChange={changeProductState}
-                    />
-                </div> */}
             <TextField 
-                    // inputRef={password}
+                    inputRef={price}
                     fullWidth
                     name="price"
                     id="outlined-helperText"
@@ -162,21 +167,13 @@ export const ProductForm = () => {
                     type="text"
                     value={currentProduct.price}
                     onChange={changeProductState}
-                    helperText=" "
+                    error={priceError}
+                    helperText={helperPriceText}
                 />
             </fieldset>
-            {/* <fieldset>
-                <div className="form-group">
-                    <label htmlFor="description">Description: </label>
-                    <input type="text" name="description" required autoFocus className="form-control"
-                        value={currentProduct.description}
-                        onChange={changeProductState}
-                    />
-                </div>
-            </fieldset> */}
             <fieldset>
             <TextField 
-                    // inputRef={password}
+                    inputRef={description}
                     fullWidth
                     name="description"
                     id="outlined-helperText"
@@ -184,16 +181,18 @@ export const ProductForm = () => {
                     type="text"
                     value={currentProduct.description}
                     onChange={changeProductState}
-                    helperText=" "
+                    error={descriptionError}
+                    helperText={helperDescriptionText}
                 />
             </fieldset>
             <fieldset>
                 {/* <FormControl> */}
                     {/* <InputLabel >Product Type: </InputLabel> */}
-                    <TextField select fullWidth name="product_type" label="Product Type" className="form-control"
+                    <TextField inputRef={productType} select fullWidth name="product_type" label="Product Type" className="form-control"
                         value={currentProduct.product_type}
                         onChange={changeProductTypeState}
-                        helperText=" "
+                        error={productTypeError}
+                        helperText={helperProductTypeText}
                     >
                         <MenuItem key="0" value="0">Select Product Type</MenuItem>
                         {productTypes.map(gt => (
@@ -204,7 +203,8 @@ export const ProductForm = () => {
                     {/* </FormControl> */}
             </fieldset>
 
-            <fieldset className="productForm__upload"> 
+            <fieldset className="productForm__upload">
+                
                 <h3>Upload an image:</h3>
                 {/* <input type="file" id="game_image" onChange={createProductImageString} /> */}
                 <label htmlFor="contained-button-file">
@@ -213,6 +213,7 @@ export const ProductForm = () => {
                 Upload Product Image
                 </Button>
                 </label>
+                
             </fieldset>
             { productId ? <div className="productForm__upload"><Button variant="contained" type="submit"
                 onClick={evt => {
@@ -248,10 +249,27 @@ export const ProductForm = () => {
                         image_path: productImage,
                         product_type_id: parseInt(currentProduct.product_type)
                     }
-
+                    if (name.current.value.length === 0) {
+                        setNameError(true)
+                        setHelperNameText("Can't be blank")
+                    }
+                    if (price.current.value.length === 0 ) {
+                        setPriceError(true)
+                        setHelperPriceText("Can't be blank")
+                    }
+                    if (description.current.value.length === 0 ) {
+                        setDescriptionError(true)
+                        setHelperDescriptionText("Can't be blank")
+                    }
+                    if (productType.current.value === 0 ) {
+                        setProductTypeError(true)
+                        setHelperProductTypeText("Can't be blank")
+                    }
                     // Send POST request to your API
-                    createProduct(product)
+                    else {
+                        createProduct(product)
                         .then(() => history.push("/admin/products"))
+                    }
                 }}
                 className="btn btn-primary">Create</Button></div>}
         </form>

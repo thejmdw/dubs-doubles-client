@@ -30,6 +30,22 @@ import { ProductForm } from "./products/ProductsForm"
 import { ComboDetail } from "./combo/ComboDetail"
 import { Total } from "./chart/Total"
 import "./chart/Chart.css"
+import { ThemeProvider, createTheme } from "@mui/material/styles"
+
+const theme = createTheme({
+    palette: {
+    type: 'light',
+    primary: {
+      main: '#01579b',
+    },
+    secondary: {
+      main: '#f5b300',
+    },
+    background: {
+      default: '#ffa726',
+      paper: '#b3e5fc',
+    },
+  },})
 
 export const ApplicationViews2 = () => {
     return <>
@@ -37,6 +53,7 @@ export const ApplicationViews2 = () => {
             margin: "5rem 2rem",
             lineHeight: "1.75rem"
         }}> 
+        <ThemeProvider theme={theme}>
             <ProfileProvider>
             <ProductProvider>
             <BurgerProvider>
@@ -84,6 +101,7 @@ export const ApplicationViews2 = () => {
             </BurgerProvider>
             </ProductProvider>
             </ProfileProvider>
+            </ThemeProvider>
         </main>
     </>
 }

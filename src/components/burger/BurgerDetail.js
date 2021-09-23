@@ -67,15 +67,15 @@ export const BurgerDetail = () => {
 
     return (
         <>
-        <article className="burgers">
+        <article className="burgerCard__container">
         <header className="events__header">
                 <h1>{burger?.name}</h1>
             </header>
-            <Card className="burgersCard" >
+            <Card className="burgersCard2" >
                     <CardMedia
                       component="img"
-                      height="140"
-                      image="https://mui.com/static/images/cards/contemplative-reptile.jpg"
+                      height="225"
+                      image={burger.image_path}
                       alt="burger photo"
                     />
                     <CardContent>

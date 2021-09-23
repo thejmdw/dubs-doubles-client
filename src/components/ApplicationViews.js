@@ -19,6 +19,8 @@ import { PaymentList } from "./cart/PaymentList"
 import { PaymentForm } from "./cart/PaymentForm"
 import { ComboList } from "./combo/ComboList"
 import { ComboDetail } from "./combo/ComboDetail"
+import { ThemeProvider} from "@mui/material/styles"
+import { theme } from "./theme"
 
 export const ApplicationViews = () => {
     return <>
@@ -26,6 +28,7 @@ export const ApplicationViews = () => {
             margin: "5rem 2rem",
             lineHeight: "1.75rem"
         }}> 
+            <ThemeProvider theme={theme}>
             <ProfileProvider>
             <BurgerProvider>
             <FriesProvider>
@@ -82,6 +85,7 @@ export const ApplicationViews = () => {
             </FriesProvider>
             </BurgerProvider>
             </ProfileProvider>
+            </ThemeProvider>
         </main>
     </>
 }
