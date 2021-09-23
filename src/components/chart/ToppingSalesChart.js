@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { ChartDataContext } from "./ChartDataProvider.js"
-import {Bar} from 'react-chartjs-2'
+import {Chart, Bar} from 'react-chartjs-2'
 import "./Chart.css"
+
+Chart.defaults.scales.linear.min = 0;
 
 export const ToppingSalesChart = () => {
         const { 
@@ -75,6 +77,9 @@ export const ToppingSalesChart = () => {
      useEffect(() => {
         Chart()
       }, [toppingNumbers]);
+
+    
+
 
 return(
           <div className="App ">

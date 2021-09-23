@@ -43,7 +43,7 @@ export const DubsDoubles = () => (
               <>
                      <CartProvider>
                      <LineItemProvider>
-                         <NavBar2 />
+                         {/* <NavBar2 /> */}
                          <NavBar3 />
                          <ApplicationViews2 />
                          <AppFooter />

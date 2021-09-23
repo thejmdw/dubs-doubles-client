@@ -53,7 +53,7 @@ export const PaymentList = () => {
                             {payment.merchant_name}
                           </Typography>
                           <Typography variant="h6" color="text.secondary">
-                            {payment.account_number}
+                            ************{payment.account_number.slice(-4)}
                           </Typography>
                           <Typography variant="h6" color="text.secondary">
                             {payment.expiration_date}

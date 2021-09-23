@@ -24,7 +24,7 @@ export const ProductForm = () => {
     const [ productImage, setProductImage ] = useState({})
     const [currentProduct, setCurrentProduct] = useState({
         name: "",
-        price: 0,
+        price: "",
         description: "",
         quantity: "",
         image_path: "",
@@ -122,8 +122,8 @@ export const ProductForm = () => {
     /* REFACTOR CHALLENGE END */
 
     return (
-        <form className="ProductForm">
-            { productId ? <h2 className="ProductForm__title">Edit Product</h2> : <h2 className="ProductForm__title">Register New Product</h2>}
+        <form className="productForm form--product">
+            { productId ? <h2 className="ProductForm__title">Edit Product</h2> : <h2 className="ProductForm__title">New Product</h2>}
             { productId ? <div><img src={currentProduct.image_path} alt =""/> </div> : ""}
             <fieldset>
                 {/* // <div className="form-group">
@@ -135,12 +135,14 @@ export const ProductForm = () => {
                 // </div> */}
                 <TextField 
                         // inputRef={password}
+                        fullWidth
                         name="name"
                         id="outlined-helperText"
                         label="Product Name"
                         type="text"
                         value={currentProduct.name}
                         onChange={changeProductState}
+                        helperText=" "
                     />
             </fieldset>
             <fieldset>
@@ -153,12 +155,14 @@ export const ProductForm = () => {
                 </div> */}
             <TextField 
                     // inputRef={password}
+                    fullWidth
                     name="price"
                     id="outlined-helperText"
                     label="Price"
                     type="text"
                     value={currentProduct.price}
                     onChange={changeProductState}
+                    helperText=" "
                 />
             </fieldset>
             {/* <fieldset>
@@ -173,30 +177,34 @@ export const ProductForm = () => {
             <fieldset>
             <TextField 
                     // inputRef={password}
+                    fullWidth
                     name="description"
                     id="outlined-helperText"
                     label="Description"
                     type="text"
                     value={currentProduct.description}
                     onChange={changeProductState}
+                    helperText=" "
                 />
             </fieldset>
-            {/* <fieldset> */}
+            <fieldset>
                 {/* <FormControl> */}
-                    <InputLabel >Product Type: </InputLabel>
-                    <Select name="product_type" required className="form-control"
+                    {/* <InputLabel >Product Type: </InputLabel> */}
+                    <TextField select fullWidth name="product_type" label="Product Type" className="form-control"
                         value={currentProduct.product_type}
                         onChange={changeProductTypeState}
+                        helperText=" "
                     >
-                        {/* <MenuItem key="0" value="0">Select Product Type</MenuItem> */}
+                        <MenuItem key="0" value="0">Select Product Type</MenuItem>
                         {productTypes.map(gt => (
                             <MenuItem key={gt} value={gt.id}>{gt.name}</MenuItem>
                         ))}
-                    </Select>
+                        
+                    </TextField>
                     {/* </FormControl> */}
-            {/* </fieldset> */}
+            </fieldset>
 
-            <div> 
+            <fieldset className="productForm__upload"> 
                 <h3>Upload an image:</h3>
                 {/* <input type="file" id="game_image" onChange={createProductImageString} /> */}
                 <label htmlFor="contained-button-file">
@@ -205,8 +213,8 @@ export const ProductForm = () => {
                 Upload Product Image
                 </Button>
                 </label>
-            </div>
-            { productId ? <><Button variant="contained" type="submit"
+            </fieldset>
+            { productId ? <div className="productForm__upload"><Button variant="contained" type="submit"
                 onClick={evt => {
                     evt.preventDefault()
                     const product = {
@@ -226,8 +234,8 @@ export const ProductForm = () => {
                         .then(() => history.push("/admin/products"))
                 }}
                 className="btn btn-primary">Update</Button>
-                <Button variant="contained" onClick={() => {handleRemove(parseInt(productId))}}>Delete Product</Button></>
-             : <button type="submit"
+                <Button variant="contained" color="error" onClick={() => {handleRemove(parseInt(productId))}}>Delete</Button></div>
+             : <div className="productForm__upload"><Button variant="contained" type="submit"
                 onClick={evt => {
                     // Prevent form from being submitted
                     evt.preventDefault()
@@ -245,7 +253,7 @@ export const ProductForm = () => {
                     createProduct(product)
                         .then(() => history.push("/admin/products"))
                 }}
-                className="btn btn-primary">Create</button>}
+                className="btn btn-primary">Create</Button></div>}
         </form>
     )
 }

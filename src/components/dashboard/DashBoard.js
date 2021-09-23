@@ -12,9 +12,9 @@ export const DashBoard = () => {
             lineHeight: "1.75rem"
         }}> 
                 <div className="dashBoard">
-                    <div className="dashBoard__item">
+                    {/* <div className="dashBoard__item">
                     <BarChartBoiler />
-                    </div>
+                    </div> */}
                     <div className="dashBoard__item">             
                     <ProductSalesChart />
                     </div>

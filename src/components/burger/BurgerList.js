@@ -46,13 +46,16 @@ export const BurgerList = () => {
                     return <Card className="burgersCard" >
                     <CardMedia
                       component="img"
-                      height="140"
-                      image="https://mui.com/static/images/cards/contemplative-reptile.jpg"
+                      height="200"
+                      image={burger.image_path}
                       alt="burger photo"
                     />
                     <CardContent>
                       <Typography gutterBottom variant="h5" component="div">
                         {burger.name}
+                      </Typography>
+                      <Typography component="div">
+                        {burger.description}
                       </Typography>
                       <Typography variant="h6" color="text.secondary">
                         ${burger.price}
@@ -60,7 +63,7 @@ export const BurgerList = () => {
                     </CardContent>
                     <CardActions>
                       {/* <Button size="large">{burger.price}</Button> */}
-                      { burger.name === "The BYOBurger" ? <Button variant="contained" size="large" onClick={() => {handleBurgerClick(burger.id)}}>Build Burger</Button> : <Button variant="contained" size="large" onClick={() => {handleAddClick(burger.id)}}>Add to Cart</Button>}
+                      { burger.name === "The BYOBurger" ? <Button variant="contained"  onClick={() => {handleBurgerClick(burger.id)}}>Build Burger</Button> : <Button variant="contained" size="large" onClick={() => {handleAddClick(burger.id)}}>Add to Cart</Button>}
                     </CardActions>
                   </Card>
                 })

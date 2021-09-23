@@ -31,7 +31,7 @@ export const Login = props => {
                 if ("valid" in res && res.valid && "token" in res) {
                     localStorage.setItem( "dd_token", res.token )
                     localStorage.setItem( "is_staff", res.is_staff )
-                    history.push("/")
+                    res.is_staff === true ? history.push("/admin") : history.push("/")
                 }
                 else {
                     setError(true)
@@ -76,6 +76,7 @@ export const Login = props => {
                         fullWidth
                         error={error}
                         helperText={error ? 'Invalid Email or Password' : ' '}
+                        onChange={() => {setError(false)}}
                     />
                     </fieldset>
                         <Button variant="contained" className="btn btn-1 btn-sep icon-send" type="submit">Sign In</Button>

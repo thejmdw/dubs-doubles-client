@@ -98,7 +98,7 @@ export const Checkout = () => {
         <article className="Checkouts">
         <header className="events__header">
                 <h1>Dub's Doubles</h1>
-                <h3>420 someway</h3>
+                <h3>A Block Near You</h3>
             </header>
             <div className="Cart__description">Order #: {cart.id}</div>
             <div className="Cart__price">Date: {cart.created_date}</div>

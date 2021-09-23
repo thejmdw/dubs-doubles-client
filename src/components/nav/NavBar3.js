@@ -116,13 +116,14 @@ export const NavBar3 = () => {
             boxSizing: 'border-box',
           },
         }}
-        variant="persistent"
+        variant="temporary"
         anchor="left"
         open={open}
+        onClick={handleDrawerClose}
       >
         <DrawerHeader>
           <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+            {/* {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />} */}
           </IconButton>
         </DrawerHeader>
         <Divider />
@@ -142,12 +143,12 @@ export const NavBar3 = () => {
         </List>
         <Divider />
         <List>
-        <ListItem button onClick={() => {history.push("/admin/charts/test")}}>
+        {/* <ListItem button onClick={() => {history.push("/admin/charts/test")}}>
               <ListItemIcon>
               <BarChartIcon fontSize="large"/>
               </ListItemIcon>
               <ListItemText primary="Test Chart" />
-            </ListItem>
+            </ListItem> */}
         <ListItem button onClick={() => {history.push("/admin/charts/productsales")}}>
               <ListItemIcon>
               <BarChartIcon fontSize="large"/>

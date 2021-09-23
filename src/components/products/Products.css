@@ -35,7 +35,9 @@
     flex-direction: column;
     justify-content: space-between;
   }
-  
+  .form--product {
+    margin-top: 1vh;
+  }
   .productsCard > h3 {
     position: absolute;
     bottom: 10px;
@@ -72,6 +74,14 @@
     position: absolute;
     align-content: space-between;
   }
+  .form--product {
+    display: flex;
+    flex-direction: column;
+    margin: 10vh auto 0;
+    text-align: left;
+    max-width: 65vh;
+    /* height: 30vh; */
+}
   .products {
     display: flex;
     flex-direction: column;
@@ -94,7 +104,12 @@
     justify-content: center;
     padding-bottom:.5vh
   }
-  
+  .productForm {
+    max-width: 65vh;
+  }
+  .productForm__upload {
+    margin-top: 2vh;
+  }
   .productsCard__userAvatar {
     width: 17vh;
     /* height: 17vh; */
