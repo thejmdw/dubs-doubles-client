@@ -40,7 +40,7 @@ export const NavBar = (props) => {
                 { cart.lineitems?.length > 0 ? <Link className="navbar__link" to="/cart">
                     <IconButton className="navbarButtons navbar_end">
                         <Badge badgeContent={cart.lineitems?.length} color="error">
-                            <ShoppingBagIcon fontSize="large" />
+                            <ShoppingBagIcon fontSize="large" sx={{ color: "rgba(255, 167, 38, 1)"}}/>
                         </Badge>
                     </IconButton>
                  </Link> : ""}

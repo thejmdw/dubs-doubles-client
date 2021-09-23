@@ -34,7 +34,7 @@ export const AppMenu = () => {
         {/* <Typography sx={{ minWidth: 100 }}></Typography> */}
         <Tooltip title="Cheeseburger Menu">
           <IconButton onClick={handleClick} size="small" sx={{ ml: 2 }}>
-            <Icon icon="whh:hamburger" width="40"/>
+            <Icon icon="whh:hamburger" width="40" style={{ color: "rgba(255, 167, 38, 1)"}}/>
           </IconButton>
         </Tooltip>
       </Box>

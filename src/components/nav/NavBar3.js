@@ -100,7 +100,7 @@ export const NavBar3 = () => {
             edge="start"
             sx={{ mr: 2, ...(open && { display: 'none' }) }}
           >
-            <Icon icon="whh:hamburger" width="40"/>
+            <Icon icon="whh:hamburger" width="40" style={{ color: "rgba(255, 167, 38, 1)"}}/>
           </IconButton>
           <Typography variant="h6" noWrap component="div">
             Dub's Doubles

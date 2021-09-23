@@ -30,7 +30,7 @@ export const AppFooter = () => {
       <AppBar position="fixed" color="primary" sx={{ top: 'auto', bottom: 0 }}>
         <Toolbar>
           { localStorage.getItem("dd_token") ? <IconButton color="inherit" aria-label="open drawer" onClick={() => {history.goBack()}}>
-            <ArrowBackIosIcon />
+            <ArrowBackIosIcon sx={{ color: "rgba(255, 167, 38, 1)"}}/>
           </IconButton> : ""}
         </Toolbar>
       </AppBar>
