@@ -66,14 +66,16 @@ export const Cart = () => {
     return (
         <>
         <article className="Carts">
+            <div className="cart__head">
             <header className="events__header">
                 <h1>Dub's Doubles</h1>
                 <h3>A Block Near You</h3>
             </header>
-            <div className="Cart__description">Order #: {cart.id}</div>
-            <div className="Cart__price">Date: {cart.created_date}</div>
-            <div className="Cart__price">Customer: {`${cart.customer?.user.first_name} ${cart.customer?.user.last_name}`}</div>
-            <TableContainer component={Paper}>
+            <div className="Cart__description"><strong>Order #:</strong> {cart.id}</div>
+            <div className="Cart__price"><strong>Date:</strong> {cart.created_date}</div>
+            <div className="Cart__price"><strong>Customer:</strong> {`${cart.customer?.user.first_name} ${cart.customer?.user.last_name}`}</div>
+            </div>
+            <TableContainer component={Paper} sx={{ color: "grey"}}>
                 <Table aria-label="spanning table">
                     <TableHead>
                     <TableRow>
@@ -86,7 +88,7 @@ export const Cart = () => {
                     <TableBody>
                     {cart.lineitems?.map(item => {
                         return <><TableRow key={item.id}>
-                            <TableCell className="combo__name" sx={{ pr: 0 }}>{item.product.name}</TableCell>
+                            <TableCell className="combo__name" sx={{ pr: 0, color: "gray"}}>{item.product.name}</TableCell>
                             <TableCell align="right" size="small" sx={{ pl: 0, pr: 0 }}></TableCell>
                             <TableCell align="right" size="small" padding="none">
                                 <IconButton aria-label="delete" onClick={() => {handleRemove(item.id)}}>

@@ -1,17 +1,24 @@
 .dashBoard {
     display: flex;
+    background-color: white;
+    border-radius: 2vh;
+    border: 2px solid gray;
+    padding: 1vh 0;
     flex-wrap: wrap;
     justify-content: space-between;
     margin-top: 5vh;
-    /* flex-direction: column; */
+    flex-direction: column;
     align-items: center;
-    max-width: 150vh;
+    max-width: 125vh;
     margin: auto;
     height: 75vh;
-
 }
 
 .dashBoard__item {
     width: 50vh;
     margin: 0 1vh;
+    background-color: rgb(255, 201, 86);
+    border-radius: 2vh;
+    border: 2px solid gray;
+    padding: 1rem;
 }

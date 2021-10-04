@@ -11,6 +11,27 @@
     justify-content: space-between;
     /* flex-direction: column; */
   }
+  .chart {
+    display: flex;
+    /* background-color: white; */
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 5vh;
+    /* flex-direction: column; */
+    align-items: center;
+    max-width: 150vh;
+    margin: auto;
+    height: 75vh;
+
+}
+  .chart__item {
+    width: 125vh;
+    margin: 0 1vh;
+    background-color: white;
+    border-radius: 2vh;
+    border: 2px solid gray;
+    padding: 1rem;
+}
   /* .chartCard {
       background-position: center;
       background-size: cover;
@@ -58,10 +79,14 @@
     .chartCard__container {
       display: flex;
       justify-content: center;
+      padding: 2vh;
+      border-radius: 20px;
+      border: 2px solid gray;
+      background-color: white;
       /* margin-top: 5vh; */
       flex-direction: column;
       align-items: center;
-      max-width: 135vh;
+      max-width: 150vh;
       margin: auto;
       /* height: 65vh; */
     }

@@ -31,12 +31,24 @@ export const PaymentProvider = (props) => {
             .then(setPayments)
     }
 
+    const deletePayment = (id) => {
+        return fetch(`http://localhost:8000/paymenttypes/${id}`, {
+            method: "DELETE",
+            headers:{
+                "Content-Type": "application/json",
+                "Authorization": `Token ${localStorage.getItem("dd_token")}`
+            },
+            body: JSON.stringify(id)
+         })
+            
+
+    }
     
  
     
 
     return (
-        <PaymentContext.Provider value={{ payments, payment, getPayments, createPayment, cartPayment, setCartPayment }} >
+        <PaymentContext.Provider value={{ payments, payment, getPayments, createPayment, cartPayment, setCartPayment, deletePayment }} >
             { props.children }
         </PaymentContext.Provider>
 

@@ -96,6 +96,7 @@ export const Checkout = () => {
         </Box>
       </Modal>
         <article className="Checkouts">
+            <div className="cart__head">
         <header className="events__header">
                 <h1>Dub's Doubles</h1>
                 <h3>A Block Near You</h3>
@@ -103,6 +104,7 @@ export const Checkout = () => {
             <div className="Cart__description">Order #: {cart.id}</div>
             <div className="Cart__price">Date: {cart.created_date}</div>
             <div className="Cart__price">Customer: {cart.customer?.user.first_name}</div>
+            </div>
             <TableContainer component={Paper}>
                 <Table aria-label="spanning table">
                     <TableHead>
