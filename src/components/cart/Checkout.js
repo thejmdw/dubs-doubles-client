@@ -45,10 +45,10 @@ export const Checkout = () => {
     const history = useHistory()
     const { cart, getCart, updateCart} = useContext(CartContext)
     const { cartPayment, setCartPayment } = useContext(PaymentContext)
-    const [lineItems, setLineItems] = useState()
-    const [lineItemToppings, setLineItemToppings] = useState()
-    const [ cartTotal, setCartTotal] = useState(0)
-    const [ cartId, setCartId] = useState(0)
+    const [ lineItems, setLineItems ] = useState()
+    const [ lineItemToppings, setLineItemToppings ] = useState()
+    const [ cartTotal, setCartTotal ] = useState(0)
+    const [ cartId, setCartId ] = useState(0)
 
     useEffect(() => {
         getCart()

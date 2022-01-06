@@ -15,27 +15,6 @@ import { NavBar3 } from "./nav/NavBar3"
 import { ThemeProvider} from "@mui/material/styles"
 import { theme } from "./theme"
 
-// export const DubsDoubles = () => (
-//     <>
-//         <Route path="/" >
-//           {  localStorage.getItem("dd_token") ? 
-//                  <>
-//                     <CartProvider>
-//                         <NavBar />
-//                         <ApplicationViews />
-//                         <Footer />
-//                     </CartProvider>
-//                 </>
-//              : 
-//                 <Redirect to="/login" />
-//             }
-//         </Route>
-
-//         <Route path="/login" render={Login} />
-//         <Route path="/register" render={Register} />
-//     </>
-// )
-
 export const DubsDoubles = () => (
     <>
       <Route
