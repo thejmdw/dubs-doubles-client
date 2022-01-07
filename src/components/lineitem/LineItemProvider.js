@@ -10,7 +10,7 @@ export const LineItemProvider = (props) => {
     const { cart, getCart } = useContext(CartContext)
 
     const createLineItem = (product) => {
-        return fetch("http://localhost:8000/profile/cart", {
+        return fetch("https://dubs-doubles.herokuapp.com/profile/cart", {
             method: "POST",
             headers:{
                 "Content-Type": "application/json",
@@ -23,7 +23,7 @@ export const LineItemProvider = (props) => {
     }
     
     const deleteLineItem = (id) => {
-        return fetch(`http://localhost:8000/lineitems/${id}`, {
+        return fetch(`https://dubs-doubles.herokuapp.com/lineitems/${id}`, {
             method: "DELETE",
             headers:{
                 "Content-Type": "application/json",
@@ -34,7 +34,7 @@ export const LineItemProvider = (props) => {
             .then(getCart)
     }
     const deleteLineItemTopping = (id) => {
-        return fetch(`http://localhost:8000/lineitemtoppings/${id}`, {
+        return fetch(`https://dubs-doubles.herokuapp.com/lineitemtoppings/${id}`, {
             method: "DELETE",
             headers:{
                 "Content-Type": "application/json",
@@ -47,7 +47,7 @@ export const LineItemProvider = (props) => {
     }
     
     const updateLineItem = (LineItem) => {
-        return fetch(`http://localhost:8000/products/${LineItem.id}`, {
+        return fetch(`https://dubs-doubles.herokuapp.com/products/${LineItem.id}`, {
             method: "PUT",
             headers:{
                 "Content-Type": "application/json",
@@ -60,7 +60,7 @@ export const LineItemProvider = (props) => {
     }
     
     const getLineItemById = (id) => {
-        return fetch(`http://localhost:8000/products/${id}`, { 
+        return fetch(`https://dubs-doubles.herokuapp.com/products/${id}`, { 
             headers:{
                 "Authorization": `Token ${localStorage.getItem("dd_token")}`
             }
@@ -70,7 +70,7 @@ export const LineItemProvider = (props) => {
     }
 
     const getLineItems = () => {
-        return fetch("http://localhost:8000/lineitems", { 
+        return fetch("https://dubs-doubles.herokuapp.com/lineitems", { 
             headers:{
                 "Authorization": `Token ${localStorage.getItem("dd_token")}`
             }
@@ -80,7 +80,7 @@ export const LineItemProvider = (props) => {
     }
 
     const getLineItemToppings = () => {
-        return fetch("http://localhost:8000/lineitemtoppings", { 
+        return fetch("https://dubs-doubles.herokuapp.com/lineitemtoppings", { 
             headers:{
                 "Authorization": `Token ${localStorage.getItem("dd_token")}`
             }
@@ -90,7 +90,7 @@ export const LineItemProvider = (props) => {
     }
     
     // const getLineItemTypes = () => {
-    //     return fetch("http://localhost:8000/LineItemtypes", { 
+    //     return fetch("https://dubs-doubles.herokuapp.com/LineItemtypes", { 
     //         headers:{
     //             "Authorization": `Token ${localStorage.getItem("dd_token")}`
     //         }

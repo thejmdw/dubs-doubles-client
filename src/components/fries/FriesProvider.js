@@ -8,7 +8,7 @@ export const FriesProvider = (props) => {
     const [ fry, setFry ] = useState({})
 
     const createFry = (fry) => {
-        return fetch("http://localhost:8000/products", {
+        return fetch("https://dubs-doubles.herokuapp.comproducts", {
             method: "POST",
             headers:{
                 "Content-Type": "application/json",
@@ -21,7 +21,7 @@ export const FriesProvider = (props) => {
     }
     
     const updateFry = (fry) => {
-        return fetch(`http://localhost:8000/products/${fry.id}`, {
+        return fetch(`https://dubs-doubles.herokuapp.comproducts/${fry.id}`, {
             method: "PUT",
             headers:{
                 "Content-Type": "application/json",
@@ -34,7 +34,7 @@ export const FriesProvider = (props) => {
     }
     
     const getFryById = (id) => {
-        return fetch(`http://localhost:8000/products/${id}`, { 
+        return fetch(`https://dubs-doubles.herokuapp.comproducts/${id}`, { 
             headers:{
                 "Authorization": `Token ${localStorage.getItem("dd_token")}`
             }
@@ -44,7 +44,7 @@ export const FriesProvider = (props) => {
     }
 
     const getFries = () => {
-        return fetch("http://localhost:8000/products?product_type=2", { 
+        return fetch("https://dubs-doubles.herokuapp.comproducts?product_type=2", { 
             headers:{
                 "Authorization": `Token ${localStorage.getItem("dd_token")}`
             }
@@ -54,7 +54,7 @@ export const FriesProvider = (props) => {
     }
     
     // const getfrieTypes = () => {
-    //     return fetch("http://localhost:8000/frietypes", { 
+    //     return fetch("https://dubs-doubles.herokuapp.comfrietypes", { 
     //         headers:{
     //             "Authorization": `Token ${localStorage.getItem("dd_token")}`
     //         }

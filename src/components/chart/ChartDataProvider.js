@@ -9,7 +9,7 @@ export const ChartDataProvider = (props) => {
     const [ dailySalesData, setDailySalesData ] = useState({})
     
     const getTotalSalesData = () => {
-        return fetch(`http://localhost:8000/charts/totalsales`, { 
+        return fetch(`https://dubs-doubles.herokuapp.com/charts/totalsales`, { 
             headers:{
                 "Authorization": `Token ${localStorage.getItem("dd_token")}`
             }
@@ -18,7 +18,7 @@ export const ChartDataProvider = (props) => {
             .then(setTotalSalesData)
     }
     const getProductSalesData = () => {
-        return fetch(`http://localhost:8000/charts/productsales`, { 
+        return fetch(`https://dubs-doubles.herokuapp.com/charts/productsales`, { 
             headers:{
                 "Authorization": `Token ${localStorage.getItem("dd_token")}`
             }
@@ -27,7 +27,7 @@ export const ChartDataProvider = (props) => {
             .then(setProductSalesData)
     }
     const getToppingSalesData = () => {
-        return fetch(`http://localhost:8000/charts/toppingsales`, { 
+        return fetch(`https://dubs-doubles.herokuapp.com/charts/toppingsales`, { 
             headers:{
                 "Authorization": `Token ${localStorage.getItem("dd_token")}`
             }
@@ -36,7 +36,7 @@ export const ChartDataProvider = (props) => {
             .then(setToppingSalesData)
     }
     const getDailySalesData = () => {
-        return fetch(`http://localhost:8000/charts/dailysales`, { 
+        return fetch(`https://dubs-doubles.herokuapp.com/charts/dailysales`, { 
             headers:{
                 "Authorization": `Token ${localStorage.getItem("dd_token")}`
             }

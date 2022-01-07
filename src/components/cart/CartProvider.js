@@ -8,7 +8,7 @@ export const CartProvider = (props) => {
     const [ cart, setCart ] = useState({})
 
     const createCart = (Cart) => {
-        return fetch("http://localhost:8000/products", {
+        return fetch("https://dubs-doubles.herokuapp.com/products", {
             method: "POST",
             headers:{
                 "Content-Type": "application/json",
@@ -21,7 +21,7 @@ export const CartProvider = (props) => {
     }
     
     const updateCart = (cart) => {
-        return fetch(`http://localhost:8000/orders/${cart.id}`, {
+        return fetch(`https://dubs-doubles.herokuapp.com/orders/${cart.id}`, {
             method: "PUT",
             headers:{
                 "Content-Type": "application/json",
@@ -34,7 +34,7 @@ export const CartProvider = (props) => {
     }
     
     const getCart = () => {
-        return fetch(`http://localhost:8000/profile/cart`, { 
+        return fetch(`https://dubs-doubles.herokuapp.com/profile/cart`, { 
             headers:{
                 "Authorization": `Token ${localStorage.getItem("dd_token")}`
             }
@@ -44,7 +44,7 @@ export const CartProvider = (props) => {
     }
 
     const getCarts = () => {
-        return fetch("http://localhost:8000/products?product_type=1", { 
+        return fetch("https://dubs-doubles.herokuapp.com/products?product_type=1", { 
             headers:{
                 "Authorization": `Token ${localStorage.getItem("dd_token")}`
             }

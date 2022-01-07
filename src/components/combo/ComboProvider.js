@@ -8,7 +8,7 @@ export const ComboProvider = (props) => {
     const [ combo, setCombo ] = useState({})
 
     const createCombo = (combo) => {
-        return fetch("http://localhost:8000/products", {
+        return fetch("https://dubs-doubles.herokuapp.com/products", {
             method: "POST",
             headers:{
                 "Content-Type": "application/json",
@@ -21,7 +21,7 @@ export const ComboProvider = (props) => {
     }
     
     const updateCombo = (combo) => {
-        return fetch(`http://localhost:8000/products/${combo.id}`, {
+        return fetch(`https://dubs-doubles.herokuapp.com/products/${combo.id}`, {
             method: "PUT",
             headers:{
                 "Content-Type": "application/json",
@@ -34,7 +34,7 @@ export const ComboProvider = (props) => {
     }
     
     const getComboById = (id) => {
-        return fetch(`http://localhost:8000/products/${id}`, { 
+        return fetch(`https://dubs-doubles.herokuapp.com/products/${id}`, { 
             headers:{
                 "Authorization": `Token ${localStorage.getItem("dd_token")}`
             }
@@ -44,7 +44,7 @@ export const ComboProvider = (props) => {
     }
 
     const getCombos = () => {
-        return fetch("http://localhost:8000/products?product_type=3", { 
+        return fetch("https://dubs-doubles.herokuapp.com/products?product_type=3", { 
             headers:{
                 "Authorization": `Token ${localStorage.getItem("dd_token")}`
             }
