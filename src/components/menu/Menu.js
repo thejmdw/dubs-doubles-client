@@ -33,7 +33,7 @@ export const Menu = () => {
                   <div>
                     <h2 className="greetingText">Dub's Doubles</h2>
                   </div>
-                <img src="http://localhost:8000/media/products/965a93d9-a8d7-42c3-b491-03e888e1a6bf.jpg" width="250" />
+                <img src="https://dubs-doubles.herokuapp.com/media/products/965a93d9-a8d7-42c3-b491-03e888e1a6bf.jpg" width="250" />
                 </div>
                 <div className="menuCard__buttons">
                   <Button variant="contained" color="primary" onClick={() => history.push("/burgers")}>Burgers</Button>
