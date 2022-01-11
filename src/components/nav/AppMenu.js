@@ -32,9 +32,9 @@ export const AppMenu = () => {
       <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
         <Typography sx={{ minWidth: 10 }}></Typography>
         {/* <Typography sx={{ minWidth: 100 }}></Typography> */}
-        <Tooltip title="Hamburger Menu">
+        <Tooltip title="Cheeseburger Menu">
           <IconButton onClick={handleClick} size="small" sx={{ ml: 2 }}>
-            <Icon icon="whh:hamburger" width="40"/>
+            <Icon icon="whh:hamburger" width="40" style={{ color: "rgba(179, 229, 252, 1)"}}/>
           </IconButton>
         </Tooltip>
       </Box>
@@ -72,16 +72,16 @@ export const AppMenu = () => {
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
-        <MenuItem onClick={() => {history.push("/burgers")}}>
-            <FastfoodIcon fontSize="large"/> Burgers
+        <MenuItem onClick={() => {history.push("/burgers")}} color="error">
+            <FastfoodIcon fontSize="large" color="error"/> Burgers
         </MenuItem>
         <MenuItem onClick={() => {history.push("/fries")}}>
-            <FastfoodIcon fontSize="large"/> Fries
+            <FastfoodIcon fontSize="large" color="error"/> Fries
         </MenuItem>
         <Divider />
         <MenuItem onClick={() => {history.push("/cart")}}>
           <ListItemIcon>
-                <ShoppingBagIcon/>
+                <ShoppingBagIcon color="error"/>
           </ListItemIcon>
           Cart
         </MenuItem>
@@ -91,7 +91,7 @@ export const AppMenu = () => {
                                 history.push("/")
                             }}>
           <ListItemIcon>
-            <Logout fontSize="small" />
+            <Logout fontSize="small" color="error"/>
           </ListItemIcon>
           Logout
         </MenuItem>

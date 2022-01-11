@@ -9,7 +9,7 @@ export const PaymentProvider = (props) => {
     const [ cartPayment, setCartPayment ] = useState(0)
 
     const createPayment = (payment) => {
-        return fetch("http://localhost:8000/paymenttypes", {
+        return fetch("https://dubs-doubles.herokuapp.com/paymenttypes", {
             method: "POST",
             headers:{
                 "Content-Type": "application/json",
@@ -22,7 +22,7 @@ export const PaymentProvider = (props) => {
     }
     
     const getPayments = () => {
-        return fetch(`http://localhost:8000/paymenttypes`, { 
+        return fetch(`https://dubs-doubles.herokuapp.com/paymenttypes`, { 
             headers:{
                 "Authorization": `Token ${localStorage.getItem("dd_token")}`
             }
@@ -31,12 +31,24 @@ export const PaymentProvider = (props) => {
             .then(setPayments)
     }
 
+    const deletePayment = (id) => {
+        return fetch(`https://dubs-doubles.herokuapp.com/paymenttypes/${id}`, {
+            method: "DELETE",
+            headers:{
+                "Content-Type": "application/json",
+                "Authorization": `Token ${localStorage.getItem("dd_token")}`
+            },
+            body: JSON.stringify(id)
+         })
+            
+
+    }
     
  
     
 
     return (
-        <PaymentContext.Provider value={{ payments, payment, getPayments, createPayment, cartPayment, setCartPayment }} >
+        <PaymentContext.Provider value={{ payments, payment, getPayments, createPayment, cartPayment, setCartPayment, deletePayment }} >
             { props.children }
         </PaymentContext.Provider>
 

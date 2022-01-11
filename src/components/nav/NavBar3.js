@@ -23,6 +23,10 @@ import MailIcon from '@mui/icons-material/Mail';
 import FastfoodIcon from '@mui/icons-material/Fastfood';
 import { Icon } from '@iconify/react'
 import { Total } from "../chart/Total"
+import BarChartIcon from '@mui/icons-material/BarChart';
+import TimelineIcon from '@mui/icons-material/Timeline';
+import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
+import Logout from '@mui/icons-material/Logout';
 
 const drawerWidth = 240;
 
@@ -96,7 +100,7 @@ export const NavBar3 = () => {
             edge="start"
             sx={{ mr: 2, ...(open && { display: 'none' }) }}
           >
-            <Icon icon="whh:hamburger" width="40"/>
+            <Icon icon="whh:hamburger" width="40" style={{ color: "rgba(255, 167, 38, 1)"}}/>
           </IconButton>
           <Typography variant="h6" noWrap component="div">
             Dub's Doubles
@@ -112,13 +116,14 @@ export const NavBar3 = () => {
             boxSizing: 'border-box',
           },
         }}
-        variant="persistent"
+        variant="temporary"
         anchor="left"
         open={open}
+        onClick={handleDrawerClose}
       >
         <DrawerHeader>
           <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+            {/* {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />} */}
           </IconButton>
         </DrawerHeader>
         <Divider />
@@ -138,26 +143,55 @@ export const NavBar3 = () => {
         </List>
         <Divider />
         <List>
-        <ListItem button onClick={() => {history.push("/admin/charts/test")}}>
+        {/* <ListItem button onClick={() => {history.push("/admin/charts/test")}}>
               <ListItemIcon>
-              <FastfoodIcon fontSize="large"/>
+              <BarChartIcon fontSize="large"/>
               </ListItemIcon>
               <ListItemText primary="Test Chart" />
-            </ListItem>
+            </ListItem> */}
         <ListItem button onClick={() => {history.push("/admin/charts/productsales")}}>
               <ListItemIcon>
-              <FastfoodIcon fontSize="large"/>
+              <BarChartIcon fontSize="large"/>
               </ListItemIcon>
               <ListItemText primary="Product Sales" />
+            </ListItem>
+        <ListItem button onClick={() => {history.push("/admin/charts/toppingsales")}}>
+              <ListItemIcon>
+              <BarChartIcon fontSize="large"/>
+              </ListItemIcon>
+              <ListItemText primary="Topping Sales" />
+            </ListItem>
+        <ListItem button onClick={() => {history.push("/admin/charts/dailysales")}}>
+              <ListItemIcon>
+              <TimelineIcon fontSize="large"/>
+              </ListItemIcon>
+              <ListItemText primary="Daily Sales" />
             </ListItem>
         </List>
         <Divider />
         <List >
         <ListItem button >
               <ListItemIcon>
-              <FastfoodIcon fontSize="large"/>
+              <AttachMoneyIcon fontSize="large"/>
               </ListItemIcon>
               <ListItemText primary={`$${Total()} Total Sales`} />
+            </ListItem>
+        <ListItem button >
+              <ListItemIcon>
+              {/* <AttachMoneyIcon fontSize="large"/> */}
+              </ListItemIcon>
+              
+            </ListItem>
+            <Divider />
+        <ListItem button onClick={() => {
+                                localStorage.removeItem("dd_token")
+                                localStorage.removeItem("is_staff")
+                                history.push("/")
+                            }} >
+              <ListItemIcon>
+              <Logout fontSize="large"/>
+              </ListItemIcon>
+              <ListItemText primary="Log Out" />
             </ListItem>
 
         </List>

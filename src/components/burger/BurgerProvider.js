@@ -10,7 +10,7 @@ export const BurgerProvider = (props) => {
     const [ toppingTypes, setToppingTypes ] = useState([])
 
     const createBurger = (burger) => {
-        return fetch("http://localhost:8000/products", {
+        return fetch("https://dubs-doubles.herokuapp.com/products", {
             method: "POST",
             headers:{
                 "Content-Type": "application/json",
@@ -23,7 +23,7 @@ export const BurgerProvider = (props) => {
     }
     
     const updateBurger = (Burger) => {
-        return fetch(`http://localhost:8000/products/${Burger.id}`, {
+        return fetch(`https://dubs-doubles.herokuapp.com/products/${Burger.id}`, {
             method: "PUT",
             headers:{
                 "Content-Type": "application/json",
@@ -36,7 +36,7 @@ export const BurgerProvider = (props) => {
     }
     
     const getBurgerById = (id) => {
-        return fetch(`http://localhost:8000/products/${id}`, { 
+        return fetch(`https://dubs-doubles.herokuapp.com/products/${id}`, { 
             headers:{
                 "Authorization": `Token ${localStorage.getItem("dd_token")}`
             }
@@ -46,7 +46,7 @@ export const BurgerProvider = (props) => {
     }
 
     const getBurgers = () => {
-        return fetch("http://localhost:8000/products?product_type=1", { 
+        return fetch("https://dubs-doubles.herokuapp.com/products?product_type=1", { 
             headers:{
                 "Authorization": `Token ${localStorage.getItem("dd_token")}`
             }
@@ -56,7 +56,7 @@ export const BurgerProvider = (props) => {
     }
     
     const getToppingTypes = () => {
-        return fetch("http://localhost:8000/toppingtypes", { 
+        return fetch("https://dubs-doubles.herokuapp.com/toppingtypes", { 
             headers:{
                 "Authorization": `Token ${localStorage.getItem("dd_token")}`
             }
@@ -66,7 +66,7 @@ export const BurgerProvider = (props) => {
     }
 
     const getToppings = () => {
-        return fetch(`http://localhost:8000/toppings`, { 
+        return fetch(`https://dubs-doubles.herokuapp.com/toppings`, { 
             headers:{
                 "Authorization": `Token ${localStorage.getItem("dd_token")}`
             }
@@ -75,7 +75,7 @@ export const BurgerProvider = (props) => {
             .then(setToppings)
     }
     const getToppingsByType = (id) => {
-        return fetch(`http://localhost:8000/toppings?topping_type=${id}`, { 
+        return fetch(`https://dubs-doubles.herokuapp.com/toppings?topping_type=${id}`, { 
             headers:{
                 "Authorization": `Token ${localStorage.getItem("dd_token")}`
             }
@@ -85,7 +85,7 @@ export const BurgerProvider = (props) => {
     }
     
     // const getBurgerTypes = () => {
-    //     return fetch("http://localhost:8000/Burgertypes", { 
+    //     return fetch("https://dubs-doubles.herokuapp.com/Burgertypes", { 
     //         headers:{
     //             "Authorization": `Token ${localStorage.getItem("dd_token")}`
     //         }

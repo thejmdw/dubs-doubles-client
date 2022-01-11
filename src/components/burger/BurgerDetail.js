@@ -20,7 +20,6 @@ export const BurgerDetail = () => {
     const history = useHistory()
     const { burger, getBurgerById, toppings, toppingTypes, getToppings, getToppingTypes } = useContext(BurgerContext)
     const { createLineItem } = useContext(LineItemContext)
-    // const { events, getEvents } = useContext(EventContext)
     const { burgerId } = useParams()
 
     const [ buildPrice, setBuildPrice ] = useState(0)
@@ -67,15 +66,15 @@ export const BurgerDetail = () => {
 
     return (
         <>
-        <article className="burgers">
+        <article className="burgerCard__container">
         <header className="events__header">
                 <h1>{burger?.name}</h1>
             </header>
-            <Card className="burgersCard" >
+            <Card className="burgersCard2" >
                     <CardMedia
                       component="img"
-                      height="140"
-                      image="https://mui.com/static/images/cards/contemplative-reptile.jpg"
+                      height="225"
+                      image={burger.image_path}
                       alt="burger photo"
                     />
                     <CardContent>
@@ -119,22 +118,3 @@ export const BurgerDetail = () => {
 </>
     )
 }
-
-    // <div className="burger__pic">Pic placeholder</div>
-    // <div className="burger__description">{burger.description}</div>
-    // {burger.name === "The BYOBurger" ? <div className="burger__toppings">
-    //     {toppingTypes.map(type => {
-    //         return <ul><h4>{type.name}</h4>
-    //         {toppings.filter(topping => topping.topping_type_id === type.id)
-    //             .map(top => {
-    //                 return <FormControlLabel
-    //                 control={<Checkbox value={top.id} onChange={handleControlledCheckChange} name="topping" />}
-    //                 label={`${top.name} $${top.price}`}
-    //               />
-    //             }
-    //             )}</ul>
-    //         })}</div> : ""}
-    // <div className="burger__price">${burger.price + buildPrice}</div>
-    // <div className="burger__edit">
-    // <button className="btn btn-3" onClick={() => {handleAddClick(burger.id)}}>Add to Cart</button>
-    // </div>

@@ -43,8 +43,8 @@ export const FriesList = () => {
                         return <Card className="fryCard" >
                         <CardMedia
                           component="img"
-                          height="140"
-                          image="https://mui.com/static/images/cards/contemplative-reptile.jpg"
+                          height="225"
+                          image={fry.image_path}
                           alt="fry photo"
                         />
                         <CardContent>

@@ -45,10 +45,10 @@ export const Checkout = () => {
     const history = useHistory()
     const { cart, getCart, updateCart} = useContext(CartContext)
     const { cartPayment, setCartPayment } = useContext(PaymentContext)
-    const [lineItems, setLineItems] = useState()
-    const [lineItemToppings, setLineItemToppings] = useState()
-    const [ cartTotal, setCartTotal] = useState(0)
-    const [ cartId, setCartId] = useState(0)
+    const [ lineItems, setLineItems ] = useState()
+    const [ lineItemToppings, setLineItemToppings ] = useState()
+    const [ cartTotal, setCartTotal ] = useState(0)
+    const [ cartId, setCartId ] = useState(0)
 
     useEffect(() => {
         getCart()
@@ -96,13 +96,15 @@ export const Checkout = () => {
         </Box>
       </Modal>
         <article className="Checkouts">
+            <div className="cart__head">
         <header className="events__header">
                 <h1>Dub's Doubles</h1>
-                <h3>420 someway</h3>
+                <h3>A Block Near You</h3>
             </header>
             <div className="Cart__description">Order #: {cart.id}</div>
             <div className="Cart__price">Date: {cart.created_date}</div>
             <div className="Cart__price">Customer: {cart.customer?.user.first_name}</div>
+            </div>
             <TableContainer component={Paper}>
                 <Table aria-label="spanning table">
                     <TableHead>

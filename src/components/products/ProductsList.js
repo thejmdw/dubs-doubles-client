@@ -42,7 +42,7 @@ export const ProductsList = () => {
             <article className="">
               <div className="products">
                 <header className="events__header">
-                    <h1>Update Burgers</h1>
+                    <h1>Burgers</h1>
                 </header>
                 <div className="productsCard__container">
                 {
@@ -50,8 +50,8 @@ export const ProductsList = () => {
                         return <Card className="productCard" onClick={() => {history.push(`/admin/products/edit/${burger.id}`)}} >
                         <CardMedia
                           component="img"
-                          height="140"
-                          image="https://mui.com/static/images/cards/contemplative-reptile.jpg"
+                          height="225"
+                          image={burger.image_path}
                           alt="burger photo"
                         />
                         <CardContent>
@@ -71,7 +71,7 @@ export const ProductsList = () => {
               </div>
               <div className="products">
                 <header className="events__header">
-                    <h1>Update Fries</h1>
+                    <h1>Fries</h1>
                 </header>
                 <div className="productsCard__container">
                 {
@@ -79,8 +79,8 @@ export const ProductsList = () => {
                         return <Card className="productCard" onClick={() => {history.push(`/admin/products/edit/${fry.id}`)}}>
                         <CardMedia
                           component="img"
-                          height="140"
-                          image="https://mui.com/static/images/cards/contemplative-reptile.jpg"
+                          height="225"
+                          image={fry.image_path}
                           alt="burger photo"
                         />
                         <CardContent>

@@ -16,9 +16,11 @@ import { Checkout } from "./cart/Checkout"
 import { BurgerList } from "./burger/BurgerList"
 import { BarChartBoiler } from "./chart/BarChartBoiler"
 import { ProductSalesChart } from "./chart/ProductSalesChart"
+import { ToppingSalesChart } from "./chart/ToppingSalesChart"
+import { DailySalesChart } from "./chart/DailySalesChart"
 import { BurgerDetail } from "./burger/BurgerDetail"
 import { FriesList } from "./fries/FriesList"
-
+import { DashBoard } from "./dashboard/DashBoard"
 import { FriesDetail } from "./fries/FriesDetail"
 import { PaymentList } from "./cart/PaymentList"
 import { PaymentForm } from "./cart/PaymentForm"
@@ -27,13 +29,17 @@ import { ProductsList } from "./products/ProductsList"
 import { ProductForm } from "./products/ProductsForm"
 import { ComboDetail } from "./combo/ComboDetail"
 import { Total } from "./chart/Total"
-
+import "./chart/Chart.css"
+import { ThemeProvider} from "@mui/material/styles"
+import { theme } from "./theme"
+ 
 export const ApplicationViews2 = () => {
     return <>
         <main style={{
             margin: "5rem 2rem",
             lineHeight: "1.75rem"
         }}> 
+        <ThemeProvider theme={theme}>
             <ProfileProvider>
             <ProductProvider>
             <BurgerProvider>
@@ -44,15 +50,24 @@ export const ApplicationViews2 = () => {
             <ChartDataProvider>
             <PaymentProvider>
 
+                <div className="chartCardContainer">
                 <Route exact path="/admin/charts/test">
                     <BarChartBoiler />
-                    {/* <Total /> */}
                 </Route>                
                 <Route exact path="/admin/charts/productsales">
                     <ProductSalesChart />
-                    {/* <Total /> */}
                 </Route>                
+                <Route exact path="/admin/charts/toppingsales">
+                    <ToppingSalesChart  />
+                </Route>                
+                <Route exact path="/admin/charts/dailysales">
+                    <DailySalesChart />
+                </Route>
+                </div>              
 
+                <Route exact path="/admin">
+                    <DashBoard />
+                </Route>
                 <Route exact path="/admin/products">
                     <ProductsList />
                 </Route>
@@ -72,6 +87,7 @@ export const ApplicationViews2 = () => {
             </BurgerProvider>
             </ProductProvider>
             </ProfileProvider>
+            </ThemeProvider>
         </main>
     </>
 }

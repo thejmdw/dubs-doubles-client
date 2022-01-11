@@ -12,27 +12,8 @@ import { Register } from "./auth/Register"
 import { CartProvider } from "./cart/CartProvider"
 import { LineItemProvider } from "./lineitem/LineItemProvider"
 import { NavBar3 } from "./nav/NavBar3"
-
-// export const DubsDoubles = () => (
-//     <>
-//         <Route path="/" >
-//           {  localStorage.getItem("dd_token") ? 
-//                  <>
-//                     <CartProvider>
-//                         <NavBar />
-//                         <ApplicationViews />
-//                         <Footer />
-//                     </CartProvider>
-//                 </>
-//              : 
-//                 <Redirect to="/login" />
-//             }
-//         </Route>
-
-//         <Route path="/login" render={Login} />
-//         <Route path="/register" render={Register} />
-//     </>
-// )
+import { ThemeProvider} from "@mui/material/styles"
+import { theme } from "./theme"
 
 export const DubsDoubles = () => (
     <>
@@ -41,24 +22,28 @@ export const DubsDoubles = () => (
           if (localStorage.getItem("dd_token") && localStorage.getItem("is_staff") === 'true' ) {
             return (
               <>
+              <ThemeProvider theme={theme}>
                      <CartProvider>
                      <LineItemProvider>
-                         <NavBar2 />
+                         {/* <NavBar2 /> */}
                          <NavBar3 />
                          <ApplicationViews2 />
                          <AppFooter />
                      </LineItemProvider>
                      </CartProvider>
+              </ThemeProvider>
               </>
             );
           } else if (localStorage.getItem("dd_token")) {
             return (
-              <>
+              <>    
+                  <ThemeProvider theme={theme}>
                      <CartProvider>
                          <NavBar />
                          <ApplicationViews />
                          <AppFooter />
                      </CartProvider>
+                  </ThemeProvider>
               </>
             );
           } else {
@@ -68,10 +53,22 @@ export const DubsDoubles = () => (
       />
   
       <Route path="/login">
+      <ThemeProvider theme={theme}>
+      <CartProvider>
+      <NavBar />
         <Login />
+        <AppFooter />
+      </CartProvider>
+      </ThemeProvider>
       </Route>
       <Route path="/register">
+      <ThemeProvider theme={theme}>
+      <CartProvider>
+      <NavBar />
         <Register />
+        <AppFooter />
+      </CartProvider>
+      </ThemeProvider>
       </Route>
     </>
   );

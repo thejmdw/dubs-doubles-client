@@ -12,7 +12,7 @@ import Typography from '@mui/material/Typography';
 
 export const PaymentList = () => {
     const history = useHistory()
-    const { payments, getPayments, getPaymentById, setCartPayment } = useContext(PaymentContext)
+    const { payments, getPayments, getPaymentById, setCartPayment, deletePayment } = useContext(PaymentContext)
     // const { events, getEvents } = useContext(EventContext)
 
     
@@ -27,59 +27,47 @@ export const PaymentList = () => {
         setCartPayment(id)
         history.push(`/checkout`)
       }
+    const handlePaymentDelete = (id) => {
+        // localStorage.setItem('token', id)
+        deletePayment(id)
+        .then(getPayments)
+        // history.push(`/checkout`)
+      }
 
     return (
         <>
-        <article className="Payment">
-        <header className="events__header">
+          <article className="Payment">
+            <header className="events__header">
                 <h1>Payments</h1>
             </header>
-            <Button variant="contained" className="btn btn-2 btn-sep icon-create"
-        onClick={() => {
-            history.push("/payment/new")
-        }}
-        >Add Card</Button>
-        {
-                    payments.map(payment => {
-                        return <Card className="paymentCard" >
-                        {/* <CardMedia
-                          component="img"
-                          height="140"
-                          image="https://mui.com/static/images/cards/contemplative-reptile.jpg"
-                          alt="payment photo"
-                        /> */}
-                        <CardContent>
-                          <Typography gutterBottom variant="h5" component="div">
-                            {payment.merchant_name}
-                          </Typography>
-                          <Typography variant="h6" color="text.secondary">
-                            {payment.account_number}
-                          </Typography>
-                          <Typography variant="h6" color="text.secondary">
-                            {payment.expiration_date}
-                          </Typography>
-                        </CardContent>
-                        <CardActions>
-                          {/* <Button size="large">{payment.price}</Button> */}
-                          <Button variant="contained" onClick={() => {handlePaymentClick(payment.id)}}>Select This Card</Button>
-                        </CardActions>
-                      </Card>
-                  
-                    })
-                }
-        </article>
-</>
+            <Button variant="contained" 
+                    className="btn btn-2 btn-sep icon-create"
+                    onClick={() => { history.push("/payment/new")}}
+            >Add Card</Button>
+            {
+              payments.map(payment => {
+                  return <Card className="paymentCard" >
+                  <CardContent>
+                    <Typography gutterBottom variant="h5" component="div">
+                      {payment.merchant_name}
+                    </Typography>
+                    <Typography variant="h6" color="text.secondary">
+                      ************{payment.account_number.slice(-4)}
+                    </Typography>
+                    <Typography variant="h6" color="text.secondary">
+                      {payment.expiration_date}
+                    </Typography>
+                  </CardContent>
+                  <CardActions>
+                    <Button variant="contained" 
+                            onClick={() => {handlePaymentClick(payment.id)}}
+                    >Select This Card</Button>
+                    {/* <Button variant="contained" onClick={() => {handlePaymentDelete(payment.id)}} color="error">Delete</Button> */}
+                  </CardActions>
+                </Card>
+              })
+            }
+          </article>
+        </>
     )
 }
-
-// {
-//     payments.map(payment => {
-//         return <section key={`Payment--${payment.id}`} className="cartCard" onClick={() => {handlePaymentClick(payment.id)}}>
-//             <div className="Payment__name">{payment.merchant_name}</div>
-            
-//             <div className="Payment__description">{payment.account_number}</div>
-//             <div className="Payment__price">{payment.expiration_date}</div>
-        
-//         </section>
-//     })
-// }

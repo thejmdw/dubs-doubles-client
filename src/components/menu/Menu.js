@@ -28,20 +28,16 @@ export const Menu = () => {
     <>
     {/* <ThemeProvider theme={theme}> */}
       <section className="menuCard__container">
-            {/* <div  className="menuCard__container" key={currentUser.id}> */}
               <div className="menuCard">
                 <div className="menuCard__greeting">
-                  {/* <img className="menuCard__userAvatar" src={currentUser.avatarURL} alt="user_avatar" /> */}
                   <div>
                     <h2 className="greetingText">Dub's Doubles</h2>
-                    {/* <h3 className="greetingText">{currentUser.name}!</h3> */}
                   </div>
+                <img src="http://localhost:8000/media/products/965a93d9-a8d7-42c3-b491-03e888e1a6bf.jpg" width="250" />
                 </div>
                 <div className="menuCard__buttons">
                   <Button variant="contained" color="primary" onClick={() => history.push("/burgers")}>Burgers</Button>
-                  {/* {currentUser.userTypeId === 3 ? <Button variant="contained" color="primary" onClick={() => history.push("/listing")}>Add Listing</Button> : ""} */}
                   <Button variant="contained" color="primary" onClick={() => history.push("/fries")}>Fries</Button>
-                  {/* <Button variant="contained" color="primary" onClick={() => history.push("/combos")}>Combos</Button> */}
                 </div>
               </div>
             {/* </div> */}

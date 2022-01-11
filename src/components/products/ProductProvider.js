@@ -9,7 +9,7 @@ export const ProductProvider = (props) => {
     const [ image, setImage ] = useState({})
 
     const createProduct = (product) => {
-        return fetch("http://localhost:8000/products", {
+        return fetch("https://dubs-doubles.herokuapp.com/products", {
             method: "POST",
             headers:{
                 "Content-Type": "application/json",
@@ -22,7 +22,7 @@ export const ProductProvider = (props) => {
     }
     
     const createImage = (image) => {
-        return fetch("http://localhost:8000/images", {
+        return fetch("https://dubs-doubles.herokuapp.com/images", {
             method: "POST",
             headers:{
                 "Content-Type": "application/json",
@@ -35,7 +35,7 @@ export const ProductProvider = (props) => {
     }
 
     const updateProduct = (product) => {
-        return fetch(`http://localhost:8000/products/${product.id}`, {
+        return fetch(`https://dubs-doubles.herokuapp.com/products/${product.id}`, {
             method: "PUT",
             headers:{
                 "Content-Type": "application/json",
@@ -48,7 +48,7 @@ export const ProductProvider = (props) => {
     }
     
     const getProductById = (id) => {
-        return fetch(`http://localhost:8000/products/${id}`, { 
+        return fetch(`https://dubs-doubles.herokuapp.com/products/${id}`, { 
             headers:{
                 "Authorization": `Token ${localStorage.getItem("dd_token")}`
             }
@@ -58,7 +58,7 @@ export const ProductProvider = (props) => {
     }
 
     const getProductTypes = () => {
-        return fetch("http://localhost:8000/producttypes", { 
+        return fetch("https://dubs-doubles.herokuapp.com/producttypes", { 
             headers:{
                 "Authorization": `Token ${localStorage.getItem("dd_token")}`
             }
@@ -66,9 +66,20 @@ export const ProductProvider = (props) => {
             .then(response => response.json())
             .then(setProductTypes)
     }
-
+    const deleteProduct = (id) => {
+        return fetch(`https://dubs-doubles.herokuapp.com/products/${id}`, {
+            method: "DELETE",
+            headers:{
+                "Content-Type": "application/json",
+                "Authorization": `Token ${localStorage.getItem("dd_token")}`
+            },
+            body: JSON.stringify(id)
+         })
+            // .then(setLineItem(productId))
+            // .then()
+    }
     // const getBurgers = () => {
-    //     return fetch("http://localhost:8000/products?product_type=2", { 
+    //     return fetch("https://dubs-doubles.herokuapp.com/products?product_type=2", { 
     //         headers:{
     //             "Authorization": `Token ${localStorage.getItem("dd_token")}`
     //         }
@@ -78,7 +89,7 @@ export const ProductProvider = (props) => {
     // }
 
     return (
-        <ProductContext.Provider value={{ product, productTypes, image, setImage, createImage, createProduct, getProductById, updateProduct, getProductTypes }} >
+        <ProductContext.Provider value={{ product, productTypes, image, setImage, deleteProduct, createImage, createProduct, getProductById, updateProduct, getProductTypes }} >
             { props.children }
         </ProductContext.Provider>
 

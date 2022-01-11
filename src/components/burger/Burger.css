@@ -1,5 +1,11 @@
 .burgersCard {
   margin-bottom: 2rem;
+  width: 35vh;
+  padding: 10px;
+}
+.burgersCard2 {
+  margin-bottom: 2rem;
+  width: 35vh;
   padding: 10px;
 }
 .BYOB {

@@ -12,6 +12,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import MenuIcon from '@mui/icons-material/Menu';
+import { CartTotal } from "../cart/CartTotal"
 
 export const NavBar = (props) => {
     const { cart, getCart } = useContext(CartContext)
@@ -37,10 +38,18 @@ export const NavBar = (props) => {
                 <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                     
                 </Typography>
+                {cart.lineitems?.length > 0 ? `$${cart.total}` : ""}
+                {() => {let productTotal = 0
+        let toppingTotal = 0
+        let allTotal = 0
+        cart.lineItems?.forEach(item => productTotal += parseInt(item.product?.price))
+        cart.lineItems?.forEach(item => item.toppings.length > 0 ? item.toppings.forEach(topping => toppingTotal += parseInt(topping.price)) : toppingTotal += 0)
+        allTotal = productTotal + toppingTotal
+        return allTotal}}
                 { cart.lineitems?.length > 0 ? <Link className="navbar__link" to="/cart">
                     <IconButton className="navbarButtons navbar_end">
                         <Badge badgeContent={cart.lineitems?.length} color="secondary">
-                            <ShoppingBagIcon fontSize="large" />
+                            <ShoppingBagIcon fontSize="large" sx={{ color: "rgba(179, 229, 252, 1)"}}/>
                         </Badge>
                     </IconButton>
                  </Link> : ""}

@@ -1,35 +1,35 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { ChartDataContext } from "./ChartDataProvider.js"
-import {Bar} from 'react-chartjs-2'
+import {Line} from 'react-chartjs-2'
 import "./Chart.css"
 
-export const ProductSalesChart = () => {
+export const DailySalesChart = () => {
         const { 
-            productSalesData,
-            getProductSalesData } = useContext(ChartDataContext)
+            dailySalesData,
+            getDailySalesData } = useContext(ChartDataContext)
        const [chartData, setChartData]  = useState({});
-       const [ productNames, setProductNames ] = useState([])
-       const [ productNumbers, setProductNumbers ] = useState([])
+       const [ dates, setDates ] = useState([])
+       const [ dailyNumbers, setDailyNumbers ] = useState([])
 
         
        
-       const namesToArray = () => {
-           let namesArray = []
-           productSalesData?.product_sales?.forEach( product => namesArray.push(product.name))
-           setProductNames(namesArray)
+       const datesToArray = () => {
+           let datesArray = []
+           dailySalesData?.daily_sales?.forEach( date => datesArray.push(date.created_date))
+           setDates(datesArray)
        }
        const numbersToArray = () => {
            let numbersArray = []
-           productSalesData?.product_sales?.forEach( product => numbersArray.push(product.total_number_sold))
-           setProductNumbers(numbersArray)
+           dailySalesData?.daily_sales?.forEach( product => numbersArray.push(product.total_sales))
+           setDailyNumbers(numbersArray)
        }
 
         const Chart = () => {
             setChartData({
-            labels: productNames,
+            labels: dates,
             datasets: [{
-                                label: 'Total Product Sales',
-                                data: productNumbers,
+                                label: 'Total Product Sales $',
+                                data: dailyNumbers,
                                 backgroundColor: [
                                     'rgba(255, 99, 132, 0.2)',
                                     'rgba(54, 162, 235, 0.2)',
@@ -66,25 +66,25 @@ export const ProductSalesChart = () => {
     //     Chart();
     //   }, []);
      useEffect(() => {
-        getProductSalesData()
+        getDailySalesData()
       }, []);
      useEffect(() => {
-        namesToArray()
-      }, [productSalesData]);
+        datesToArray()
+      }, [dailySalesData]);
      useEffect(() => {
         numbersToArray()
-      }, [productNames]);
+      }, [dates]);
      useEffect(() => {
         Chart()
-      }, [productNumbers]);
+      }, [dailyNumbers]);
 
 return(
-          <div className="App ">
+          <div className="App">
               <div className="chartTitle">
-              <h1>Products Sold</h1>
+                <h1>Daily Sales</h1>
               </div>
               <div className="chartCard__container">
-                  <Bar
+                  <Line
                     data={chartData}
                     options={{
                         responsive:true,
